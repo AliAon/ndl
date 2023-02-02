@@ -1,0 +1,85 @@
+//@mixin
+
+// regular discount pricing 
+@mixin regular-price {
+    font-size: var(--font-body-3);
+    color: var(--color-light-grey);
+    font-weight: 400;
+    text-align: center;
+    text-decoration: line-through;
+    letter-spacing: 1px;
+ }
+
+ @mixin sale-price {
+    font-size: var(--font-body-3);
+    color: var(--color-primary);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-align: center;
+ }
+
+ @mixin product-price {
+    text-align: center;
+    font-size: var(--font-body-2);
+    color: var(--color-primary);
+    font-weight: 500;
+ }
+ @mixin product__title {
+    text-align: center;
+    color: var(--color-text-dark);
+    font-size: var(--font-body-2);
+ }
+//images
+
+@mixin image-main {
+    width: 100%;
+    height: 100%;
+ }
+ //button
+@mixin primary_button{
+   background-color: var(--color-primary);
+   font-size:var(--font-buton-3); 
+   color: #ffffff;
+   border-radius: 15px;
+   border: 0;
+   padding-left: 15px;
+   padding-right: 15px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+//card
+@mixin card {
+   border: 1px solid #a7a7a7;
+   border-radius: 15px;
+   padding: 15px;
+}
+//blog
+@mixin blog__title {
+   text-align: left;
+   color: var(--color-text-dark);
+   font-size: var(--font-body-2);
+   line-height:  1.5;
+}
+
+//brand
+.brand{
+   color: #a7a7a7;
+   font-size: var( --h4);
+   font-weight: 400;
+   text-align: center;
+}
+.btn-block{
+   width: 100%;
+}
+.forget-passwrd{
+   float: right;
+}
+.forget-passwrd::after{
+   clear: both;
+}
+
+//no wrap
+.x-nowrap{
+   flex-wrap: nowrap;
+
+}

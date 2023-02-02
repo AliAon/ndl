@@ -1,0 +1,14 @@
+.cart-count{
+    position: relative;
+    &__num{
+        background-color: var(--color-primary);
+        border-radius: 50%;
+        font-size: var(--font-body-5);
+        min-width: 16px;
+        display: inline-block;
+        min-height: 16px;
+        position: absolute;
+        color: white;
+        text-align: center;
+    }
+}

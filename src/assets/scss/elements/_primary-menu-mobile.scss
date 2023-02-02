@@ -1,0 +1,15 @@
+.primary-nav-link-mobile {
+    &__title{
+        color: var(--color-text-dark);
+        font-size: var(--font-buton-1);
+        padding-top: 40px;
+
+    }
+    list-style: none;
+    padding: 0px;
+    &__a{
+        line-height: 36px;
+        color: var(--color-light-grey);
+        text-decoration: none;
+    }
+}

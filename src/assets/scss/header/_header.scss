@@ -1,0 +1,15 @@
+.desktop-header {
+    &__book-now-btn {
+        @include primary_button;
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        font-size: var( --h6);
+    }
+    &__book-now-btn:hover{
+        @include primary_button;
+        background-color: var(--color-primary);
+        border-color: var(--color-primary);
+        font-size: var( --h6);
+        color: white;
+    }
+}

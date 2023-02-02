@@ -1,0 +1,13 @@
+.breadcrumb {
+    &-collectin {
+        color: var(--color-light-grey);
+        font-size: var(--font-body-3);
+    }
+    &-product {
+        color: var(--color-primary);
+        font-size: var(--font-body-3);
+    }
+    &__angle {
+        margin-top: -5px;
+    }
+}

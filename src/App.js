@@ -1,11 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Home from './pages/Home';
 function App() {
   return (
-    <h2>
-      Hello Wolrd
-    </h2>
+   <Home/>
   );
 }
 

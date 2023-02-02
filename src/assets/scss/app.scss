@@ -1,0 +1,95 @@
+/*---------------------------------------------
+Template Name: Regean
+Template URL: 
+Description: .
+Author: aliaon
+Author URL: 
+Version: 1.1.0
+
+===============================================   
+STYLESHEET INDEXING
+|
+|___ Default Styles
+|	|___ Variables
+|	|___ Reset Styels
+|	|___ Typography
+|	|___ Forms Styles
+|	|___ Helper Classes 
+|
+|___ Elements Styles
+|	|___ Back To Top
+|	|___ Breadcrumb
+|	|___ Button
+|	|___ Pagination 
+|	|___ Section Heading
+|	|___ Slick 
+|
+|___Template Styles
+|	|___ About Us
+|	|___ Banner
+|	|___ Brand
+|	|___ Call To Action
+|	|___ Case Study
+|	|___ Contact
+|	|___ Counter Up
+|	|___ FAQ
+|	|___ Pricing
+|	|___ Process
+|	|___ Project
+|	|___ Service
+|	|___ Team
+|	|___ Testimonial
+|	|___  Why Choose
+|	|___  404 Error
+|
+|___Blocks Styles
+|	|___ Header Styles
+|	|___ Blog Styles
+|	|___ Footer Styles
+|
+|___Dark Style
+|
+|___Spacing
+|
+|___RTL
+|
+|___ END STYLESHEET INDEXING
+
+--------------------------------------------*/
+
+/*=======================================================================
+1. Default Styles
+=========================================================================*/
+@import "default/variable";
+@import "default/typography";
+@import "default/spacing";
+
+/*=======================================================================
+2. Elements Styles
+=========================================================================*/
+@import "elements/primary-menu";
+@import "elements/global";
+
+/*=======================================================================
+3. Template Styles
+=========================================================================*/
+@import "template/home";
+
+
+/*=======================================================================
+4.Blocks Styles 
+=========================================================================*/
+@import "header/header";
+
+/*=======================================================================
+5. Dark Style 
+=========================================================================*/
+
+/*=======================================================================
+6. Spacing 
+=========================================================================*/
+
+/*=======================================================================
+7. RTL 
+=========================================================================*/
+// @import "rtl/rtl";
