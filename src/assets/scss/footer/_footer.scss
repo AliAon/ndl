@@ -3,4 +3,45 @@
 -------------------------*/
 .footer{
    background-color: var(--color-ten);
+   padding-top: 40px;
+   padding-bottom: 30px;
+   &__about-text{
+      font-size: var(--font-body-3)
+   }
+   &__menu-title{
+      font-style: normal;
+      font-family: Manrope;
+      font-weight: 700;
+      font-size:  var( --font-body-2);
+      line-height: var(--line-height-b1);
+      color:var(--color-nineth);
+   }
+   &__menu-lnks{ 
+      list-style: none;
+      margin-left: -20px;
+        li{
+         font-family: Manrope;
+         color: var(--color-eighth);
+         font-size:  var(--font-body-3);
+         line-height:var(--line-height-b1);
+      }
+   }
+   &__about-text{
+      font-family: Manrope;
+      font-weight: 400;
+      font-size: var(--font-body-3)
+   }
+   &__copyright{
+      font-size:  var(--font-body-3);
+      font-family: Manrope;
+      font-weight: 400;
+      text-align: center;
+   }
+
+}
+.hr-line-quick-linke{
+   margin: 10px;
+   background: #4F3313;
+   height: 2px;
+
 }

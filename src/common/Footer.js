@@ -4,77 +4,81 @@ import PhoneNo from "../components/Header/TopBarElements/PhoneNo";
 import SocialLinks from "../components/Header/TopBarElements/SocialLinks";
 import { FaCcMastercard, FaCcVisa, FaPaypal } from "react-icons/fa";
 import Logo from "../components/Header/Logo";
+import {BsArrowRightCircleFill} from "react-icons/bs"
 import LogoTrans from "../components/Header/LogoTrans";
+import LocationAddress from "../components/Header/TopBarElements/LocationAddress";
 const Footer = () => {
   return (
     <footer className="footer">
       <Container>
-        <Row>
+        <Row className="mb--20">
           <Col lg={4}>
-          <LogoTrans/>
+            <LogoTrans />
           </Col>
         </Row>
-        <Row className="top-footer ">
+        <Row className="top-footer mb--40">
           <Col lg={4}>
-                  <h4 className="footer__logo-text">Reaganwirless</h4>
-                  <p className="footer__about-text">
-                    Since 2003, NDL CONNECTICUT LIMOUSINE SERVICES has been
-                    providing premier car service and limousine transportation
-                    to a variety of clients. We are a team composes of
-                    reservationists, dispatchers, and professionally trained
-                    chauffeurs. Along with our computerized operating systems
-                    and modern fleet of vehicles, they play a role in our
-                    overall success.
-                  </p>
+            <h4 className="footer__menu-title mb--20">ABOUT US</h4>
+            <p className="footer__about-text">
+              Since 2003, NDL CONNECTICUT LIMOUSINE SERVICES has been providing
+              premier car service and limousine transportation to a variety of
+              clients. 
+
+              </p>
+              <p className="footer__about-text">
+              We are a team composes of reservationists, dispatchers,
+              and professionally trained chauffeurs. Along with our computerized
+              operating systems and modern fleet of vehicles, they play a role
+              in our overall success.
+            </p>
           </Col>
           <Col>
-            <h5 className="footer__menu-title">QUICK LINKS</h5>
+            <h5 className="footer__menu-title mb--20">QUICK LINKS</h5>
             <ul className="footer__menu-lnks">
-              <li>About</li>
-              <li>Products</li>
-              <li>Contact</li>
-              <li>Blog</li>
-              <li>Careers</li>
+              <li><BsArrowRightCircleFill color="#544424"  size={12} className="mr--5"/>   Services</li>
+              <hr className="hr-line-quick-linke"/>
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Booking</li>
+              <hr className="hr-line-quick-linke"/>
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Luxury Fleet</li>
+              <hr className="hr-line-quick-linke"/>
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Contact</li>
             </ul>
           </Col>
-          <Col >
-            <h5 className="footer__menu-title">Contact</h5>
+          <Col>
+            <h5 className="footer__menu-title mb--20">CONTACT DETAILS</h5>
+            <LocationAddress iconwidth={1} />
+            <div className="mb--20"></div>
             <PhoneNo
-              color="primary"
-              iconwidth={2}
+              color="#4F3313"
+              iconwidth={1}
               iconwidthsmall={1}
-              icon-color="#3267E3"
+              icon-color="#4F3313"
             />
+            <div className="mb--20"></div>
             <EmailAddress
-              color="primary"
-              iconwidth={2}
+              color="#4F3313"
+              iconwidth={1}
               iconwidthsmall={1}
-              icon-color="#3267E3"
+              icon-color="#4F3313"
             />
           </Col>
         </Row>
+
         <Row>
+          <Col lg={3}></Col>
           <Col>
-            <hr />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-          </Col>
-          <Col>
-            <div>
-              <Row>
-                <Col lg={6} xs={6}>
-                  <SocialLinks iconwidth={2} color="#A7A7A7" />
+            <div className="text-center">
+              <Row className="d-flex justify-content-center mb--10">
+                <Col lg={4} xs={4}>
+                  <SocialLinks iconwidth={2} color="#4F3313" />
                 </Col>
               </Row>
             </div>
             <p className="footer__copyright">
-              Copyright © 2022 <strong>Reaganwirless</strong>. All Right Reseved
+              © 2021 NDL CONNECTICUT Limousine Services | All Rights Reserved
             </p>
           </Col>
-         <Col>
-         </Col>
+          <Col lg={3}></Col>
         </Row>
       </Container>
     </footer>

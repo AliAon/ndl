@@ -9,7 +9,7 @@ const LocationAddress=(props)=>{
                  <FaMapMarkerAlt size={15} color={props["icon-color"]}/>
                 </Col>
                 <Col  lg={10}>
-                    <span className={`email-text color-${props.color}`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </span>
+                    <span className={`email-text color-${props.color}`}>80 Fair st suite 301 Norwalk CT 06851</span>
                 </Col>
             </Row>
        </Fragment>

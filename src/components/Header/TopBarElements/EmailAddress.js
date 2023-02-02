@@ -10,7 +10,7 @@ const EmailAddress=(props)=>{
                  <FaEnvelope size={15} color={props["icon-color"]}/>
                 </Col>
                 <Col  lg={10}>
-                    <span className={`email-text color-${props.color}`}>www.reaganwireless.com</span>
+                    <span className={`email-text color-${props.color}`}>info@acflimo.com</span>
                 </Col>
             </Row>
        </Fragment>
