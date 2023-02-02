@@ -17,6 +17,17 @@
 //     text-rendering: optimizeLegibility;
 // }
 
+@font-face {
+    font-family: 'Mitr';
+    src: url('../../fonts/Mitr/Mitr-Light.ttf');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'Manrope';
+    src: url('../../fonts/Manrope/static/Manrope-Regular.ttf');
+    font-weight:400
+}
+
 // h1,
 // h2,
 // h3,

@@ -8,8 +8,12 @@
         
     }
     &__a{
+        font-family: Mitr;
         color: #000000;
         text-decoration: none;
         text-transform: uppercase;
     }
+    &__a:hover{
+        color: #000000;
+     }
 }

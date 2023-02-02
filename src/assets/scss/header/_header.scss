@@ -1,5 +1,6 @@
 .desktop-header {
     &__book-now-btn {
+        font-family: Manrope;
         @include primary_button;
         background-color: var(--color-primary);
         border-color: var(--color-primary);
