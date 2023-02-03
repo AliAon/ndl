@@ -19,15 +19,23 @@
    padding-bottom: 40px;
    &__btn {
       @include primary_button;
-      font-size: var(--font-body-2);
+      font-size: var(--font-body-1);
       padding-left: 20px;
       padding-right: 20px;
       padding-top: 8px;
-      padding-bottom: 8px;
 
+      padding-bottom: 8px;
+      background: #FFFFFF;
+      box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25), inset -4px -4px 4px rgba(0, 0, 0, 0.24);
+      color: #6A4F34;
       &__icon-right {
          margin-top: -5px;
       }
+   }
+   &__btn:hover{
+      background-color: #FFFFFF;
+      color: #6A4F34;
+
    }
    &__title {
       font-family: Manrope;
@@ -48,11 +56,73 @@
    Hero 
 -------------------------*/
 
-.section-booknow{
+.section-booknow {
    height: 200px;
-   background-image: url('../../../../public/images/Frame 170 (1).png');
+   background-image: url("../../../../public/images/Frame 170 (1).png");
    margin-bottom: 30px;
    background-repeat: no-repeat;
    background-size: cover;
+   padding: 40px;
+   position: relative;
+   &__label {
+      font-family: Manrope;
+      font-size: var(--font-buton-1);
+      font-weight: 600;
+      color: var(--color-fourth);
+   }
+   .date-one[type="date"]::-webkit-datetime-edit-fields-wrapper {
+      position: relative;
+      left: 15%;
+   }
+   .date-one[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      left: 5%;
+      width: 20px;
+      background: url('./../../../../public/images/calender.svg') no-repeat;
+      margin-top: 8px;
+      height: 20px;
+   }
+   .date-two[type="date"]::-webkit-datetime-edit-fields-wrapper {
+      position: relative;
+      left: 15%;
+   }
+   .date-two[type="date"]::-webkit-calendar-picker-indicator {
+      position: absolute;
+      left: 5%;
+      width: 20px;
+      height: 20px;
+      background: url('./../../../../public/images/calender.svg') no-repeat;
+      margin-top: 8px;
+   }
+   &__map-input{
+      background: url('./../../../../public/images/map.svg') no-repeat;
+      background-color: white;
+      background-position: 10px 10px; 
+      padding-left:30px;
+   }
+   &__car-input{
+      background: url('./../../../../public/images/car.svg') no-repeat;
+      background-color: white;
+      background-position: 10px 10px; 
+      padding-left:40px;
+   }
+   &__btn{
+   @include primary_button;
+   font-size: var(--font-body-1);
+   background-color: var(--color-secondary);
+   padding: 8px 16px;
+   text-transform: uppercase;
+   padding-left: 20px;
+    padding-right: 20px;
+   box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25), inset -4px -4px 4px rgba(0, 0, 0, 0.24);
+   }
+}
+.formgroup{
+   &-one{
+      position: relative;
+   }
+   &-two{
+      position: relative;
 
+   }
 }

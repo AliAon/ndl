@@ -5,6 +5,9 @@
         background-color: var(--color-primary);
         border-color: var(--color-primary);
         font-size: var( --h6);
+        color: black;
+        padding-left: 20px;
+        padding-right: 20px;
     }
     &__book-now-btn:hover{
         @include primary_button;
