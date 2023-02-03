@@ -24,9 +24,7 @@
     &__input-date{
         color: white;
     }
-    &__input-hours{
-
-    }
+   
   
 
 }
@@ -36,6 +34,7 @@
     width: 20px;
     height: 20px;
     background: url('./../../../../public/images/arrow-down.svg') no-repeat;
-    margin-top: 8px;
  }
- 
+ .form-select{
+    background-image:url('./../../../../public/images/arrow-down.svg')
+ }

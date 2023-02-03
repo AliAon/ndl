@@ -91,9 +91,8 @@ function GetQuoteForm() {
                 <Form.Label className="input-from__label">
                   No. of Hours
                 </Form.Label>
-
                 <Form.Select
-                  className="input-from__input"
+                  className="input-from__input input-from__input-hours"
                   aria-label="Default select example"
                 >
                   <option>Select hours</option>
@@ -131,7 +130,7 @@ function GetQuoteForm() {
         <Form.Group as={Col} controlId="formGridCity">
           <div className="input-from">
             <Row className="row align-items-center">
-              <Col lg={1}>
+              <Col lg={2}>
                 <span>
                   <FaUserFriends color="#9B8974" size={20} />
                 </span>
