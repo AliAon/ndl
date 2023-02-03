@@ -2,8 +2,57 @@
    Home 
 -------------------------*/
 
-.header{
+.header {
    color: var(--color-primary);
    font-size: var(--h4);
 }
 
+/*-------------------------
+   Hero 
+-------------------------*/
+
+.section-hero {
+   background-image: url("../../../../public/images/hero-back.png");
+   padding-top: 40px;
+   padding-left: 30px;
+   border-radius: 15px;
+   padding-bottom: 40px;
+   &__btn {
+      @include primary_button;
+      font-size: var(--font-body-2);
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+
+      &__icon-right {
+         margin-top: -5px;
+      }
+   }
+   &__title {
+      font-family: Manrope;
+      font-size: var(--h3);
+      margin-bottom: 20px;
+      color: var(--color-secondary);
+   }
+   &__description {
+      font-family: Manrope;
+      font-size: var(--font-body-1);
+      margin-bottom: 20px;
+   }
+   &__img {
+      width: 100%;
+   }
+}
+/*-------------------------
+   Hero 
+-------------------------*/
+
+.section-booknow{
+   height: 200px;
+   background-image: url('../../../../public/images/Frame 170 (1).png');
+   margin-bottom: 30px;
+   background-repeat: no-repeat;
+   background-size: cover;
+
+}

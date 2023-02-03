@@ -1,5 +1,6 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import Logo from "../components/Header/Logo";
+import LogoTrans from "../components/Header/LogoTrans";
 import MainMenu from "../components/Header/MainMenu";
 
 const Header = () => {
@@ -8,7 +9,7 @@ const Header = () => {
       <Container>
         <Row className="d-flex align-items-baseline">
           <Col lg={3}>
-            <Logo />
+            <LogoTrans />
           </Col>
           <Col>
             <MainMenu />
