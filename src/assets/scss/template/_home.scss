@@ -161,3 +161,17 @@
 
    }
 }
+.input-from__input::placeholder{
+   color: white;
+   font-size: var(--font-body-3);
+}
+.input-from__input::-webkit-input-placeholder{
+   color: white;
+   font-size: var(--font-body-3);
+
+}
+.input-from__input::-moz-placeholder{
+   color: white;
+   font-size: var(--font-body-3);
+
+}
