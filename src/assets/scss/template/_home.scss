@@ -129,7 +129,15 @@
 /*-------------------------
    GET A QUOTE 
 -------------------------*/
+.getquotebg{
+   background-image: url('../../../../public/images/getquotebg.png');
+   background-size: 100%;
+   background-position: center;
+   background-repeat: no-repeat;
+   width: 100%;
+}
 .section-getquote{
+
    &__img{
       width: 100%;
    }
