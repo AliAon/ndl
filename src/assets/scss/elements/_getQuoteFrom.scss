@@ -14,9 +14,28 @@
         border-color: #343434;
         border: 1px solid #343434;
         padding: 0px;
+        color: white!important;
+        padding-right: 4px;
         ::placeholder{
             color: white!important;
         }
+        
     }
+    &__input-date{
+        color: white;
+    }
+    &__input-hours{
+
+    }
+  
 
 }
+.input-from__input-date[type="date"]::-webkit-calendar-picker-indicator {
+    position: relative;
+    left: 5%;
+    width: 20px;
+    height: 20px;
+    background: url('./../../../../public/images/arrow-down.svg') no-repeat;
+    margin-top: 8px;
+ }
+ 
