@@ -26,16 +26,24 @@ const BookNow = () => {
             </Form.Group>
             <Form.Group as={Col} controlId="section-booknow__map-input">
               <Form.Label className="section-booknow__label">SSSS:</Form.Label>
-              <Form.Control type="text" className="section-booknow__map-input"/>
+              <Form.Control
+                type="text"
+                className="section-booknow__map-input"
+              />
             </Form.Group>
-            <Form.Group as={Col} controlId="section-booknow__car-input" >
+            <Form.Group as={Col} controlId="section-booknow__car-input">
               <Form.Label className="section-booknow__label">SSSSSS</Form.Label>
-              <Form.Control type="text" className="section-booknow__car-input" />
+              <Form.Control
+                type="text"
+                className="section-booknow__car-input"
+              />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridCity">
-              <Button className="section-booknow__btn" type="submit">
-                BookNow
-              </Button>{" "}
+              <div className="text-center">
+                <Button className="section-booknow__btn" type="submit">
+                  BookNow
+                </Button>
+              </div>
             </Form.Group>
           </Row>
         </Form>

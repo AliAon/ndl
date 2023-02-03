@@ -1,0 +1,22 @@
+.input-from{
+    background-color: #343434;
+    padding: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 30px;
+    &__label{
+        color: #9B8974;
+        padding: 0px;
+        margin: 0px
+    }
+    &__input, &__input:focus{
+        background-color: #343434;
+        border-color: #343434;
+        border: 1px solid #343434;
+        padding: 0px;
+        ::placeholder{
+            color: white!important;
+        }
+    }
+
+}

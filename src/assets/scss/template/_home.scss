@@ -126,3 +126,34 @@
 
    }
 }
+/*-------------------------
+   GET A QUOTE 
+-------------------------*/
+.section-getquote{
+   &__img{
+      width: 100%;
+   }
+   &__card{
+      background: rgba(242, 234, 226, 0.57);
+      padding: 25px;
+      border: 0px;
+      border-radius: 25px;
+   }
+   &__title{
+      font-family: 'Manrope';
+      font-style: normal;
+      font-weight: 500;
+      font-size: var(--h5);
+      line-height: 132.47%;
+      color:#9B8974;
+      margin-bottom: 30px;
+
+   }
+   &__form-btn{
+      @include primary_button;
+      padding: 15px;
+      background-color: #9B8974;
+      font-size: var(--font-body-1);
+      margin-top: 20px;
+   }
+}
