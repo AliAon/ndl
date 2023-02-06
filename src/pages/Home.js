@@ -4,6 +4,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import BookNow from "../components/Home/BookNow";
 import ExocticCarRental from "../components/Home/ExocticCarRental";
+import ExtendYouShop from "../components/Home/ExtendYouShop";
 import GetQuote from "../components/Home/GetQuote";
 import Hero from "../components/Home/Hero";
 import ProductGridOne from "../components/Home/ProductGridOne";
@@ -22,6 +23,7 @@ const Home = () => {
           </Container>
         </div>
         <ExocticCarRental/>
+        <ExtendYouShop/>
       </main>
       <Footer />
     </Fragment>

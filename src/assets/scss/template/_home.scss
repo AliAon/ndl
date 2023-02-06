@@ -25,17 +25,17 @@
       padding-top: 8px;
 
       padding-bottom: 8px;
-      background: #FFFFFF;
-      box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25), inset -4px -4px 4px rgba(0, 0, 0, 0.24);
-      color: #6A4F34;
+      background: #ffffff;
+      box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+         inset -4px -4px 4px rgba(0, 0, 0, 0.24);
+      color: #6a4f34;
       &__icon-right {
          margin-top: -5px;
       }
    }
-   &__btn:hover{
-      background-color: #FFFFFF;
-      color: #6A4F34;
-
+   &__btn:hover {
+      background-color: #ffffff;
+      color: #6a4f34;
    }
    &__title {
       font-family: Manrope;
@@ -78,7 +78,7 @@
       position: absolute;
       left: 5%;
       width: 20px;
-      background: url('./../../../../public/images/calender.svg') no-repeat;
+      background: url("./../../../../public/images/calender.svg") no-repeat;
       margin-top: 8px;
       height: 20px;
    }
@@ -91,97 +91,92 @@
       left: 5%;
       width: 20px;
       height: 20px;
-      background: url('./../../../../public/images/calender.svg') no-repeat;
+      background: url("./../../../../public/images/calender.svg") no-repeat;
       margin-top: 8px;
    }
-   &__map-input{
-      background: url('./../../../../public/images/map.svg') no-repeat;
+   &__map-input {
+      background: url("./../../../../public/images/map.svg") no-repeat;
       background-color: white;
-      background-position: 10px 10px; 
-      padding-left:30px;
+      background-position: 10px 10px;
+      padding-left: 30px;
    }
-   &__car-input{
-      background: url('./../../../../public/images/car.svg') no-repeat;
+   &__car-input {
+      background: url("./../../../../public/images/car.svg") no-repeat;
       background-color: white;
-      background-position: 10px 10px; 
-      padding-left:40px;
+      background-position: 10px 10px;
+      padding-left: 40px;
    }
-   &__btn{
-   @include primary_button;
-   font-size: var(--font-body-1);
-   background-color: var(--color-secondary);
-   padding: 8px 16px;
-   text-transform: uppercase;
-   padding-left: 20px;
-    padding-right: 20px;
-   box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25), inset -4px -4px 4px rgba(0, 0, 0, 0.24);
+   &__btn {
+      @include primary_button;
+      font-size: var(--font-body-1);
+      background-color: var(--color-secondary);
+      padding: 8px 16px;
+      text-transform: uppercase;
+      padding-left: 20px;
+      padding-right: 20px;
+      box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25),
+         inset -4px -4px 4px rgba(0, 0, 0, 0.24);
    }
 }
-.formgroup{
-   &-one{
+.formgroup {
+   &-one {
       position: relative;
    }
-   &-two{
+   &-two {
       position: relative;
-
    }
 }
 /*-------------------------
    GET A QUOTE 
 -------------------------*/
-.getquotebg{
-   background-image: url('../../../../public/images/getquotebg-1.png');
+.getquotebg {
+   background-image: url("../../../../public/images/getquotebg-1.png");
    background-size: 100%;
    background-position: center;
    background-repeat: no-repeat;
    width: 100%;
 }
-.section-getquote{
-
-   &__img{
+.section-getquote {
+   &__img {
       width: 100%;
    }
-   &__card{
+   &__card {
       background: rgba(242, 234, 226, 0.57);
       padding: 25px;
       border: 0px;
       border-radius: 25px;
    }
-   &__title{
-      font-family: 'Manrope';
+   &__title {
+      font-family: "Manrope";
       font-style: normal;
       font-weight: 500;
       font-size: var(--h5);
       line-height: 132.47%;
-      color:#9B8974;
+      color: #9b8974;
       margin-bottom: 30px;
-
    }
-   &__form-btn{
+   &__form-btn {
       @include primary_button;
       padding: 15px;
-      background-color: #9B8974;
+      background-color: #9b8974;
       font-size: var(--font-body-1);
       margin-top: 20px;
    }
-   &__form-btn:hover{
-      background-color: #9B8974;
-
+   &__form-btn:hover {
+      background-color: #9b8974;
    }
 }
-.input-from__input::placeholder{
+.input-from__input::placeholder {
    color: white;
    font-size: var(--font-body-3);
 }
-.input-from__input::-webkit-input-placeholder{
+.input-from__input::-webkit-input-placeholder {
    color: white;
    font-size: var(--font-body-3);
-
 }
-.input-from__input::-moz-placeholder{
+.input-from__input::-moz-placeholder {
    color: white;
    font-size: var(--font-body-3);
-
 }
 /*-------------------------
    Product One  Section 
@@ -189,7 +184,7 @@
 
 .product-one-card {
    border-radius: 15px;
-   background-color: #F2EAE2;
+   background-color: #f2eae2;
    padding: 15px;
    position: relative;
    &__image {
@@ -207,25 +202,41 @@
    &__product-des {
       @include product_des;
    }
-   &__product-btn{
-      background: #8F5E25; 
+   &__product-btn {
+      background: #8f5e25;
       font-size: var(--font-body-3);
       font-family: Manrope;
-      border-color: #8F5E25;
+      border-color: #8f5e25;
    }
-   &__product-btn:hover{
-      background-color: #8F5E25;
-      border-color: #8F5E25;
-
+   &__product-btn:hover {
+      background-color: #8f5e25;
+      border-color: #8f5e25;
    }
-   &__view-all{
-      @include outline-btn; 
+   &__view-all {
+      @include outline-btn;
       margin-top: 20px;
       margin-bottom: 20px;
-
    }
-   &__view-all:hover{
+   &__view-all:hover {
       background-color: #8f5e25;
-      border-color: #8f5e25;;
+      border-color: #8f5e25;
+   }
+}
+
+/*-------------------------
+   Extend Your Shop  Section 
+-------------------------*/
+.section-extend-your-shop{
+
+   &__title {
+      font-size: var(--h5);
+      font-family: Manrope-ExtraBold;
+      color: black;
+   }
+   &__des{
+      font-size: var(--font-body-3);
+      font-family: Manrope-Medium;
+      font-weight: 500;
+      color: black;
    }
 }
