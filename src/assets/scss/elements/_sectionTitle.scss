@@ -1,12 +1,22 @@
 .section{
     &__title{
-        font-size: var(--h4);
+        font-size: var(--h3);
         color: var(--color---h3-text-dark);
         font-weight: 700;
         line-height: 1.5;
+        color: black;
+        font-family: Manrope;
+        &-first{
+            color: var(--color-seventh);
+        
+        }
     }
     &__description{
+        color: #828282;
         font-size: var(--color---h3-text-dark);
         color: var(--color-light-grey);
+        font-family: Mitr;
+
     }
+
 }

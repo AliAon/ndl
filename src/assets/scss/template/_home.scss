@@ -183,3 +183,35 @@
    font-size: var(--font-body-3);
 
 }
+/*-------------------------
+   Product One  Section 
+-------------------------*/
+
+.product-one-card {
+   border-radius: 15px;
+   background-color: #F2EAE2;
+   padding: 15px;
+   position: relative;
+   &__image {
+      img {
+         width: 100%;
+         border-radius: 5px;
+      }
+   }
+   &__detail {
+      padding-top: 15px;
+   }
+   &__product-title {
+      @include product__title;
+   }
+   &__product-des {
+      @include product_des;
+   }
+   &__product-btn{
+      background: #8F5E25; 
+      font-size: var(--font-body-3);
+      font-family: Manrope;
+      border-color: #8F5E25;
+   }
+ 
+}
