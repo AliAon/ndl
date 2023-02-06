@@ -8,6 +8,7 @@ import ExtendYouShop from "../components/Home/ExtendYouShop";
 import GetQuote from "../components/Home/GetQuote";
 import Hero from "../components/Home/Hero";
 import ProductGridOne from "../components/Home/ProductGridOne";
+import ProductTabs from "../components/Home/ProductTabs";
 const Home = () => {
   return (
     <Fragment>
@@ -24,6 +25,7 @@ const Home = () => {
         </div>
         <ExocticCarRental/>
         <ExtendYouShop/>
+        <ProductTabs/>
       </main>
       <Footer />
     </Fragment>
