@@ -226,14 +226,13 @@
 /*-------------------------
    Extend Your Shop  Section 
 -------------------------*/
-.section-extend-your-shop{
-
+.section-extend-your-shop {
    &__title {
       font-size: var(--h5);
       font-family: Manrope-ExtraBold;
       color: black;
    }
-   &__des{
+   &__des {
       font-size: var(--font-body-3);
       font-family: Manrope-Medium;
       font-weight: 500;
@@ -243,32 +242,30 @@
 /*-------------------------
    Product Tabs Section 
 -------------------------*/
-.productTabItem__product-item-details{
-   &__img{
+.productTabItem__product-item-details {
+   &__img {
       width: 100%;
       height: 100%;
       border-radius: 5px;
-
    }
-   &__subtitle{
+   &__subtitle {
       font-size: var(--font-body-4);
       font-family: Manrope-ExtraBold;
       color: black;
       margin-bottom: 0.5rem;
    }
-   &__title{
+   &__title {
       font-size: var(--h5);
       font-family: Manrope-Bold;
       color: black;
       margin-bottom: 0.5rem;
-
    }
-   &__read-more{
+   &__read-more {
       background-color: var(--body-background);
       border-color: var(--body-background);
       color: black;
       position: relative;
-      &__img{
+      &__img {
          position: absolute;
          left: 0;
       }
@@ -276,47 +273,41 @@
       font-family: Manrope;
       font-size: var(--font-body-2);
    }
-   &__read-more:focus{
-      background-color: var(--body-background)!important;
-      border-color: var(--body-background)!important;
-      color: black!important;
-
+   &__read-more:focus {
+      background-color: var(--body-background) !important;
+      border-color: var(--body-background) !important;
+      color: black !important;
    }
-   &__read-more:active{
-      background-color: var(--body-background)!important;
-      border-color: var(--body-background)!important;
-      color: black!important;
-
+   &__read-more:active {
+      background-color: var(--body-background) !important;
+      border-color: var(--body-background) !important;
+      color: black !important;
    }
-   &__read-more:hover{
-      background-color: var(--body-background)!important;
-      border-color: var(--body-background)!important;
-      color: black!important;
-
+   &__read-more:hover {
+      background-color: var(--body-background) !important;
+      border-color: var(--body-background) !important;
+      color: black !important;
    }
- 
-  
 }
-.nav-tabs{
-   & .nav-link{
-      background: #F0F0F0;
+.nav-tabs {
+   & .nav-link {
+      background: #f0f0f0;
       color: #000000;
       font-family: Manrope-Bold;
       font-size: var(--font-body-3);
       min-width: 100px;
       border-radius: 20px;
-
    }
-   & .nav-item{
+   & .nav-item {
       margin-right: 10px;
    }
-   & .nav-item.show .nav-link, & .nav-link.active {
-      background-color: #8F5E25;
+   & .nav-item.show .nav-link,
+   & .nav-link.active {
+      background-color: #8f5e25;
       color: white;
    }
-   
-} 
-.aligntabs{
+}
+.aligntabs {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -325,9 +316,22 @@
 }
 
 .section__cta {
-background-image: url('../../../../public/images/Rectangle 14.png');
-height: 600px;
-background-position: center center;
-background-repeat: no-repeat;
-background-size: cover;
+   background-image: url("../../../../public/images/Rectangle 14.png");
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   position: relative;
+   padding-top: 10%;
+   padding-bottom: 10%;
+   &__news-letter {
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 50px;
+      font-size: var(--h3);
+      font-family: Manrope;
+      border-radius: 5px;
+      width: 500px;
+      background-color: #000000;
+   }
 }
