@@ -1,7 +1,8 @@
 import { Col, Container, Row } from "react-bootstrap";
 import OffCanvas from "./OffCanvas";
 import {BiMenu} from "react-icons/bi"
-import Logo from "../components/Header/MiddleHeaderElements/Logo";
+import Logo from "../components/Header/Logo";
+import LogoTrans from "../components/Header/LogoTrans";
 const HeaderMobile = () => {
  const placement='end'
  const name=<BiMenu size={35} color="white"/>
@@ -11,7 +12,7 @@ const HeaderMobile = () => {
       <Container>
         <Row>
           <Col xs={9}>
-          <Logo/>
+          <LogoTrans/>
           </Col>
           <Col xs={3}>
           <OffCanvas
