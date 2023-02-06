@@ -130,7 +130,7 @@
    GET A QUOTE 
 -------------------------*/
 .getquotebg{
-   background-image: url('../../../../public/images/getquotebg.png');
+   background-image: url('../../../../public/images/getquotebg-1.png');
    background-size: 100%;
    background-position: center;
    background-repeat: no-repeat;
@@ -213,5 +213,19 @@
       font-family: Manrope;
       border-color: #8F5E25;
    }
- 
+   &__product-btn:hover{
+      background-color: #8F5E25;
+      border-color: #8F5E25;
+
+   }
+   &__view-all{
+      @include outline-btn; 
+      margin-top: 20px;
+      margin-bottom: 20px;
+
+   }
+   &__view-all:hover{
+      background-color: #8f5e25;
+      border-color: #8f5e25;;
+   }
 }

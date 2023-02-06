@@ -1,28 +1,28 @@
 //@mixin
 
- @mixin product_des {
-    text-align: left;
-    font-size: var(--font-body-3);
-    color: var(--color-twelve);
-    font-weight: 500;
-    font-family: Manrope;
- }
- @mixin product__title {
-    text-align: left;
-    font-family: Manrope;
-    color: var(--color-text-dark);
-    font-size: var(--font-body-2);
- }
+@mixin product_des {
+   text-align: left;
+   font-size: var(--font-body-3);
+   color: var(--color-twelve);
+   font-weight: 500;
+   font-family: Manrope;
+}
+@mixin product__title {
+   text-align: left;
+   font-family: Manrope;
+   color: var(--color-text-dark);
+   font-size: var(--font-body-2);
+}
 //images
 
 @mixin image-main {
-    width: 100%;
-    height: 100%;
- }
- //button
-@mixin primary_button{
+   width: 100%;
+   height: 100%;
+}
+//button
+@mixin primary_button {
    background-color: var(--color-primary);
-   font-size:var(--font-buton-3); 
+   font-size: var(--font-buton-3);
    color: #ffffff;
    border-radius: 15px;
    font-family: Manrope;
@@ -43,41 +43,57 @@
    text-align: left;
    color: var(--color-text-dark);
    font-size: var(--font-body-2);
-   line-height:  1.5;
+   line-height: 1.5;
 }
 
 //brand
-.brand{
+.brand {
    color: #a7a7a7;
-   font-size: var( --h4);
+   font-size: var(--h4);
    font-weight: 400;
    text-align: center;
 }
-.btn-block{
+.btn-block {
    width: 100%;
 }
-.forget-passwrd{
+.forget-passwrd {
    float: right;
 }
-.forget-passwrd::after{
+.forget-passwrd::after {
    clear: both;
 }
 
 //no wrap
-.x-nowrap{
+.x-nowrap {
    flex-wrap: nowrap;
-
 }
 
-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+input::placeholder {
+   /* Chrome, Firefox, Opera, Safari 10.1+ */
    color: #303030;
    opacity: 1; /* Firefox */
- }
- 
- :-ms-input-placeholder { /* Internet Explorer 10-11 */
+}
+
+:-ms-input-placeholder {
+   /* Internet Explorer 10-11 */
    color: #303030;
- }
- 
- ::-ms-input-placeholder { /* Microsoft Edge */
+}
+
+::-ms-input-placeholder {
+   /* Microsoft Edge */
    color: #303030;
- }
+}
+//Outline Button
+@mixin outline-btn {
+   font-family: "Mitr";
+   font-style: normal;
+   color: #8f5e25;
+   border: 0.635px solid #8f5e25;
+   border-radius: 16px;
+   border-color: #8f5e25;
+   font-weight: 400;
+   width: 133px;
+   height: 46px;
+   font-size:var(--font-body-2);
+   line-height: 22px;
+}

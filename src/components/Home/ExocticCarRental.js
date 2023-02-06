@@ -4,7 +4,7 @@ import ProductGridOne from "./ProductGridOne";
 
 const ExocticCarRental = () => {
   return (
-    <Container>
+    <Container className="pb--40">
         <SectionTitle first="Exotic" title="Car Rental" 
         description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nisl feugiat turpis aliquet nisi. In quam ullamcorper nulla congue rutrum nulla tellus eu enim. Arcu quam volutpat nisl sed nec magna."
         align="center"
