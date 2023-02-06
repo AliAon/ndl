@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import BookNow from "../components/Home/BookNow";
+import CtaOne from "../components/Home/CtaOne";
 import ExocticCarRental from "../components/Home/ExocticCarRental";
 import ExtendYouShop from "../components/Home/ExtendYouShop";
 import GetQuote from "../components/Home/GetQuote";
@@ -23,9 +24,10 @@ const Home = () => {
             <GetQuote />
           </Container>
         </div>
-        <ExocticCarRental/>
-        <ExtendYouShop/>
-        <ProductTabs/>
+        <ExocticCarRental />
+        <ExtendYouShop />
+        <ProductTabs />
+          <CtaOne />
       </main>
       <Footer />
     </Fragment>
