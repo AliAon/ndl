@@ -25,8 +25,8 @@ const Home = () => {
             <GetQuote />
           </Container>
         </div>
-      <ExocticCarRental />
-          <ExtendYouShop />
+       <ExocticCarRental />
+         {/* <ExtendYouShop /> */}
        {/* <ProductTabs />
           <CtaOne /> */}
       </main>

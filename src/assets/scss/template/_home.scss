@@ -284,9 +284,12 @@
    }
    &__product-title {
       @include product__title;
+      font-family: Manrope-Bold
    }
    &__product-des {
       @include product_des;
+      font-family: Manrope;
+      font-size: var(--font-body-2);
    }
    &__product-btn {
       background: #8f5e25;
