@@ -19,16 +19,16 @@
    padding-bottom: 40px;
    &__btn {
       @include primary_button;
-      font-size: var(--font-body-1);
+      font-size: var(--font-body-1)!important;
       padding-left: 20px;
       padding-right: 20px;
       padding-top: 8px;
 
       padding-bottom: 8px;
-      background: #ffffff;
+      background: #ffffff!important;
       box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25),
          inset -4px -4px 4px rgba(0, 0, 0, 0.24);
-      color: #6a4f34;
+      color: #6a4f34!important;
       &__icon-right {
          margin-top: -5px;
       }
@@ -108,8 +108,8 @@
    }
    &__btn {
       @include primary_button;
-      font-size: var(--font-body-1);
-      background-color: var(--color-secondary);
+      font-size: var(--font-body-1)!important;
+      background-color: var(--color-secondary)!important;
       padding: 8px 16px;
       text-transform: uppercase;
       padding-left: 20px;
