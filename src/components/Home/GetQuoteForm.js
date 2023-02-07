@@ -17,99 +17,99 @@ function GetQuoteForm() {
   return (
     <Form>
       <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridEmail">
-          <div className="input-from">
-            <Row className="row align-items-center">
-              <Col lg={1} xs={1}>
-                <span>
-                  <FaCircle color="#9B8974" size={20} />
-                </span>
-              </Col>
-              <Col>
-                <Form.Label className="input-from__label">From</Form.Label>
-                <Form.Control
-                  type="text"
-                  className="input-from__input"
-                  placeholder="Address, airport, hotel "
-                />
-              </Col>
-            </Row>
-          </div>
-        </Form.Group>
+        <Col lg={12} md={6} className="mb--20">
+          <Form.Group as={Col} controlId="formGridEmail">
+            <div className="input-from">
+              <Row className="row align-items-center">
+                <Col lg={1} xs={1}>
+                  <span>
+                    <FaCircle color="#9B8974" size={20} />
+                  </span>
+                </Col>
+                <Col>
+                  <Form.Label className="input-from__label">From</Form.Label>
+                  <Form.Control
+                    type="text"
+                    className="input-from__input"
+                    placeholder="Address, airport, hotel "
+                  />
+                </Col>
+              </Row>
+            </div>
+          </Form.Group>
+        </Col>
+        <Col lg={12} md={6}>
+          <Form.Group className="mb-3" controlId="formGridAddress1">
+            <div className="input-from">
+              <Row className="row align-items-center">
+                <Col lg={1} xs={1}>
+                  <span>
+                    <FaCircle color="#9B8974" size={20} />
+                  </span>
+                </Col>
+                <Col>
+                  <Form.Label className="input-from__label">To</Form.Label>
+                  <Form.Control
+                    type="text"
+                    className="input-from__input"
+                    placeholder="Address, airport, hotel "
+                  />
+                </Col>
+              </Row>
+            </div>
+          </Form.Group>
+        </Col>
       </Row>
 
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <div className="input-from">
-          <Row className="row align-items-center">
-            <Col lg={1} xs={1}>
-              <span>
-                <FaCircle color="#9B8974" size={20} />
-              </span>
-            </Col>
-            <Col>
-              <Form.Label className="input-from__label">To</Form.Label>
-              <Form.Control
-                type="text"
-                className="input-from__input"
-                placeholder="Address, airport, hotel "
-              />
-            </Col>
-          </Row>
-        </div>
-      </Form.Group>
-
-      <Row >
-        <Col lg={6} xs={12}>
-        <Form.Group controlId="formGridCity" className="mb-3">
-          <div className="input-from">
-            <Row className="row align-items-center">
-              <Col lg={2} xs={1}>
-                <span>
-                  <FaCalendar color="#9B8974" size={20} />
-                </span>
-              </Col>
-              <Col lg={10} xs={11}>
-                <Form.Label className="input-from__label">Date</Form.Label>
-                <Form.Control
-                  type="date"
-                  className="input-from__input input-from__input-date"
-                  placeholder="Select Date"
-                />
-              </Col>
-            </Row>
-          </div>
-        </Form.Group>
+      <Row>
+        <Col lg={6} md={6} xs={12}>
+          <Form.Group controlId="formGridCity" className="mb-3">
+            <div className="input-from">
+              <Row className="row align-items-center">
+                <Col lg={2} xs={1}>
+                  <span>
+                    <FaCalendar color="#9B8974" size={20} />
+                  </span>
+                </Col>
+                <Col lg={10} xs={11}>
+                  <Form.Label className="input-from__label">Date</Form.Label>
+                  <Form.Control
+                    type="date"
+                    className="input-from__input input-from__input-date"
+                    placeholder="Select Date"
+                  />
+                </Col>
+              </Row>
+            </div>
+          </Form.Group>
         </Col>
-        <Col lg={6} xs={12}>
-        <Form.Group controlId="formGridState">
-          <div className="input-from input-from__num-of-hour">
-            <Row className="row align-items-center">
-              <Col lg={2} xs={1}>
-                <span>
-                  <FaClock color="#9B8974" size={20} />
-                </span>
-              </Col>
-              <Col  lg={10} xs={11}>
-                <Form.Label className="input-from__label">
-                  No. of Hours
-                </Form.Label>
-                <Form.Select
-                  className="input-from__input input-from__input-hours"
-                  aria-label="Default select example"
-                >
-                  <option>Select hours</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </Form.Select>
-              </Col>
-            </Row>
-          </div>
-        </Form.Group>
+        <Col lg={6} md={6} xs={12} className="mb--20">
+          <Form.Group controlId="formGridState">
+            <div className="input-from input-from__num-of-hour">
+              <Row className="row align-items-center">
+                <Col lg={2} xs={1}>
+                  <span>
+                    <FaClock color="#9B8974" size={20} />
+                  </span>
+                </Col>
+                <Col lg={10} xs={11}>
+                  <Form.Label className="input-from__label">
+                    No. of Hours
+                  </Form.Label>
+                  <Form.Select
+                    className="input-from__input input-from__input-hours"
+                    aria-label="Default select example"
+                  >
+                    <option>Select hours</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </Form.Select>
+                </Col>
+              </Row>
+            </div>
+          </Form.Group>
         </Col>
-
-
-       
       </Row>
       <Form.Group className="mb-3" controlId="formGridAddress1">
         <div className="input-from">
@@ -137,8 +137,8 @@ function GetQuoteForm() {
         </div>
       </Form.Group>
       <Row className="mb-3">
-        <Col lg={6} xs={12} className="mb-3">
-          <Form.Group  controlId="formGridCity">
+        <Col lg={6} md={6} xs={12} className="mb-3">
+          <Form.Group controlId="formGridCity">
             <div className="input-from">
               <Row className="row align-items-center">
                 <Col lg={2} xs={1}>
@@ -160,8 +160,8 @@ function GetQuoteForm() {
             </div>
           </Form.Group>
         </Col>
-        <Col lg={6} xs={12}>
-          <Form.Group  controlId="formGridState">
+        <Col lg={6} md={6} xs={12} >
+          <Form.Group controlId="formGridState">
             <div className="input-from">
               <Row className="row align-items-center">
                 <Col lg={2} xs={1}>
