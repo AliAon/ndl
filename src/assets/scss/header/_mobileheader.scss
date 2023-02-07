@@ -1,19 +1,41 @@
 /*-------------------------
    Header Styles
 -------------------------*/
-.mobile-header{
-padding: 16px;
+.mobile-header {
+   padding: 16px;
 }
-.btn-togle{
-   @include primary_button;
+.btn-togle {
+   background-color: var(--color-primary) !important;
+   font-size: var(--font-buton-4) !important;
+   color: #ffffff !important;
+   border-radius: 10px !important;
+   font-family: Manrope !important;
+   border: 0 !important;
+   padding: 6px;
+   float: right;
 }
-.btn-togle:active{
+.btn-togle:active {
    @include primary_button;
 }
 
 
-@media only screen and (min-width: 991px) {
-   .mobile-header{
+@media only screen and (min-width: 479px) and (max-width: 576px) {
+   .logo-trans__img {
+      width: auto;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+   .logo-trans__img {
+      width: auto;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+   .logo-trans__img {
+      width: auto;
+   }
+}
+@media only screen and (min-width: 992px) {
+   .mobile-header {
       display: none;
    }
 }

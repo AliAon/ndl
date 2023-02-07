@@ -4,17 +4,19 @@
         @include primary_button;
         background-color: var(--color-primary)!important;
         border-color: var(--color-primary)!important;
-        font-size: var( --h6)!important;
-        color: black;
-        padding-left: 20px;
-        padding-right: 20px;
+        font-size: var(--font-body-1)!important;
+        color: #171717!important;
+        padding-left: 20px!important;
+        padding-right: 20px!important;
     }
     &__book-now-btn:hover{
         @include primary_button;
-        background-color: var(--color-primary);
-        border-color: var(--color-primary);
-        font-size: var( --h6);
-        color: white;
+        background-color: var(--color-primary)!important;
+        border-color: var(--color-primary)!important;
+        font-size: var(--font-body-1)!important;
+        color: #171717!important;
+        padding-left: 20px!important;
+        padding-right: 20px!important;
     }
 }
 @media only screen and (max-width: 991px){

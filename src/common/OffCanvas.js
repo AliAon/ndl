@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import LogoTrans from '../components/Header/LogoTrans';
-// import MobileMainMenu from '../components/Header/BootomHeaderElements/MobileMainMenu';
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import LogoTrans from "../components/Header/LogoTrans";
+import MobileMainMenu from "../components/Header/MobileMainMenu";
 // import Logo from '../components/Header/MiddleHeaderElements/Logo';
 // import Search from '../components/Header/MiddleHeaderElements/Search';
-// import SocialLinks from '../components/Header/TopBarElements/SocialLinks';
-
+import SocialLinks from "../components/Header/TopBarElements/SocialLinks";
 function OffCanvas({ name, ...props }) {
   const [show, setShow] = useState(false);
 
@@ -21,24 +20,25 @@ function OffCanvas({ name, ...props }) {
       </Button>
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title><LogoTrans/></Offcanvas.Title>
+          <Offcanvas.Title>
+            <LogoTrans />
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <Row>
-            <Col xs={7}>
-            {/* <SocialLinks color="#A7A7A7"/> */}
+          <h4 className="primary-nav-link-mobile__title">Menu</h4>
+          <MobileMainMenu />
+          <center>
+            <Button className="desktop-header__book-now-btn">BOOK NOW</Button>
+          </center>
+          <Row className="justify-content-center mt--40">
+            <Col xs={5}>
+              <SocialLinks color="#A7A7A7" />
             </Col>
           </Row>
-          <h4 className='primary-nav-link-mobile__title'>Menu</h4>
-          {/* <MobileMainMenu/> */}
-          {/* <Search/> */}
-
         </Offcanvas.Body>
       </Offcanvas>
     </>
   );
 }
 
-
-
-export default OffCanvas
+export default OffCanvas;

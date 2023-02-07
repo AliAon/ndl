@@ -1,0 +1,21 @@
+.primary-nav-link-mobile {
+    &__title{
+        color: var(--color-text-dark);
+        font-size: var(--h5);
+        padding-top: 20px;
+        text-align: center;
+        font-family: Manrope-Bold;
+        color: var(--color-secondary);
+    }
+    list-style: none;
+    padding: 0px;
+    &__a{
+        line-height: 36px;
+        color: var(--color-twelve);
+        text-decoration: none;
+        text-align: center;
+        display: block;
+        font-family: Manrope;
+        font-size: var(--font-body-1);
+    }
+}

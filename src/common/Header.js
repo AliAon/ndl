@@ -1,5 +1,4 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
-import Logo from "../components/Header/Logo";
 import LogoTrans from "../components/Header/LogoTrans";
 import MainMenu from "../components/Header/MainMenu";
 
