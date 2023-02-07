@@ -70,6 +70,7 @@
       }
       &__btn {
          font-size: var(--font-body-2) !important;
+         margin-top: 10px;
       }
    }
 }
@@ -88,7 +89,6 @@
       }
    }
 }
-
 
 /*-------------------------
    Hero 
@@ -157,7 +157,6 @@
       box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25),
          inset -4px -4px 4px rgba(0, 0, 0, 0.24);
    }
-
 }
 .formgroup {
    &-one {
@@ -171,21 +170,19 @@
    .section-booknow {
       padding: 30px 0px 30px 20px;
       margin-left: 1px;
-         &__label {
+      &__label {
          font-family: Manrope;
          font-size: var(--font-buton-3);
          font-weight: 600;
          color: var(--color-fourth);
       }
-   
+
       &__btn {
          margin-top: 20px;
          margin-bottom: 10px;
          font-size: var(--font-body-2) !important;
       }
-      
    }
-
 }
 @media only screen and (min-width: 576px) and (max-width: 991px) {
    .section-booknow {
@@ -194,7 +191,6 @@
          margin-bottom: 10px;
          font-size: var(--font-body-2) !important;
       }
-      
    }
 }
 /*-------------------------
@@ -255,7 +251,7 @@
 
 @media only screen and (max-width: 479px) {
    .section-getquote {
-   margin-left: 3px;
+      margin-left: 3px;
    }
    .input-from {
       &__num-of-hour {
@@ -284,7 +280,7 @@
    }
    &__product-title {
       @include product__title;
-      font-family: Manrope-Bold
+      font-family: Manrope-Bold;
    }
    &__product-des {
       @include product_des;
@@ -313,7 +309,7 @@
 }
 @media only screen and (max-width: 479px) {
    .product-one-card {
-   margin-left: 10px;
+      margin-left: 10px;
    }
 }
 
@@ -335,15 +331,14 @@
 }
 @media only screen and (max-width: 991px) {
    .section-extend-your-shop {
-    padding: 10px;
-    &__title {
-      text-align: center;
-    }
-    &__des {
-       text-align: center;
-    }
+      padding: 10px;
+      &__title {
+         text-align: center;
+      }
+      &__des {
+         text-align: center;
+      }
    }
-   
 }
 /*-------------------------
    Product Tabs Section 
@@ -400,6 +395,40 @@
       color: black !important;
    }
 }
+@media only screen and (max-width: 479px) {
+   .tab-content {
+      margin-left: 20px;
+   }
+   .productTabItem__product-item-details {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      &__description {
+         font-size: var(--font-body-2);
+         text-align: left;
+         color: #000000;
+      }
+   
+   }
+   
+}
+@media only screen and (max-width: 768px) {
+   .tab-content {
+      margin-left: 20px;
+   }
+   .productTabItem__product-item-details {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      &__description {
+         font-size: var(--font-body-2);
+         text-align: left;
+         color: #000000;
+      }
+      &__read-more {
+     margin-bottom: 20px;
+      }
+   }
+   
+}
 .nav-tabs {
    & .nav-link {
       background: #f0f0f0;
@@ -419,6 +448,7 @@
       color: white;
    }
 }
+
 .aligntabs {
    display: flex;
    justify-content: center;
@@ -446,4 +476,11 @@
       max-width: 500px;
       background-color: #000000;
    }
+}
+@media only screen and (max-width: 479px) {
+   .section__cta {
+      margin-left: 20px;
+      padding: 40px;
+   }
+
 }

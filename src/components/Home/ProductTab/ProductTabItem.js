@@ -5,7 +5,7 @@ function ProductTabItem() {
   return (
     <Container>
       <Row>
-        <Col>
+        <Col lg={12} md={6}>
           <ProductItem
             imagename="combinator 2.png"
             title=" Product Combinator"
@@ -14,6 +14,9 @@ function ProductTabItem() {
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
               commodo ipsum dolor sit ipsum dolor sit."
           />
+          </Col>
+          <Col lg={12} md={6}>
+
            <ProductItem
             imagename="image 9 (1).png"
             title="Exact online"
@@ -22,6 +25,8 @@ function ProductTabItem() {
               Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
               commodo ipsum dolor sit ipsum dolor sit."
           />
+          </Col>
+          <Col lg={12} md={6}>
            <ProductItem
             imagename="Image (3).png"
             title="Gett Theme"

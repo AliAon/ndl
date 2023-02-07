@@ -22,10 +22,10 @@ function ProductItem(props) {
              {description}
             </p>
             <Row>
-              <Col>
+              <Col lg={6} xs={3}>
                 <h4 className="productTabItem__product-item-details__subtitle">Platform</h4>
               </Col>
-              <Col>
+              <Col lg={6} xs={9}>
                 <p className="section-extend-your-shop__des text-underline">Prestashop 1.6 Prestashop 1.7</p>
               </Col>
             </Row>

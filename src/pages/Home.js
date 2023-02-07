@@ -26,9 +26,9 @@ const Home = () => {
           </Container>
         </div>
        <ExocticCarRental />
-         {/* <ExtendYouShop /> */}
-       {/* <ProductTabs />
-          <CtaOne /> */}
+         <ExtendYouShop />
+        <ProductTabs />
+         <CtaOne />
       </main>
       <Footer />
     </Fragment>
