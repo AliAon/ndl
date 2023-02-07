@@ -16,7 +16,7 @@ const Footer = () => {
             <LogoTrans />
           </Col>
         </Row> */}
-        <Row className="top-footer mb--40">
+        <Row className="top-footer mb--40 ">
           <Col lg={4}>
             <h4 className="footer__menu-title mb--20">ABOUT US</h4>
             <p className="footer__about-text">
@@ -32,7 +32,7 @@ const Footer = () => {
               in our overall success.
             </p>
           </Col>
-          <Col lg={4} xs={6}>
+           <Col lg={4} >
             <h5 className="footer__menu-title mb--20">QUICK LINKS</h5>
             <ul className="footer__menu-lnks">
               <li><BsArrowRightCircleFill color="#544424"  size={12} className="mr--5"/>   Services</li>
@@ -44,9 +44,9 @@ const Footer = () => {
               <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Contact</li>
             </ul>
           </Col>
-          <Col lg={4} xs={6}>
+         <Col lg={4} >
             <h5 className="footer__menu-title mb--20">CONTACT DETAILS</h5>
-            <LocationAddress iconwidth={1}  iconwidthsmall={1} />
+             <LocationAddress iconwidth={1}  iconwidthsmall={1} />
             <div className="mb--20"></div>
             <PhoneNo
               color="#4F3313"
@@ -54,7 +54,7 @@ const Footer = () => {
               iconwidthsmall={1}
               icon-color="#4F3313"
             />
-            <div className="mb--20"></div>
+            <div className="mb--20"></div> 
             <EmailAddress
               color="#4F3313"
               iconwidth={1}

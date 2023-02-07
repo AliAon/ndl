@@ -9,7 +9,7 @@ const EmailAddress=(props)=>{
                 <Col lg={props.iconwidth} xs={props.iconwidthsmall}>
                  <FaEnvelope size={15} color={props["icon-color"]}/>
                 </Col>
-                <Col  lg={10}>
+                <Col  lg={10} xs={10}>
                     <span className={`email-text color-${props.color}`}>info@acflimo.com</span>
                 </Col>
             </Row>

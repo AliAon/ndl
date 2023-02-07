@@ -8,7 +8,7 @@ const PhoneNo=(props)=>{
               <Col lg={props.iconwidth} xs={props.iconwidthsmall}>
                  <FaPhoneAlt size={14} color={props["icon-color"]}/>
                 </Col>
-                <Col  lg={10}>
+                <Col  lg={10} xs={10}>
                     <span className={`phone-text color-${props.color}`}>203-368-5511</span>
                 </Col>
             </Row>
