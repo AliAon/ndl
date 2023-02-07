@@ -169,14 +169,18 @@
    }
    &__form-btn {
       @include primary_button;
-      padding: 15px;
-      background-color: #9b8974;
-      font-size: var(--font-body-1);
-      margin-top: 20px;
+      padding: 15px!important;
+      background-color: #9b8974!important;
+      font-size: var(--font-body-1)!important;
+      margin-top: 0px!important;
    }
    &__form-btn:hover {
       background-color: #9b8974;
    }
+}
+.input-from{
+padding-right: 10px;
+
 }
 .input-from__input::placeholder {
    color: white;
@@ -189,6 +193,16 @@
 .input-from__input::-moz-placeholder {
    color: white;
    font-size: var(--font-body-3);
+}
+
+@media only screen and (max-width: 479px) {
+   .input-from{
+      &__num-of-hour{
+         margin-bottom: 15px;
+
+      }
+
+   }
 }
 /*-------------------------
    Product One  Section 
@@ -266,6 +280,11 @@
       color: black;
       margin-bottom: 0.5rem;
    }
+   @media only screen and (max-width: 479px) {
+      &__subtitle {
+        margin-top: 10px;
+      }
+   }
    &__title {
       font-size: var(--h5);
       font-family: Manrope-Bold;
@@ -312,6 +331,8 @@
    }
    & .nav-item {
       margin-right: 10px;
+      margin-bottom: 10px;
+
    }
    & .nav-item.show .nav-link,
    & .nav-link.active {

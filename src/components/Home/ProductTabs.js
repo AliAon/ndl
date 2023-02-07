@@ -11,7 +11,7 @@ function ProductTabs() {
           <Tabs
             defaultActiveKey="home"
             id="justify-tab-example"
-            className="mb-3 aligntabs"
+            className="mb-3 aligntabs gy-4"
             
             
           >
