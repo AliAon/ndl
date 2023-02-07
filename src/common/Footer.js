@@ -32,7 +32,7 @@ const Footer = () => {
               in our overall success.
             </p>
           </Col>
-           <Col lg={4} >
+           <Col lg={4} xs={6}>
             <h5 className="footer__menu-title mb--20">QUICK LINKS</h5>
             <ul className="footer__menu-lnks">
               <li><BsArrowRightCircleFill color="#544424"  size={12} className="mr--5"/>   Services</li>
@@ -44,7 +44,7 @@ const Footer = () => {
               <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Contact</li>
             </ul>
           </Col>
-         <Col lg={4} >
+         <Col lg={4} xs={6}>
             <h5 className="footer__menu-title mb--20">CONTACT DETAILS</h5>
              <LocationAddress iconwidth={1}  iconwidthsmall={1} />
             <div className="mb--20"></div>
