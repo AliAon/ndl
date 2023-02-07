@@ -30,7 +30,7 @@ const Home = () => {
         <ProductTabs />
           <CtaOne /> */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </Fragment>
   );
 };

@@ -5,7 +5,7 @@ import MainMenu from "../components/Header/MainMenu";
 const Header = () => {
   return (
     <header className="desktop-header">
-      <Container>
+      <Container fluid="sm">
         <Row className="d-flex align-items-baseline">
           <Col lg={3}>
             <LogoTrans />

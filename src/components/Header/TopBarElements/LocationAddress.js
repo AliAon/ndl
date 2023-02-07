@@ -5,10 +5,10 @@ const LocationAddress=(props)=>{
     return(
         <Fragment>
             <Row>
-              <Col lg={props.iconwidth}>
+              <Col lg={props.iconwidth} xs={props.iconwidthsmall}>
                  <FaMapMarkerAlt size={15} color={props["icon-color"]}/>
                 </Col>
-                <Col  lg={10}>
+                <Col  lg={10} xs={10}>
                     <span className={`email-text color-${props.color}`}>80 Fair st suite 301 Norwalk CT 06851</span>
                 </Col>
             </Row>

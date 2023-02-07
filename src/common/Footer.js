@@ -10,12 +10,12 @@ import LocationAddress from "../components/Header/TopBarElements/LocationAddress
 const Footer = () => {
   return (
     <footer className="footer">
-      <Container>
-        <Row className="mb--20">
+      <Container fluid="sm">
+        {/* <Row className="mb--20">
           <Col lg={4}>
             <LogoTrans />
           </Col>
-        </Row>
+        </Row> */}
         <Row className="top-footer mb--40">
           <Col lg={4}>
             <h4 className="footer__menu-title mb--20">ABOUT US</h4>
@@ -32,7 +32,7 @@ const Footer = () => {
               in our overall success.
             </p>
           </Col>
-          <Col>
+          <Col lg={4} xs={6}>
             <h5 className="footer__menu-title mb--20">QUICK LINKS</h5>
             <ul className="footer__menu-lnks">
               <li><BsArrowRightCircleFill color="#544424"  size={12} className="mr--5"/>   Services</li>
@@ -44,9 +44,9 @@ const Footer = () => {
               <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Contact</li>
             </ul>
           </Col>
-          <Col>
+          <Col lg={4} xs={6}>
             <h5 className="footer__menu-title mb--20">CONTACT DETAILS</h5>
-            <LocationAddress iconwidth={1} />
+            <LocationAddress iconwidth={1}  iconwidthsmall={1} />
             <div className="mb--20"></div>
             <PhoneNo
               color="#4F3313"
@@ -69,7 +69,7 @@ const Footer = () => {
           <Col>
             <div className="text-center">
               <Row className="d-flex justify-content-center mb--10">
-                <Col lg={4} xs={4}>
+                <Col lg={5} xs={6} md={3} sm={4}>
                   <SocialLinks iconwidth={2} color="#4F3313" />
                 </Col>
               </Row>
