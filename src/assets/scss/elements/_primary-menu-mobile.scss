@@ -18,4 +18,22 @@
         font-family: Manrope;
         font-size: var(--font-body-1);
     }
+    &__a:active{
+        line-height: 36px!important;
+        color: var(--color-twelve)!important;
+        text-decoration: none!important;
+        text-align: center!important;
+        display: block!important;
+        font-family: Manrope!important;
+        font-size: var(--font-body-1)!important;
+    }
+    &__a:hover{
+        line-height: 36px!important;
+        color: var(--color-twelve)!important;
+        text-decoration: none!important;
+        text-align: center!important;
+        display: block!important;
+        font-family: Manrope!important;
+        font-size: var(--font-body-1)!important;
+    }
 }

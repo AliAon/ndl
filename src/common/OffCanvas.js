@@ -31,8 +31,8 @@ function OffCanvas({ name, ...props }) {
             <Button className="desktop-header__book-now-btn">BOOK NOW</Button>
           </center>
           <Row className="justify-content-center mt--40">
-            <Col xs={5}>
-              <SocialLinks color="#A7A7A7" />
+            <Col xs={7}>
+              <SocialLinks color="#6A4F34" />
             </Col>
           </Row>
         </Offcanvas.Body>
