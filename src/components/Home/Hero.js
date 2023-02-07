@@ -13,10 +13,10 @@ const Hero = () => {
           language ocean.
         </p>
         <Row className="d-flex align-items-baseline">
-          <Col lg={5} xs={5}>
+          <Col lg={5} xs="auto">
             <img src="./images/Frame 161.png" className="section-hero__brand-img"/>
           </Col>
-          <Col xs={7}>
+          <Col lg={7} xs={12}>
             <Button className="section-hero__btn">READ MORE <FaArrowRight size={14} className="section-hero__btn__icon-right"/></Button>
           </Col>
         </Row>
