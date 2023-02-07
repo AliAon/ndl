@@ -45,9 +45,9 @@ const BookNow = () => {
             />
           </Form.Group>
         </Col>
-        <Col lg={2}>
+        <Col lg={2} className="align-item-bottom">
           <Form.Group controlId="formGridCity">
-            <div className="text-center">
+            <div className="text-center ">
               <Button className="section-booknow__btn" type="submit">
                 BookNow
               </Button>
