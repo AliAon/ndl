@@ -52,17 +52,28 @@
       width: 100%;
    }
 }
+
+@media only screen and (max-width: 479px) {
+   .section-hero {
+      padding: 15px;
+      &__brand-img{
+         width: 100%;
+      } 
+   }
+  
+ };
 /*-------------------------
    Hero 
 -------------------------*/
 
 .section-booknow {
-   height: 200px;
+   min-height: 200px;
    background-image: url("../../../../public/images/Frame 170 (1).png");
    margin-bottom: 30px;
    background-repeat: no-repeat;
    background-size: cover;
-   padding: 40px;
+   padding: 50px;
+   max-width: 100%;
    position: relative;
    &__label {
       font-family: Manrope;
@@ -126,6 +137,7 @@
       position: relative;
    }
 }
+
 /*-------------------------
    GET A QUOTE 
 -------------------------*/

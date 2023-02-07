@@ -4,7 +4,7 @@ const ExtendYouShop = () => {
   return (
     <Container>
       <Row className="section-extend-your-shop row align-items-center gx-5">
-        <Col>
+        <Col lg={6}>
           <Row>
             <Col lg={11}>
               <h4 className="section-extend-your-shop__title">
@@ -19,8 +19,8 @@ const ExtendYouShop = () => {
             </Col>
           </Row>
         </Col>
-        <Col>
-          <img src="./images/hyundai-alcazar-taiga-brown-removebg-preview 1.png" />
+        <Col lg={6}>
+          <img src="./images/hyundai-alcazar-taiga-brown-removebg-preview 1.png" className="w-100"/>
         </Col>
       </Row>
     </Container>
