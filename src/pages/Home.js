@@ -16,11 +16,11 @@ const Home = () => {
       <HeaderMobile/>
       <Header />
       <main>
-        {/* <Container>
+        <Container>
           <Hero />
-          <BookNow />
+          {/* <BookNow /> */}
         </Container>
-        <div className="getquotebg pt--40 pb--40">
+        {/* <div className="getquotebg pt--40 pb--40">
           <Container>
             <GetQuote />
           </Container>

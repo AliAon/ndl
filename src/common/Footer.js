@@ -11,11 +11,6 @@ const Footer = () => {
   return (
     <footer className="footer">
       <Container fluid="sm">
-        {/* <Row className="mb--20">
-          <Col lg={4}>
-            <LogoTrans />
-          </Col>
-        </Row> */}
         <Row className="top-footer mb--40 ">
           <Col lg={4}>
             <h4 className="footer__menu-title mb--20">ABOUT US</h4>

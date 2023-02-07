@@ -15,20 +15,22 @@
    background-image: url("../../../../public/images/hero-back.png");
    padding-top: 40px;
    padding-left: 30px;
+   background-size: cover;
+   background-repeat: no-repeat;
    border-radius: 15px;
    padding-bottom: 40px;
    &__btn {
       @include primary_button;
-      font-size: var(--font-body-1)!important;
+      font-size: var(--font-body-1) !important;
       padding-left: 20px;
       padding-right: 20px;
       padding-top: 8px;
 
       padding-bottom: 8px;
-      background: #ffffff!important;
+      background: #ffffff !important;
       box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.16), inset 2px 2px 4px rgba(255, 255, 255, 0.25),
          inset -4px -4px 4px rgba(0, 0, 0, 0.24);
-      color: #6a4f34!important;
+      color: #6a4f34 !important;
       &__icon-right {
          margin-top: -5px;
       }
@@ -56,12 +58,37 @@
 @media only screen and (max-width: 479px) {
    .section-hero {
       padding: 15px;
-      &__brand-img{
+      &__brand-img {
          width: 100%;
-      } 
+      }
+      &__title {
+         font-size: var(--h4);
+      }
+      &__description {
+         font-size: var(--font-body-2);
+      }
+      &__btn {
+         font-size: var(--font-body-2) !important;
+      }
    }
-  
- };
+}
+
+@media only screen and (min-width: 479px) and (max-width: 576px) {
+   .section-hero {
+      &__title {
+         font-size: var(--h4);
+      }
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+   .section-hero {
+      &__title {
+         font-size: var(--h4);
+      }
+   }
+}
+
+
 /*-------------------------
    Hero 
 -------------------------*/
@@ -119,8 +146,8 @@
    }
    &__btn {
       @include primary_button;
-      font-size: var(--font-body-1)!important;
-      background-color: var(--color-secondary)!important;
+      font-size: var(--font-body-1) !important;
+      background-color: var(--color-secondary) !important;
       padding: 8px 16px;
       text-transform: uppercase;
       padding-left: 20px;
@@ -169,18 +196,17 @@
    }
    &__form-btn {
       @include primary_button;
-      padding: 15px!important;
-      background-color: #9b8974!important;
-      font-size: var(--font-body-1)!important;
-      margin-top: 0px!important;
+      padding: 15px !important;
+      background-color: #9b8974 !important;
+      font-size: var(--font-body-1) !important;
+      margin-top: 0px !important;
    }
    &__form-btn:hover {
       background-color: #9b8974;
    }
 }
-.input-from{
-padding-right: 10px;
-
+.input-from {
+   padding-right: 10px;
 }
 .input-from__input::placeholder {
    color: white;
@@ -196,12 +222,10 @@ padding-right: 10px;
 }
 
 @media only screen and (max-width: 479px) {
-   .input-from{
-      &__num-of-hour{
+   .input-from {
+      &__num-of-hour {
          margin-bottom: 15px;
-
       }
-
    }
 }
 /*-------------------------
@@ -282,7 +306,7 @@ padding-right: 10px;
    }
    @media only screen and (max-width: 479px) {
       &__subtitle {
-        margin-top: 10px;
+         margin-top: 10px;
       }
    }
    &__title {
@@ -332,7 +356,6 @@ padding-right: 10px;
    & .nav-item {
       margin-right: 10px;
       margin-bottom: 10px;
-
    }
    & .nav-item.show .nav-link,
    & .nav-link.active {
