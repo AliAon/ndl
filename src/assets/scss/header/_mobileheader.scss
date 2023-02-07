@@ -18,7 +18,11 @@
    @include primary_button;
 }
 
-
+@media only screen and (max-width: 479px) {
+   .logo-trans__img {
+      width: 100%;
+   }
+}
 @media only screen and (min-width: 479px) and (max-width: 576px) {
    .logo-trans__img {
       width: auto;
