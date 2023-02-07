@@ -6,8 +6,8 @@ const BookNow = () => {
   return (
     <Row className="section-booknow row align-items-center justify-content-around">
     <Form>
-      <Row className="align-items-center justify-content-evenly">
-        <Col lg="auto" xs={6}>
+      <Row className="align-items-center justify-content-evenly ">
+        <Col lg={2} xs={6}>
           <Form.Group controlId="formGridCity">
             <div className=" formgroup-one">
               <Form.Label className="section-booknow__label">
@@ -17,7 +17,7 @@ const BookNow = () => {
             </div>
           </Form.Group>
         </Col>
-        <Col xs={6} lg="auto">
+        <Col xs={6} lg={2}>
           <Form.Group controlId="formGridCity formgroup-two">
             <div className=" formgroup-one">
               <Form.Label xs={12} className="section-booknow__label">
@@ -27,7 +27,7 @@ const BookNow = () => {
             </div>
           </Form.Group>
         </Col>
-        <Col xs={6} lg="auto">
+        <Col xs={6} lg={2}>
           <Form.Group controlId="section-booknow__map-input">
             <Form.Label className="section-booknow__label">SSSS:</Form.Label>
             <Form.Control
@@ -36,7 +36,7 @@ const BookNow = () => {
             />
           </Form.Group>
         </Col>
-        <Col xs={6} lg="auto">
+        <Col xs={6} lg={2}>
           <Form.Group controlId="section-booknow__car-input">
             <Form.Label className="section-booknow__label">SSSSSS</Form.Label>
             <Form.Control
@@ -45,7 +45,7 @@ const BookNow = () => {
             />
           </Form.Group>
         </Col>
-        <Col lg="auto">
+        <Col lg={2}>
           <Form.Group controlId="formGridCity">
             <div className="text-center">
               <Button className="section-booknow__btn" type="submit">

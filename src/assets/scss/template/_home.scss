@@ -185,6 +185,16 @@
    }
 
 }
+@media only screen and (min-width: 576px) and (max-width: 991px) {
+   .section-booknow {
+      &__btn {
+         margin-top: 10px;
+         margin-bottom: 10px;
+         font-size: var(--font-body-2) !important;
+      }
+      
+   }
+}
 /*-------------------------
    GET A QUOTE 
 -------------------------*/
