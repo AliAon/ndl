@@ -5,7 +5,7 @@ const LogoTrans=()=>{
     return(
         <div className="logo-img">
             <Link to="/">
-            <img src="./images/ndl-trans.png" className="w-100"/>
+            <img src="./images/ndl-trans.png"/>
             </Link>
         </div>
     )

@@ -11,10 +11,10 @@ const HeaderMobile = () => {
     <header className="mobile-header">
       <Container>
         <Row>
-          <Col xs={9}>
+          <Col xs={10}>
           <LogoTrans/>
           </Col>
-          <Col xs={3}>
+          <Col xs={2}>
           <OffCanvas
            placement={placement}
               name={name}

@@ -16,7 +16,7 @@ const Home = () => {
       <HeaderMobile/>
       <Header />
       <main>
-        <Container>
+        {/* <Container>
           <Hero />
           <BookNow />
         </Container>
@@ -28,7 +28,7 @@ const Home = () => {
         <ExocticCarRental />
         <ExtendYouShop />
         <ProductTabs />
-          <CtaOne />
+          <CtaOne /> */}
       </main>
       <Footer />
     </Fragment>
