@@ -153,7 +153,7 @@ function GetQuoteForm() {
                   <Form.Control
                     type="text"
                     className="input-from__input"
-                    placeholder=""
+                    placeholder="Allowed Passengers"
                   />
                 </Col>
               </Row>
@@ -176,7 +176,7 @@ function GetQuoteForm() {
                   <Form.Control
                     type="text"
                     className="input-from__input"
-                    placeholder=""
+                    placeholder="Allowed Baggage"
                   />
                 </Col>
               </Row>

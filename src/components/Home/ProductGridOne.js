@@ -3,7 +3,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 const ProductGridOne = () => {
   return (
     <Row className="gx-4 gy-4">
-      <Col lg={4} xs={12}>
+      <Col lg={4} md={4} sm={6} xs={12}>
         <div className="product-one-card">
           <div className="product-one-card__image">
             <img src="./images/Image (2).png" />
@@ -22,7 +22,7 @@ const ProductGridOne = () => {
           </div>
         </div>
       </Col>
-      <Col lg={4} xs={12}>
+      <Col lg={4} md={4} sm={6} xs={12}>
         <div className="product-one-card">
           <div className="product-one-card__image">
             <img src="./images/Image (3).png" />
@@ -41,7 +41,7 @@ const ProductGridOne = () => {
           </div>
         </div>
       </Col>
-      <Col lg={4} xs={12}>
+      <Col lg={4} md={4} sm={6} xs={12}>
         <div className="product-one-card">
           <div className="product-one-card__image">
             <img src="./images/Image (4).png" />

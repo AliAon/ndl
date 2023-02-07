@@ -10,7 +10,7 @@ const ExocticCarRental = () => {
         align="center"
         width={6}
         />
-                <ProductGridOne/>
+        <ProductGridOne/>
 
     </Container>
       );

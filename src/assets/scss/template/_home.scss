@@ -57,6 +57,7 @@
 
 @media only screen and (max-width: 479px) {
    .section-hero {
+      margin-left: 15px;
       padding: 15px;
       &__brand-img {
          width: 100%;
@@ -169,6 +170,7 @@
 @media only screen and (max-width: 479px) {
    .section-booknow {
       padding: 30px 0px 30px 20px;
+      margin-left: 1px;
          &__label {
          font-family: Manrope;
          font-size: var(--font-buton-3);
@@ -252,12 +254,16 @@
 }
 
 @media only screen and (max-width: 479px) {
+   .section-getquote {
+   margin-left: 3px;
+   }
    .input-from {
       &__num-of-hour {
          margin-bottom: 15px;
       }
    }
 }
+
 /*-------------------------
    Product One  Section 
 -------------------------*/
@@ -302,6 +308,11 @@
       border-color: #8f5e25;
    }
 }
+@media only screen and (max-width: 479px) {
+   .product-one-card {
+   margin-left: 10px;
+   }
+}
 
 /*-------------------------
    Extend Your Shop  Section 
@@ -318,6 +329,18 @@
       font-weight: 500;
       color: black;
    }
+}
+@media only screen and (max-width: 991px) {
+   .section-extend-your-shop {
+    padding: 10px;
+    &__title {
+      text-align: center;
+    }
+    &__des {
+       text-align: center;
+    }
+   }
+   
 }
 /*-------------------------
    Product Tabs Section 
