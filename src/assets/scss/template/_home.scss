@@ -289,7 +289,7 @@
    }
    &__product-btn {
       background: #8f5e25;
-      font-size: var(--font-body-3);
+      font-size: var(--font-body-2);
       font-family: Manrope;
       border-color: #8f5e25;
    }
@@ -434,7 +434,7 @@
       background: #f0f0f0;
       color: #000000;
       font-family: Manrope-Bold;
-      font-size: var(--font-body-3);
+      font-size: var(--font-body-2);
       min-width: 100px;
       border-radius: 20px;
    }
@@ -463,6 +463,8 @@
    background-repeat: no-repeat;
    background-size: cover;
    position: relative;
+   border-radius: 5px;
+   width: 100%;
    padding-top: 10%;
    padding-bottom: 10%;
    &__news-letter {

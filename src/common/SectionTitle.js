@@ -7,6 +7,7 @@ const SectionTitle = (props) => {
     align,
     description,
     width,
+    subtitle,
     first
   }=props;
   
@@ -14,6 +15,7 @@ const SectionTitle = (props) => {
     <Fragment>
       <Row className="justify-content-center pt--40 pb--20">
         <Col lg={width}>
+          <h6 className={`section__subtitle text-${align}`}>{subtitle}</h6>
           <h3 className={`section__title text-${align}`}><span className="section__title-first">{first}</span> {title}</h3>
           <p className={`section__description text-${align}`}>
            {description}

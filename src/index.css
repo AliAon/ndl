@@ -22,3 +22,6 @@ code {
 input[type="date"]::-webkit-input-placeholder{
   color: white;
 }
+a{
+  text-decoration: none!important;
+}

@@ -11,6 +11,13 @@
         
         }
     }
+    &__subtitle{
+        font-size: var(--h4);
+        color: var(--color-secondary);
+        line-height: 1.5;
+        font-family: Manrope;
+   
+    }
     &__description{
         color: #828282;
         font-size: var(--color---h3-text-dark);

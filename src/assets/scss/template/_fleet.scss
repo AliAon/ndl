@@ -1,0 +1,33 @@
+/*-------------------------
+   Home 
+-------------------------*/
+
+.section-services{
+   
+    &_title{
+        font-size: var(--h6);
+        color: #000;
+        font-family: Manrope-Bold;
+    }
+    &_des{
+        font-size: var(--font-body-2);
+        color: rgba(51, 51, 51, 0.6);
+        font-family: Manrope;
+    }
+    &_btn{
+        @include primary_button;
+        background: #8F5E25!important;
+        border-radius: 5px 0px 5px 0px!important;
+
+    }
+}
+@media only screen and (max-width: 479px) {
+    .section-services{
+        &__detail{
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+    }
+ }
