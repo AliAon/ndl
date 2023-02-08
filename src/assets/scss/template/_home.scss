@@ -376,7 +376,7 @@
    }
    @media only screen and (max-width: 479px) {
       &__subtitle {
-         margin-top: 10px;
+         margin-top: 20px;
       }
    }
    &__title {
@@ -415,9 +415,7 @@
    }
 }
 @media only screen and (max-width: 479px) {
-   .tab-content {
-      margin-left: 20px;
-   }
+  
    .productTabItem__product-item-details {
       margin-top: 10px;
       margin-bottom: 10px;
@@ -425,6 +423,9 @@
          font-size: var(--font-body-2);
          text-align: left;
          color: #000000;
+      }
+      &__links{
+         text-align: left!important;
       }
    
    }
@@ -444,9 +445,7 @@
    }
 }
 @media only screen and (max-width: 768px) {
-   .tab-content {
-      margin-left: 20px;
-   }
+   
    .productTabItem__product-item-details {
       margin-top: 10px;
       margin-bottom: 10px;
@@ -513,7 +512,11 @@
 }
 @media only screen and (max-width: 479px) {
    .section__cta {
-      padding: 40px;
+      padding: 20px;
+      &__news-letter {
+         padding: 20px;
+      
+      }
    }
 
 }
