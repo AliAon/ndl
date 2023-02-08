@@ -24,9 +24,7 @@ function ProductTabs() {
             <Tab eventKey="longer-tab" title="CarB">
             <ProductTabItem/>
             </Tab>
-            <Tab eventKey="contact" title="CarC" >
-            <ProductTabItem/>
-            </Tab>
+            
           </Tabs>
         </Col>
       </Row>

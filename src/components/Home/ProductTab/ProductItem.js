@@ -5,8 +5,8 @@ function ProductItem(props) {
     const {title,description,imagename}=props
   return (
     <Container className="mt--40">
-      <Row className="gx-5 row__productitem">
-        <Col lg={3} >
+      <Row className=" row__productitem">
+        <Col lg={4} >
             
           <img src={`./images/${imagename}`} className="productTabItem__product-item-details__img" />
         </Col>
