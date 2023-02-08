@@ -25,10 +25,10 @@ const Home = () => {
             <GetQuote />
           </Container>
         </div>
-       <ExocticCarRental />
-         <ExtendYouShop />
-        <ProductTabs />
-         <CtaOne />
+       {/* <ExocticCarRental /> */}
+         {/* <ExtendYouShop /> */}
+        {/* <ProductTabs /> */}
+         {/* <CtaOne /> */}
       </main>
       <Footer />
     </Fragment>
