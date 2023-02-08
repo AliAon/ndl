@@ -7,7 +7,7 @@ const MobileMainMenu = () => {
   return (
     <ul className="primary-nav-link-mobile">
       <li><Link to="/" className="primary-nav-link-mobile__a">Home</Link></li>
-      <li><Link to="/about" className="primary-nav-link-mobile__a">About Us</Link></li>
+      <li><Link to="/about-us" className="primary-nav-link-mobile__a">About Us</Link></li>
       <li><Link to="/our-fleet" className="primary-nav-link-mobile__a">Our Fleet</Link></li>
       <li><Link to="/services" className="primary-nav-link-mobile__a">Services</Link></li>
       <li><Link to="/blog" className="primary-nav-link-mobile__a">Blog</Link></li>

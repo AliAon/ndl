@@ -1,21 +1,22 @@
 import { Fragment } from "react";
 import { Col,Row } from "react-bootstrap";
 import { FaFacebook,FaInstagram,FaTwitter,FaLinkedin } from 'react-icons/fa';
+import { Link } from "react-router-dom";
 const SocialLinks=(props)=>{
     return(
         <Fragment>
             <Row>
                 <Col>
-                   <FaFacebook color={props.color}/>
+                   <Link to="/"><FaFacebook color={props.color}/></Link>
                 </Col>
                 <Col>
-                   <FaInstagram color={props.color}/>
+                <Link to="/"><FaInstagram color={props.color}/></Link>
                 </Col>
                 <Col>
-                 <FaTwitter color={props.color}/>
+                <Link to="/"><FaTwitter color={props.color}/></Link>
                 </Col>
                 <Col>
-                  <FaLinkedin color={props.color}/>
+                <Link to="/"><FaLinkedin color={props.color}/></Link>
                 </Col>
             </Row>
         </Fragment>

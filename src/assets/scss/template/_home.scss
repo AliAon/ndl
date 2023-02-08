@@ -297,6 +297,10 @@
       background-color: #8f5e25;
       border-color: #8f5e25;
    }
+   &__product-btn:active {
+      background-color: #8f5e25!important;
+      border-color: #8f5e25!important;
+   }
    &__view-all {
       @include outline-btn;
       margin-top: 20px;
@@ -305,6 +309,10 @@
    &__view-all:hover {
       background-color: #8f5e25;
       border-color: #8f5e25;
+   }
+   &__view-all:active {
+      background-color: #8f5e25!important;
+      border-color: #8f5e25!important;
    }
 }
 @media only screen and (max-width: 479px) {

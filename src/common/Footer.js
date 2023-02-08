@@ -7,6 +7,7 @@ import Logo from "../components/Header/Logo";
 import {BsArrowRightCircleFill} from "react-icons/bs"
 import LogoTrans from "../components/Header/LogoTrans";
 import LocationAddress from "../components/Header/TopBarElements/LocationAddress";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="footer">
@@ -30,18 +31,34 @@ const Footer = () => {
            <Col lg={4} xs={6}>
             <h5 className="footer__menu-title mb--20">QUICK LINKS</h5>
             <ul className="footer__menu-lnks">
-              <li><BsArrowRightCircleFill color="#544424"  size={12} className="mr--5"/>   Services</li>
+              <Link to="/">
+              <li><BsArrowRightCircleFill color="#544424"  size={12} className="mr--5"/>   Home</li>       
+              </Link>
               <hr className="hr-line-quick-linke"/>
-              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Booking</li>
+              <Link to="/about-us">
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    About Us</li>
+              </Link>
               <hr className="hr-line-quick-linke"/>
-              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Luxury Fleet</li>
+              <Link to="/our-fleet">
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Our Fleet</li>
+              </Link>
               <hr className="hr-line-quick-linke"/>
+              <Link to="/services">
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Services</li>
+              </Link>
+              <hr className="hr-line-quick-linke"/>
+              <Link to="/blog">
+              <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Blog</li>
+              </Link>
+              <hr className="hr-line-quick-linke"/>
+              <Link to="/contact">
               <li><BsArrowRightCircleFill color="#544424" size={12} className="mr--5"/>    Contact</li>
+              </Link>
             </ul>
           </Col>
          <Col lg={4} xs={6}>
             <h5 className="footer__menu-title mb--20">CONTACT DETAILS</h5>
-             <LocationAddress iconwidth={1}  iconwidthsmall={1} />
+             <LocationAddress iconwidth={1}  iconwidthsmall={1} icon-color="#4f3313" />
             <div className="mb--20"></div>
             <PhoneNo
               color="#4F3313"
