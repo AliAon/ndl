@@ -6,7 +6,7 @@ import ProductTabItem from "./ProductTab/ProductTabItem";
 function ProductTabs() {
   return (
     <Container>
-      <Row className="pt--20 pb--40">
+      <Row className="pt--20 pb--40 row__producttabs">
         <Col>
           <Tabs
             defaultActiveKey="home"

@@ -2,7 +2,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 
 const ProductGridOne = () => {
   return (
-    <Row className="gx-4 gy-4">
+    <Row className="gx-4 gy-4 row__PrductGridOne">
       <Col lg={4} md={4} sm={6} xs={12}>
         <div className="product-one-card">
           <div className="product-one-card__image">
@@ -60,8 +60,8 @@ const ProductGridOne = () => {
           </div>
         </div>
       </Col>
-      <Row className="justify-content-center mt--20">
-        <Col lg={3} className="text-center">
+      <Row className="justify-content-center mt--20 ">
+        <Col lg={12} className="text-center">
           <Button  variant="outline-primary" className="product-one-card__view-all">View All</Button>
         </Col>
       </Row>

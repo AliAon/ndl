@@ -4,7 +4,7 @@ import ProductItem from "./ProductItem";
 function ProductTabItem() {
   return (
     <Container>
-      <Row>
+      <Row className="row__producttabitem">
         <Col lg={12} md={6}>
           <ProductItem
             imagename="combinator 2.png"
