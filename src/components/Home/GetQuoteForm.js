@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa";
 
 function GetQuoteForm() {
-  const apiKey="AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
+  const apiKey="";
   const selectedFromPlaceHandler=(place)=>{
     console.log(place)
   }
