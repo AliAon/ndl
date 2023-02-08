@@ -30,7 +30,7 @@ function GetQuoteForm() {
                   <Form.Label className="input-from__label">From</Form.Label>
                   <Form.Control
                     type="text"
-                    className="input-from__input"
+                    className="input-from__input shadow-none"
                     placeholder="Address, airport, hotel "
                   />
                 </Col>
@@ -51,7 +51,7 @@ function GetQuoteForm() {
                   <Form.Label className="input-from__label">To</Form.Label>
                   <Form.Control
                     type="text"
-                    className="input-from__input"
+                    className="input-from__input shadow-none"
                     placeholder="Address, airport, hotel "
                   />
                 </Col>
@@ -75,7 +75,7 @@ function GetQuoteForm() {
                   <Form.Label className="input-from__label">Date</Form.Label>
                   <Form.Control
                     type="date"
-                    className="input-from__input input-from__input-date"
+                    className="input-from__input input-from__input-date shadow-none"
                     placeholder="Select Date"
                   />
                 </Col>
@@ -97,7 +97,7 @@ function GetQuoteForm() {
                     No. of Hours
                   </Form.Label>
                   <Form.Select
-                    className="input-from__input input-from__input-hours"
+                    className="input-from__input input-from__input-hours shadow-none"
                     aria-label="Default select example"
                   >
                     <option>Select hours</option>
@@ -124,7 +124,7 @@ function GetQuoteForm() {
                 Select Vehicle
               </Form.Label>
               <Form.Select
-                className="input-from__input input-from__input-hours"
+                className="input-from__input input-from__input-hours shadow-none"
                 aria-label="Default select example"
               >
                 <option>Chrysler 300 Limousine</option>
@@ -152,7 +152,7 @@ function GetQuoteForm() {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    className="input-from__input"
+                    className="input-from__input shadow-none"
                     placeholder="Allowed Passengers"
                   />
                 </Col>
@@ -175,8 +175,9 @@ function GetQuoteForm() {
                   </Form.Label>
                   <Form.Control
                     type="text"
-                    className="input-from__input"
+                    className="input-from__input shadow-none"
                     placeholder="Allowed Baggage"
+
                   />
                 </Col>
               </Row>
