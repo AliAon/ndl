@@ -14,9 +14,6 @@
    padding: 6px;
    float: right;
 }
-.btn-togle:active {
-   @include primary_button;
-}
 
 @media only screen and (max-width: 479px) {
    .container {

@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import Autocomplete from "react-google-autocomplete";
 import {
   FaCalendar,
   FaCar,
@@ -14,6 +16,14 @@ import {
 } from "react-icons/fa";
 
 function GetQuoteForm() {
+  const apiKey="AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
+  const selectedFromPlaceHandler=(place)=>{
+    console.log(place)
+  }
+  const selectedToPlaceHandler=(place)=>{
+    console.log(place)
+  }
+
   return (
     <Form>
       <Row className="mb-3">
@@ -28,10 +38,11 @@ function GetQuoteForm() {
                 </Col>
                 <Col>
                   <Form.Label className="input-from__label">From</Form.Label>
-                  <Form.Control
-                    type="text"
-                    className="input-from__input shadow-none"
+                  <Autocomplete
+                    className="form-control input-from__input shadow-none"
+                    apiKey={apiKey}
                     placeholder="Address, airport, hotel "
+                    onPlaceSelected={selectedFromPlaceHandler}
                   />
                 </Col>
               </Row>
@@ -49,10 +60,11 @@ function GetQuoteForm() {
                 </Col>
                 <Col>
                   <Form.Label className="input-from__label">To</Form.Label>
-                  <Form.Control
-                    type="text"
-                    className="input-from__input shadow-none"
+                  <Autocomplete
+                    className="form-control input-from__input shadow-none"
+                    apiKey={apiKey}
                     placeholder="Address, airport, hotel "
+                    onPlaceSelected={selectedToPlaceHandler}
                   />
                 </Col>
               </Row>
@@ -160,7 +172,7 @@ function GetQuoteForm() {
             </div>
           </Form.Group>
         </Col>
-        <Col lg={6} md={6} xs={12} >
+        <Col lg={6} md={6} xs={12}>
           <Form.Group controlId="formGridState">
             <div className="input-from">
               <Row className="row align-items-center">
@@ -177,7 +189,6 @@ function GetQuoteForm() {
                     type="text"
                     className="input-from__input shadow-none"
                     placeholder="Allowed Baggage"
-
                   />
                 </Col>
               </Row>
