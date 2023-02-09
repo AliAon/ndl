@@ -50,7 +50,7 @@ const Fleet = () => {
               />
             </Col>
           </Row>
-          <BookNow />
+          {/* <BookNow /> */}
         </Container>
         <Services/>
         <CtaOne />
