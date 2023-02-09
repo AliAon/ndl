@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 const Hero = () => {
   return (
     <Row className="section-hero gx-0 mb--30">
-      <Col lg={6} >
+      <Col lg={6} md={6}>
         <h2 className="section-hero__title">Professional Service at Affordable Price</h2>
         <p className="section-hero__description">
           Far far away, behind the word mountains, far from the countries
@@ -21,7 +21,7 @@ const Hero = () => {
           </Col>
         </Row>
       </Col>
-      <Col lg={6} >
+      <Col lg={6}  md={6}>
       <img src="./images/Range-Rover 1.png" className="section-hero__img "/>
       </Col>
     </Row>

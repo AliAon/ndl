@@ -8,10 +8,10 @@ const ImageLeftService=(props)=>{
     }=props
     return(
         <Row className="align-items-center row__productitem">
-          <Col lg={5}>
+          <Col lg={5} md={5} sm={5}>
             <img src={`./images/${imgname}`} className="w-100" />
           </Col>
-          <Col lg={6}>
+          <Col lg={6} md={6} sm={6}>
             <div className="section-services__detail">
               <h5 className="section-services_title">
              {title}
