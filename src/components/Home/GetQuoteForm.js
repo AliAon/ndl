@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Autocomplete from "react-google-autocomplete";
+
 import {
   FaCalendar,
   FaCar,
@@ -16,16 +17,77 @@ import {
 } from "react-icons/fa";
 
 function GetQuoteForm() {
-  const apiKey="";
-  const selectedFromPlaceHandler=(place)=>{
-    console.log(place)
+  const [cars,setCars]=useState([])
+  const [fromlocation,setFromlocation]=useState({})
+  const [tolocation,setTolocation]=useState({})
+  const [carname,setCarname]=useState('')
+  const [bookdate,setDate]=useState('')
+  const [booktime,setTime]=useState('')
+  const [passenger,setPassenger]=useState('')
+  const [luggage,setLuggage]=useState('')
+  const [bookme,setBookme]=useState({})
+
+  const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
+  const selectedFromPlaceHandler = (place) => {
+    setFromlocation(place)
+    console.log(place);
+  };
+  const selectedToPlaceHandler = (place) => {
+    setTolocation(place)
+    console.log(place);
+  };
+
+  // Get Cars Data
+  const GetCars=async()=>{
+    const response=await fetch('http://localhost:9999/car/allrecord');
+    const Resultdata=await response.json()
+    console.log(Resultdata)
+    const {data}=Resultdata
+    if(data){
+      setCars(data)
+    }else{
+      setCars([])
+    }
+    
   }
-  const selectedToPlaceHandler=(place)=>{
-    console.log(place)
+  useEffect(() => {
+    GetCars();
+  }, []);
+
+  //Car Select handler
+  const onCarSelectHandler=(e)=>{
+    const car=cars.find((el)=>{
+      return el._id==e.target.value
+    })
+    setCarname(car.car_name)
+    setPassenger(car.no_of_passengers)
+    setLuggage(car.allowed_buggage)
   }
 
+  //Date Handler
+  const dateHandler=(e)=>{
+    setDate(e.target.value)
+  }
+  //Time Handler
+  const timeHandler=(e)=>{
+    setTime(e.target.value)
+  }
+
+  const submitFormHandler=(e)=>{
+    e.preventDefault()
+    setBookme({
+      from:fromlocation,
+      to:tolocation,
+      date:bookdate,
+      time:booktime,
+      car:carname,
+      passenger:passenger,
+      luggage:luggage
+    })
+  };
+
   return (
-    <Form>
+    <Form onSubmit={submitFormHandler}>
       <Row className="mb-3">
         <Col lg={12} md={6} className="mb--20">
           <Form.Group as={Col} controlId="formGridEmail">
@@ -39,10 +101,14 @@ function GetQuoteForm() {
                 <Col>
                   <Form.Label className="input-from__label">From</Form.Label>
                   <Autocomplete
+                    required
                     className="form-control input-from__input shadow-none"
                     apiKey={apiKey}
                     placeholder="Address, airport, hotel "
                     onPlaceSelected={selectedFromPlaceHandler}
+                    options={{
+                      types: ["(regions)"],
+                    }}
                   />
                 </Col>
               </Row>
@@ -61,10 +127,14 @@ function GetQuoteForm() {
                 <Col>
                   <Form.Label className="input-from__label">To</Form.Label>
                   <Autocomplete
+                    required
                     className="form-control input-from__input shadow-none"
                     apiKey={apiKey}
                     placeholder="Address, airport, hotel "
                     onPlaceSelected={selectedToPlaceHandler}
+                    options={{
+                      types: ["(regions)"],
+                    }}
                   />
                 </Col>
               </Row>
@@ -86,7 +156,9 @@ function GetQuoteForm() {
                 <Col lg={10} xs={11}>
                   <Form.Label className="input-from__label">Date</Form.Label>
                   <Form.Control
+                    required
                     type="date"
+                    onChange={dateHandler}
                     className="input-from__input input-from__input-date shadow-none"
                     placeholder="Select Date"
                   />
@@ -108,15 +180,13 @@ function GetQuoteForm() {
                   <Form.Label className="input-from__label">
                     No. of Hours
                   </Form.Label>
-                  <Form.Select
-                    className="input-from__input input-from__input-hours shadow-none"
-                    aria-label="Default select example"
-                  >
-                    <option>Select hours</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </Form.Select>
+                  <Form.Control
+                    required
+                    onChange={timeHandler}
+                    type="time"
+                    className="input-from__input input-from__input-date shadow-none"
+                    placeholder="Select Date"
+                  />
                 </Col>
               </Row>
             </div>
@@ -135,14 +205,19 @@ function GetQuoteForm() {
               <Form.Label className="input-from__label">
                 Select Vehicle
               </Form.Label>
-              <Form.Select
+              <Form.Select onChange={onCarSelectHandler} required
                 className="input-from__input input-from__input-hours shadow-none"
                 aria-label="Default select example"
               >
-                <option>Chrysler 300 Limousine</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+                   <option >Select Vehicle</option>      
+
+                {
+                  cars.map((el)=>{
+                    return(
+                      <option value={el._id}>{el.car_name}</option>      
+                    )
+                  })
+                }
               </Form.Select>
             </Col>
           </Row>
@@ -163,6 +238,8 @@ function GetQuoteForm() {
                     Allowed Passengers
                   </Form.Label>
                   <Form.Control
+                    required
+                    value={passenger}
                     type="text"
                     className="input-from__input shadow-none"
                     placeholder="Allowed Passengers"
@@ -183,12 +260,14 @@ function GetQuoteForm() {
                 </Col>
                 <Col>
                   <Form.Label className="input-from__label">
-                    Allowed Baggage
+                    Allowed Luggage
                   </Form.Label>
                   <Form.Control
+                    value={luggage}
                     type="text"
+                    required
                     className="input-from__input shadow-none"
-                    placeholder="Allowed Baggage"
+                    placeholder="Allowed Luggage"
                   />
                 </Col>
               </Row>
@@ -201,7 +280,7 @@ function GetQuoteForm() {
         className="btn-block section-getquote__form-btn"
         type="submit"
       >
-        GET A QUOTE
+        Book Now
       </Button>
     </Form>
   );

@@ -51,8 +51,8 @@ const Fleet = () => {
             </Col>
           </Row>
           <BookNow />
-          <Services/>
         </Container>
+        <Services/>
         <CtaOne />
       </main>
       <Footer />

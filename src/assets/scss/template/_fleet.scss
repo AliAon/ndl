@@ -21,13 +21,24 @@
 
     }
 }
+.image-right-service{
+    background: #F5ECE4;
+}
+.imagerightservice__col{
+    padding-left: 50px;
+
+}
 @media only screen and (max-width: 479px) {
     .section-services{
         &__detail{
-            padding-left: 30px;
-            padding-right: 30px;
-            padding-bottom: 15px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-bottom: 30px;
             text-align: center;
         }
+    }
+    .imagerightservice__col{
+        padding-left: 0px;
+    
     }
  }

@@ -1,5 +1,5 @@
 import { Row,Col } from "react-bootstrap"
-const ImageLeftService=(props)=>{
+const ImageRightService=(props)=>{
     const {
         imgname,
         title,
@@ -8,10 +8,8 @@ const ImageLeftService=(props)=>{
     }=props
     return(
         <Row className="align-items-center row__productitem">
-          <Col lg={5}>
-            <img src={`./images/${imgname}`} className="w-100" />
-          </Col>
-          <Col lg={6}>
+      
+          <Col lg={{order:1}} className="imagerightservice__col col-lg-7 col-12" xs={{order:2}}>
             <div className="section-services__detail">
               <h5 className="section-services_title">
              {title}
@@ -22,8 +20,11 @@ const ImageLeftService=(props)=>{
               <button className="section-services_btn">Register Now</button>
             </div>
           </Col>
+          <Col lg={{order:2}} xs={{order:1}} className="col-lg-5 col-12">
+            <img src={`./images/${imgname}`} className="w-100" />
+          </Col>
         </Row>
     )
 
 }
-export default ImageLeftService
+export default ImageRightService

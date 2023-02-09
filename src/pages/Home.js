@@ -18,7 +18,7 @@ const Home = () => {
       <main>
         <Container>
           <Hero />
-          {/* <BookNow /> */}
+          <BookNow />
         </Container>
          <div className="getquotebg pt--40 pb--40">
           <Container>

@@ -4,7 +4,12 @@ const Test=()=>{
     return(
         <Autocomplete
         className='form-control'
-        apiKey=""
+        apiKey="AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA"
+        options={
+          {
+            types:["(regions)"]
+          }
+        }
         onPlaceSelected={(place) => {
           console.log(place);
         }}
