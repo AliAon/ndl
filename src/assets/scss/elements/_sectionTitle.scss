@@ -1,69 +1,81 @@
-.section{
-    &__title{
+.section {
+    &__title {
         font-size: var(--h4);
         color: var(--color---h3-text-dark);
         font-weight: 700;
         line-height: 1.5;
         color: black;
         font-family: Manrope;
-        &-first{
+        &-first {
             color: var(--color-seventh);
-        
         }
     }
-    &__subtitle{
+    &__subtitle {
         font-size: var(--h5);
         color: var(--color-secondary);
         line-height: 1.5;
         font-family: Manrope;
-   
     }
-    &__description{
+    &__description {
         color: #828282;
         font-size: var(--color---h3-text-dark);
         color: var(--color-light-grey);
         font-family: Mitr;
-
     }
-
 }
 
 @media only screen and (max-width: 479px) {
-    .section{
-        &__title{
-            font-size: var(--h4)!important;
+    .section {
+        &__title {
+            font-size: var(--h4) !important;
         }
-        &__description{
+        &__description {
             padding: 0px;
-          }
+        }
+        &__subtitle {
+            font-size: var(--h5);
+            color: var(--color-secondary);
+            line-height: 1.5;
+            font-family: Manrope;
+        }
     }
-    .row__section-title{
-        margin-left: 0px!important;
-        margin-right: 0px!important;
-        padding-top: 0px!important;
-        padding-bottom: 0px!important;
+    .row__section-title {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+}
 
-    }
- }
- 
- @media only screen and (min-width: 479px) and (max-width: 576px) {
-    .section{
-        &__title{
-            font-size: var(--h4)!important;
+@media only screen and (min-width: 479px) and (max-width: 576px) {
+    .section {
+        &__title {
+            font-size: var(--h4) !important;
         }
-        &__description{
+        &__description {
             padding: 15px;
-          }
-    }
- }
- @media only screen and (min-width: 576px) and (max-width: 768px) {
-    .section{
-        &__title{
-            font-size: var(--h4)!important;
         }
-        &__description{
-            padding: 15px;
-          }
+        &__subtitle {
+            font-size: var(--h5);
+            color: var(--color-secondary);
+            line-height: 1.5;
+            font-family: Manrope;
+        }
     }
- }
- 
+}
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+    .section {
+        &__title {
+            font-size: var(--h4) !important;
+        }
+        &__description {
+            padding: 15px;
+        }
+        &__subtitle {
+            font-size: var(--h5);
+            color: var(--color-secondary);
+            line-height: 1.5;
+            font-family: Manrope;
+        }
+    }
+}
