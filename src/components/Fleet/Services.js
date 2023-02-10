@@ -14,7 +14,7 @@ const Services = () => {
         />
         <Container>
           <ImageLeftService
-            imgname="Group 7.png"
+            imgname="car-jeep7.svg"
             title="Get verified driving schools and instructors near you"
             description="Find the best driving schools and instructors in the city to teach you in the best possible ways."
           />
@@ -23,16 +23,15 @@ const Services = () => {
          <Container fluid className="image-right-service">
           <Container>
             <ImageRightService
-              title="Get verified driving schools and instructors near you"
-              description="Find the best driving schools and instructors in the city to
-        teach you in the best possible ways."
-              imgname="Group 7.png"
+              title="Easy enrollment into programs"
+              description="Few simple clicks bring you closer to a lifetime of amazing long drives and memories"
+              imgname="Group 8.svg"
             />
           </Container>
         </Container>
         <Container>
           <ImageLeftService
-            imgname="Group 7 (1).png"
+            imgname="Group 7.svg"
             title="
         Quality course work as per the MV rules
         "
@@ -44,17 +43,16 @@ const Services = () => {
         <Container fluid className="image-right-service">
           <Container>
             <ImageRightService
-              title="Get verified driving schools and instructors near you"
-              description="Find the best driving schools and instructors in the city to
-        teach you in the best possible ways."
-              imgname="Group 7.png"
+              title="Assistance for the license process"
+              description="Find the best expert advice to ace the license process. It’s time to forget the long queues for the love of speed(below 60)."
+              imgname="Group 8 (1).svg"
             />
           </Container>
         </Container>
 
         <Container>
           <ImageLeftService
-            imgname="Group 7 (2).png"
+            imgname="Group 7 (1).svg"
             title="
         Personalised learning"
             description="
