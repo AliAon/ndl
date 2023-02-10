@@ -14,7 +14,7 @@ const Fleet = () => {
       <Header />
       <main>
         <Container>
-          <Row className="section-hero gx-0 mb--30">
+          <Row className="section-hero gx-0 mb--30 align-middle">
             <Col lg={6} md={6}>
               <h2 className="section-hero__title">
                 Professional Service at Affordable Price

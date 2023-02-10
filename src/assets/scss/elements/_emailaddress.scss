@@ -1,6 +1,10 @@
 .email-text{
     font-size: var(--font-body-3);
     font-family: Manrope;
-    color: #212529!important;
+    color: #212529;
 
+}
+.email-text:hover{
+    color: #4f3313;
+    font-weight: bold;
 }

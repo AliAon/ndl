@@ -11,10 +11,10 @@
     }
     &__book-now-btn:hover{
         @include primary_button;
-        background-color: var(--color-primary)!important;
-        border-color: var(--color-primary)!important;
+        background-color: #6a4f34 !important;
+        border-color: #6a4f34 !important;
         font-size: var(--font-body-1)!important;
-        color: #171717!important;
+        color: white!important;
         padding-left: 20px!important;
         padding-right: 20px!important;
     }

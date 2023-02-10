@@ -36,8 +36,8 @@
       }
    }
    &__btn:hover {
-      background-color: #ffffff;
-      color: #6a4f34;
+      background-color: #6a4f34!important;
+      color: #ffffff!important;
    }
    &__title {
       font-family: Manrope;
@@ -214,7 +214,7 @@
       border-radius: 25px;
    }
    &__title {
-      font-family: "Manrope";
+      font-family: Manrope-Medium;
       font-style: normal;
       font-weight: 500;
       font-size: var(--h5);
@@ -230,7 +230,7 @@
       margin-top: 0px !important;
    }
    &__form-btn:hover {
-      background-color: #9b8974;
+      background-color: var(--color-third)!important;
    }
 }
 .input-from {
@@ -284,8 +284,9 @@
       border-color: #8f5e25;
    }
    &__product-btn:hover {
-      background-color: #8f5e25;
+      background-color: #ffffff;
       border-color: #8f5e25;
+      color: #8f5e25;
    }
    &__product-btn:active {
       background-color: #8f5e25!important;
@@ -321,7 +322,7 @@
 .section-extend-your-shop {
    &__title {
       font-size: var(--h5);
-      font-family: Manrope-ExtraBold;
+      font-family: Manrope-Bold;
       color: black;
    }
    &__des {
@@ -360,7 +361,7 @@
    }
    &__subtitle {
       font-size: var(--font-body-4);
-      font-family: Manrope-ExtraBold;
+      font-family: Manrope-Bold;
       color: black;
       margin-bottom: 0.5rem;
    }
@@ -399,9 +400,9 @@
       color: black !important;
    }
    &__read-more:hover {
-      background-color: var(--body-background) !important;
-      border-color: var(--body-background) !important;
-      color: black !important;
+      background-color: #8f5e25 !important;
+      border-color: #8f5e25 !important;
+      color: white !important;
    }
 }
 @media only screen and (max-width: 479px) {

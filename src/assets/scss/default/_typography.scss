@@ -23,6 +23,11 @@
     font-weight: 300;
 }
 @font-face {
+    font-family: 'Mitr-Regular';
+    src: url('../../fonts/Mitr/Mitr-Regular.ttf');
+    font-weight: 400;
+}
+@font-face {
     font-family: 'Manrope';
     src: url('../../fonts/Manrope/static/Manrope-Regular.ttf');
     font-weight:400
@@ -30,22 +35,23 @@
 @font-face {
     font-family: 'Manrope-SemiBold';
     src: url('../../fonts/Manrope/static/Manrope-SemiBold.ttf');
-    font-weight:700
+    font-weight:600
 
 }
 @font-face {
     font-family: 'Manrope-ExtraBold';
     src: url('../../fonts/Manrope/static/Manrope-ExtraBold.ttf');
-    font-weight: bold;
+    font-weight: 800;
 }
 @font-face {
     font-family: 'Manrope-Bold';
     src: url('../../fonts/Manrope/static/Manrope-Bold.ttf');
+    font-weight: 700;
 }
 @font-face {
     font-family: 'Manrope-Medium';
     src: url('../../fonts/Manrope/static/Manrope-Medium.ttf');
-    font-weight: bold;
+    font-weight: 500;
 }
 
 // h1,

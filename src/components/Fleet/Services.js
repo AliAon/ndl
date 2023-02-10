@@ -14,7 +14,7 @@ const Services = () => {
         />
         <Container>
           <ImageLeftService
-            imgname="car-jeep7.svg"
+            imgname="Group 7.png"
             title="Get verified driving schools and instructors near you"
             description="Find the best driving schools and instructors in the city to teach you in the best possible ways."
           />
@@ -25,13 +25,13 @@ const Services = () => {
             <ImageRightService
               title="Easy enrollment into programs"
               description="Few simple clicks bring you closer to a lifetime of amazing long drives and memories"
-              imgname="Group 8.svg"
+              imgname="Group 8.png"
             />
           </Container>
         </Container>
         <Container>
           <ImageLeftService
-            imgname="Group 7.svg"
+            imgname="Group 7 (1).png"
             title="
         Quality course work as per the MV rules
         "
@@ -45,14 +45,14 @@ const Services = () => {
             <ImageRightService
               title="Assistance for the license process"
               description="Find the best expert advice to ace the license process. It’s time to forget the long queues for the love of speed(below 60)."
-              imgname="Group 8 (1).svg"
+              imgname="Group 8 (1).png"
             />
           </Container>
         </Container>
 
         <Container>
           <ImageLeftService
-            imgname="Group 7 (1).svg"
+            imgname="Group 7 (2).png"
             title="
               Personalised learning"
             description="

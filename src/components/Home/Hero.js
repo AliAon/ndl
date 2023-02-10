@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <Row className="section-hero gx-0 mb--30">
+    <Row className="section-hero gx-0 mb--30 align-items-center">
       <Col lg={6} md={6}>
         <h2 className="section-hero__title">Professional Service at Affordable Price</h2>
         <p className="section-hero__description">

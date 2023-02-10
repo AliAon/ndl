@@ -280,7 +280,7 @@ function GetQuoteForm() {
         className="btn-block section-getquote__form-btn"
         type="submit"
       >
-        Book Now
+       GET A QUOTE
       </Button>
     </Form>
   );

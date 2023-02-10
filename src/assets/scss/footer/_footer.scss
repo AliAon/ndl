@@ -24,6 +24,12 @@
          font-size:  var(--font-body-3);
          line-height:var(--line-height-b1);
       }
+      li:hover{
+         color: #4f3313;
+         font-weight: bold;
+
+      }
+      
    }
    &__about-text{
       font-family: Manrope;
