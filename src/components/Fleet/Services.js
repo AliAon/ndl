@@ -54,9 +54,9 @@ const Services = () => {
           <ImageLeftService
             imgname="Group 7 (1).svg"
             title="
-        Personalised learning"
+              Personalised learning"
             description="
-        Manage your lessons like never before. Get personalised learning at your doorstops and fall in love with your mental horse.              </p>
+            Manage your lessons like never before. Get personalised learning at your doorstops and fall in love with your mental horse.              </p>
         "
           />
         </Container> 

@@ -45,7 +45,7 @@ const Fleet = () => {
             </Col>
             <Col lg={6} md={6}>
               <img
-                src="./images/Range-Rover 1.png"
+                src="./images/imgbin-brown.png"
                 className="section-hero__img "
               />
             </Col>
