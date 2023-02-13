@@ -3,10 +3,11 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Autocomplete from "react-google-autocomplete";
+// import Autocomplete from "react-google-autocomplete";
 import DatePicker from "react-datepicker";
 import { GiPathDistance, GiDuration } from "react-icons/gi";
 import "react-datepicker/dist/react-datepicker.css";
+import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import {
   FaCalendar,
   FaCar,
@@ -17,6 +18,8 @@ import {
   FaUser,
   FaUserFriends,
 } from "react-icons/fa";
+import Test from "../../pages/Test";
+import FromInput from "./QuoteFormInput/FromInput";
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 function GetQuoteForm(props) {
@@ -31,31 +34,31 @@ function GetQuoteForm(props) {
   const [bookme, setBookme] = useState({});
 
   const selectedFromPlaceHandler = (place) => {
-    if(place){
-      const {lat,lng}=place.geometry.location
-      const latvalue=lat()
-      const lngvalue=lng()
+    if (place) {
+      const { lat, lng } = place.geometry.location;
+      const latvalue = lat();
+      const lngvalue = lng();
       const origin = {
         lat: latvalue,
-        lng: lngvalue
+        lng: lngvalue,
       };
       setFromlocation(origin);
-    }else{
-      setFromlocation({})
+    } else {
+      setFromlocation({});
     }
   };
   const selectedToPlaceHandler = (place) => {
-    if(place){
-      const {lat,lng}=place.geometry.location
-      const latvalue=lat()
-      const lngvalue=lng()
+    if (place) {
+      const { lat, lng } = place.geometry.location;
+      const latvalue = lat();
+      const lngvalue = lng();
       const destination = {
         lat: latvalue,
-        lng: lngvalue
+        lng: lngvalue,
       };
       setTolocation(destination);
-    }else{
-      setFromlocation({})
+    } else {
+      setFromlocation({});
     }
   };
 
@@ -82,9 +85,7 @@ function GetQuoteForm(props) {
     setCarname(car.car_name);
     setPassenger(car.no_of_passengers);
     setLuggage(car.allowed_buggage);
-
     //SetDistanceMatrix Fileds Origin and Destination
-    props.onMapDirection(fromlocation,tolocation)
   };
 
   //Time Handler
@@ -119,16 +120,26 @@ function GetQuoteForm(props) {
                 </Col>
                 <Col>
                   <Form.Label className="input-from__label">From</Form.Label>
-                  <Autocomplete
-                    required
-                    className="form-control input-from__input shadow-none"
-                    apiKey={apiKey}
-                    placeholder="Address, airport, hotel "
-                    onPlaceSelected={selectedFromPlaceHandler}
-                    options={{
-                      types: ["(regions)"],
-                    }}
-                  />
+                  <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
+                    <Autocomplete>
+                      <>
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <input
+                            type="text"
+                            color="#DAC683"
+                            className="form-control input-from__input shadow-none"
+                            onChange={selectedFromPlaceHandler}
+                          />
+                        </div>
+                      </>
+                    </Autocomplete>
+                  </LoadScript>
                 </Col>
               </Row>
             </div>
@@ -145,16 +156,26 @@ function GetQuoteForm(props) {
                 </Col>
                 <Col>
                   <Form.Label className="input-from__label">To</Form.Label>
-                  <Autocomplete
-                    required
-                    className="form-control input-from__input shadow-none"
-                    apiKey={props.apiKey}
-                    placeholder="Address, airport, hotel "
-                    onPlaceSelected={selectedToPlaceHandler}
-                    options={{
-                      types: ["(regions)"],
-                    }}
-                  />
+                  <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
+                    <Autocomplete>
+                      <>
+                        <div
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <input
+                            type="text"
+                            color="#DAC683"
+                            className="form-control input-from__input shadow-none"
+                            onChange={selectedToPlaceHandler}
+                          />
+                        </div>
+                      </>
+                    </Autocomplete>
+                  </LoadScript>
                 </Col>
               </Row>
             </div>

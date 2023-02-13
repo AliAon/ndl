@@ -18,22 +18,22 @@ const center = {
   lng: -180,
 };
 
-// const origin = {
-//   lat: 31.718730053558804,
-//   lng: 73.98695371750617
-// };
-// const destination = {
-//   lat: 31.52562331681787,
-//   lng: 74.35513346567933
-// };
+const origin = {
+  lat: 31.718730053558804,
+  lng: 73.98695371750617
+};
+const destination = {
+  lat: 31.52562331681787,
+  lng: 74.35513346567933
+};
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 const MapGoogleApi = (props) => {
   const [response, setresponse] = useState("");
   const onClickHander = (e) => {};
   const directionsRendererOptions = {
-    destination: props.destination,
-    origin:props.origin,
+    destination: destination,
+    origin:origin,
     travelMode: "DRIVING",
   };
 
@@ -68,8 +68,8 @@ const MapGoogleApi = (props) => {
      <DistanceMatrixService
           callback={distancehandler}
           options={{
-            destinations: [props.destination],
-            origins:[props.origin],
+            destinations: [destination],
+            origins:[origin],
             travelMode:'DRIVING'
           }}
         />
