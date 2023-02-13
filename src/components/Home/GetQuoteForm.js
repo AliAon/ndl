@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -24,6 +24,9 @@ const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 function GetQuoteForm(props) {
   const [cars, setCars] = useState([]);
+  const [IsShow,setIsshow]=useState(false);
+  const [autocompleteFrom,setAutocompleteFrom]=useState('')
+  const [autoCompleteTo,setAutCompleteTo]=useState('')
   const [fromlocation, setFromlocation] = useState({});
   const [tolocation, setTolocation] = useState({});
   const [carname, setCarname] = useState("");
@@ -33,9 +36,16 @@ function GetQuoteForm(props) {
   const [luggage, setLuggage] = useState("");
   const [bookme, setBookme] = useState({});
 
-  const selectedFromPlaceHandler = (place) => {
-    if (place) {
-      const { lat, lng } = place.geometry.location;
+  const onloadFromHandler = (autocompletefrom) => {
+    setAutocompleteFrom(autocompletefrom)
+  };
+  const onloadToHandler = (autocompleteto) => {
+    setAutCompleteTo(autocompleteto)
+  };
+  const SelectedFromPlaceHandler = () => {
+    const fromPlace=autocompleteFrom.getPlace()
+    if (fromPlace) {
+      const { lat, lng } = fromPlace.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
       const origin = {
@@ -47,9 +57,10 @@ function GetQuoteForm(props) {
       setFromlocation({});
     }
   };
-  const selectedToPlaceHandler = (place) => {
-    if (place) {
-      const { lat, lng } = place.geometry.location;
+  const SelectedToPlaceHandler = () => {
+    const placeTo=autoCompleteTo.getPlace()
+    if (placeTo) {
+      const { lat, lng } = placeTo.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
       const destination = {
@@ -58,7 +69,7 @@ function GetQuoteForm(props) {
       };
       setTolocation(destination);
     } else {
-      setFromlocation({});
+      setTolocation({});
     }
   };
 
@@ -86,12 +97,17 @@ function GetQuoteForm(props) {
     setPassenger(car.no_of_passengers);
     setLuggage(car.allowed_buggage);
     //SetDistanceMatrix Fileds Origin and Destination
+    props.onDirectionHandler(fromlocation,tolocation)
+    // setDistance(props.distance)
+    // setDuration(props.duration)
+
   };
 
   //Time Handler
   const timeHandler = (e) => {
     setTime(e.target.value);
   };
+ 
 
   const submitFormHandler = (e) => {
     e.preventDefault();
@@ -103,280 +119,302 @@ function GetQuoteForm(props) {
       car: carname,
       passenger: passenger,
       luggage: luggage,
+      distance:props.distance,
+      duration:props.duration
     });
+
   };
 
   return (
-    <Form onSubmit={submitFormHandler}>
-      <Row className="mb-3">
-        <Col lg={12} md={6} className="mb--20">
-          <Form.Group as={Col} controlId="formGridEmail">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={1} xs={1}>
-                  <span>
-                    <FaCircle color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col>
-                  <Form.Label className="input-from__label">From</Form.Label>
-                  <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
-                    <Autocomplete>
-                      <>
-                        <div
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <input
-                            type="text"
-                            color="#DAC683"
-                            className="form-control input-from__input shadow-none"
-                            onChange={selectedFromPlaceHandler}
-                          />
-                        </div>
-                      </>
-                    </Autocomplete>
-                  </LoadScript>
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-        <Col lg={12} md={6}>
-          <Form.Group className="mb-3" controlId="formGridAddress1">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={1} xs={1}>
-                  <span>
-                    <FaCircle color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col>
-                  <Form.Label className="input-from__label">To</Form.Label>
-                  <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
-                    <Autocomplete>
-                      <>
-                        <div
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <input
-                            type="text"
-                            color="#DAC683"
-                            className="form-control input-from__input shadow-none"
-                            onChange={selectedToPlaceHandler}
-                          />
-                        </div>
-                      </>
-                    </Autocomplete>
-                  </LoadScript>
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-      </Row>
+    <Fragment>
+      <Form onSubmit={submitFormHandler}>
+        <Row className="mb-3">
+          <Col lg={12} md={6} className="mb--20">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={1} xs={1}>
+                    <span>
+                      <FaCircle color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col>
+                    <Form.Label className="input-from__label">From</Form.Label>
+                    <LoadScript
+                      googleMapsApiKey={apiKey}
+                      libraries={["places"]}
+                    >
+                      <Autocomplete
+                      onLoad={onloadFromHandler}
+                      onPlaceChanged={SelectedFromPlaceHandler}
+                      >
+                        <>
+                          <div
+                            style={{
+                              width: "100%",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <input
+                              type="text"
+                              color="#DAC683"
+                              name="from"
+                              className="form-control input-from__input shadow-none"
+                              placeholder="Address, airport, hotel"
+                            />
+                          </div>
+                        </>
+                      </Autocomplete>
+                    </LoadScript>
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+          <Col lg={12} md={6}>
+            <Form.Group className="mb-3" controlId="formGridAddress1">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={1} xs={1}>
+                    <span>
+                      <FaCircle color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col>
+                    <Form.Label className="input-from__label">To</Form.Label>
+                    <LoadScript
+                      googleMapsApiKey={apiKey}
+                      libraries={["places"]}
+                    >
+                      <Autocomplete
+                      onLoad={onloadToHandler}
+                       onPlaceChanged={SelectedToPlaceHandler}
+                      >
+                        <>
+                          <div
+                            style={{
+                              width: "100%",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <input
+                              type="text"
+                              color="#DAC683"
+                              className="form-control input-from__input shadow-none"
+                              placeholder="Address, airport, hotel"
+                            />
+                          </div>
+                        </>
+                      </Autocomplete>
+                    </LoadScript>
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
 
-      <Row>
-        <Col lg={6} md={6} xs={12}>
-          <Form.Group controlId="formGridCity" className="mb-3">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={2} xs={1}>
-                  <span>
-                    <FaCalendar color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col lg={10} xs={11}>
-                  <Form.Label className="input-from__label">
-                    Choose Date
-                  </Form.Label>
+        <Row>
+          <Col lg={6} md={6} xs={12}>
+            <Form.Group controlId="formGridCity" className="mb-3">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <FaCalendar color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col lg={10} xs={11}>
+                    <Form.Label className="input-from__label">
+                      Choose Date
+                    </Form.Label>
 
-                  <DatePicker
-                    className="input-from__input input-from__input-date shadow-none"
-                    placeholderText="Select Date"
-                    selected={bookdate}
-                    onChange={(date) => setDate(date)}
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-        <Col lg={6} md={6} xs={12} className="mb--20">
-          <Form.Group controlId="formGridState">
-            <div className="input-from input-from__num-of-hour">
-              <Row className="row align-items-center">
-                <Col lg={2} xs={1}>
-                  <span>
-                    <FaClock color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col lg={10} xs={11}>
-                  <Form.Label className="input-from__label">
-                    Select Hours
-                  </Form.Label>
-                  <DatePicker
-                    className="input-from__input input-from__input-date shadow-none"
-                    placeholderText="Select Time"
-                    showTimeSelectOnly
-                    showTimeSelect
-                    selected={booktime}
-                    onChange={(date) => setTime(date)}
-                    timeIntervals={15}
-                    timeCaption="Time"
-                    dateFormat="h:mm aa"
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <div className="input-from">
-          <Row className="row align-items-center">
-            <Col lg={1} xs={1}>
-              <span>
-                <FaCar color="#9B8974" size={20} />
-              </span>
-            </Col>
-            <Col lg={11} xs={11}>
-              <Form.Label className="input-from__label">
-                Select Vehicle
-              </Form.Label>
-              <Form.Select
-                onChange={onCarSelectHandler}
-                required
-                className="input-from__input input-from__input-hours shadow-none"
-                aria-label="Default select example"
-              >
-                <option>Select Vehicle</option>
+                    <DatePicker
+                      className="input-from__input input-from__input-date shadow-none"
+                      placeholderText="Select Date"
+                      selected={bookdate}
+                      onChange={(date) => setDate(date)}
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+          <Col lg={6} md={6} xs={12} className="mb--20">
+            <Form.Group controlId="formGridState">
+              <div className="input-from input-from__num-of-hour">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <FaClock color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col lg={10} xs={11}>
+                    <Form.Label className="input-from__label">
+                      Select Hours
+                    </Form.Label>
+                    <DatePicker
+                      className="input-from__input input-from__input-date shadow-none"
+                      placeholderText="Select Time"
+                      showTimeSelectOnly
+                      showTimeSelect
+                      selected={booktime}
+                      onChange={(date) => setTime(date)}
+                      timeIntervals={15}
+                      timeCaption="Time"
+                      dateFormat="h:mm aa"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Form.Group className="mb-3" controlId="formGridAddress1">
+          <div className="input-from">
+            <Row className="row align-items-center">
+              <Col lg={1} xs={1}>
+                <span>
+                  <FaCar color="#9B8974" size={20} />
+                </span>
+              </Col>
+              <Col lg={11} xs={11}>
+                <Form.Label className="input-from__label">
+                  Select Vehicle
+                </Form.Label>
+                <Form.Select
+                  onChange={onCarSelectHandler}
+                  required
+                  className="input-from__input input-from__input-hours shadow-none"
+                  aria-label="Default select example"
+                >
+                  <option>Select Vehicle</option>
 
-                {cars.map((el) => {
-                  return <option value={el._id}>{el.car_name}</option>;
-                })}
-              </Form.Select>
-            </Col>
-          </Row>
-        </div>
-      </Form.Group>
-      <Row className="mb-3">
-        <Col lg={6} md={6} xs={12} className="mb-3">
-          <Form.Group controlId="formGridCity">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={2} xs={1}>
-                  <span>
-                    <FaUserFriends color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col lg={10} xs={11}>
-                  <Form.Label className="input-from__label">
-                    Allowed Passengers
-                  </Form.Label>
-                  <Form.Control
-                    required
-                    value={passenger}
-                    type="text"
-                    className="input-from__input shadow-none"
-                    placeholder="Allowed Passengers"
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-        <Col lg={6} md={6} xs={12}>
-          <Form.Group controlId="formGridState">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={2} xs={1}>
-                  <span>
-                    <FaLuggageCart color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col>
-                  <Form.Label className="input-from__label">
-                    Allowed Luggage
-                  </Form.Label>
-                  <Form.Control
-                    value={luggage}
-                    type="text"
-                    required
-                    className="input-from__input shadow-none"
-                    placeholder="Allowed Luggage"
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Row className="mb-3">
-        <Col lg={6} md={6} xs={12} className="mb-3">
-          <Form.Group controlId="formGridCity">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={2} xs={1}>
-                  <span>
-                    <GiPathDistance color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col lg={10} xs={11}>
-                  <Form.Label className="input-from__label">
-                    Distance
-                  </Form.Label>
-                  <Form.Control
-                    required
-                    type="text"
-                    className="input-from__input shadow-none"
-                    placeholder="Distance"
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-        <Col lg={6} md={6} xs={12}>
-          <Form.Group controlId="formGridState">
-            <div className="input-from">
-              <Row className="row align-items-center">
-                <Col lg={2} xs={1}>
-                  <span>
-                    <GiDuration color="#9B8974" size={20} />
-                  </span>
-                </Col>
-                <Col>
-                  <Form.Label className="input-from__label">
-                    Duration
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    className="input-from__input shadow-none"
-                    placeholder="Duration"
-                  />
-                </Col>
-              </Row>
-            </div>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Button
-        variant="primary"
-        className="btn-block section-getquote__form-btn"
-        type="submit"
-      >
-        GET A QUOTE
-      </Button>
-    </Form>
+                  {cars.map((el) => {
+                    return <option value={el._id}>{el.car_name}</option>;
+                  })}
+                </Form.Select>
+              </Col>
+            </Row>
+          </div>
+        </Form.Group>
+        {/* SHOW Or HIDE Passengers and Luggage */}
+        <Row className="mb-3">
+          <Col lg={6} md={6} xs={12} className="mb-3">
+            <Form.Group controlId="formGridCity">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <FaUserFriends color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col lg={10} xs={11}>
+                    <Form.Label className="input-from__label">
+                      Allowed Passengers
+                    </Form.Label>
+                    <Form.Control
+                      required
+                      value={passenger}
+                      type="text"
+                      className="input-from__input shadow-none"
+                      placeholder="Allowed Passengers"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+          <Col lg={6} md={6} xs={12}>
+            <Form.Group controlId="formGridState">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <FaLuggageCart color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col>
+                    <Form.Label className="input-from__label">
+                      Allowed Luggage
+                    </Form.Label>
+                    <Form.Control
+                      value={luggage}
+                      type="text"
+                      required
+                      className="input-from__input shadow-none"
+                      placeholder="Allowed Luggage"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col lg={6} md={6} xs={12} className="mb-3">
+            <Form.Group controlId="formGridCity">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <GiPathDistance color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col lg={10} xs={11}>
+                    <Form.Label className="input-from__label">
+                      Distance
+                    </Form.Label>
+                    <Form.Control
+                      required
+                      value={props.distance}
+                      type="text"
+                      className="input-from__input shadow-none"
+                      placeholder="Distance"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+          <Col lg={6} md={6} xs={12}>
+            <Form.Group controlId="formGridState">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <GiDuration color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col>
+                    <Form.Label className="input-from__label">
+                      Duration
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      required
+                      value={props.duration}
+                      className="input-from__input shadow-none"
+                      placeholder="Duration"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
+        {/* SHOW Or HIDE Passengers and Luggage End*/}
+        <Button
+          variant="primary"
+          className="btn-block section-getquote__form-btn"
+          type="submit"
+        >
+          GET A QUOTE
+        </Button>
+      </Form>
+    </Fragment>
   );
 }
 

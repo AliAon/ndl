@@ -18,19 +18,20 @@ const center = {
   lng: -180,
 };
 
-const origin = {
-  lat: 31.718730053558804,
-  lng: 73.98695371750617
-};
-const destination = {
-  lat: 31.52562331681787,
-  lng: 74.35513346567933
-};
+// const origin = {
+//   lat: 31.718730053558804,
+//   lng: 73.98695371750617
+// };
+// const destination = {
+//   lat: 31.52562331681787,
+//   lng: 74.35513346567933
+// };
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 const MapGoogleApi = (props) => {
   const [response, setresponse] = useState("");
   const onClickHander = (e) => {};
+  const {origin,destination}=props
   const directionsRendererOptions = {
     destination: destination,
     origin:origin,
@@ -42,13 +43,13 @@ const MapGoogleApi = (props) => {
   };
   const distancehandler = (res) => {
     const {rows}=res
-    console.log('Distance',rows[0].elements[0].distance.text)
-    console.log('Duration',rows[0].elements[0].duration.text)
-
+    const distance=rows[0]?.elements[0].distance.text
+    const duration=rows[0]?.elements[0].duration.text
+    props.onGetDistanceDuration(distance,duration)
   };
 
   return (
-    <LoadScript googleMapsApiKey={apiKey}>
+    <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
       <GoogleMap
         mapContainerStyle={containerStyle}
         mapContainerClassName="mapstyle"
