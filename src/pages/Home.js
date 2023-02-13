@@ -17,7 +17,7 @@ const Home = () => {
       <Header />
       <main>
         <Container>
-          <Hero />
+          <Hero  imagename="Range-Rover 1.png"/>
           {/* <BookNow /> */}
         </Container>
          <div className="getquotebg pt--40 pb--40">

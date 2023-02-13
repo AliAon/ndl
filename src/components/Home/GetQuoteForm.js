@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Autocomplete from "react-google-autocomplete";
 import DatePicker from "react-datepicker";
-import {GiPathDistance,GiDuration} from "react-icons/gi"
+import { GiPathDistance, GiDuration } from "react-icons/gi";
 import "react-datepicker/dist/react-datepicker.css";
 import {
   FaCalendar,
@@ -17,33 +17,52 @@ import {
   FaUser,
   FaUserFriends,
 } from "react-icons/fa";
+const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
-function GetQuoteForm() {
+function GetQuoteForm(props) {
   const [cars, setCars] = useState([]);
   const [fromlocation, setFromlocation] = useState({});
   const [tolocation, setTolocation] = useState({});
   const [carname, setCarname] = useState("");
   const [bookdate, setDate] = useState(new Date());
-  const [booktime, setTime] = useState("");
+  const [booktime, setTime] = useState(new Date());
   const [passenger, setPassenger] = useState("");
   const [luggage, setLuggage] = useState("");
   const [bookme, setBookme] = useState({});
 
-  const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
   const selectedFromPlaceHandler = (place) => {
-    setFromlocation(place);
-    console.log(place);
+    if(place){
+      const {lat,lng}=place.geometry.location
+      const latvalue=lat()
+      const lngvalue=lng()
+      const origin = {
+        lat: latvalue,
+        lng: lngvalue
+      };
+      setFromlocation(origin);
+    }else{
+      setFromlocation({})
+    }
   };
   const selectedToPlaceHandler = (place) => {
-    setTolocation(place);
-    console.log(place);
+    if(place){
+      const {lat,lng}=place.geometry.location
+      const latvalue=lat()
+      const lngvalue=lng()
+      const destination = {
+        lat: latvalue,
+        lng: lngvalue
+      };
+      setTolocation(destination);
+    }else{
+      setFromlocation({})
+    }
   };
 
   // Get Cars Data
   const GetCars = async () => {
     const response = await fetch("http://localhost:9999/car/allrecord");
     const Resultdata = await response.json();
-    console.log(Resultdata);
     const { data } = Resultdata;
     if (data) {
       setCars(data);
@@ -63,6 +82,9 @@ function GetQuoteForm() {
     setCarname(car.car_name);
     setPassenger(car.no_of_passengers);
     setLuggage(car.allowed_buggage);
+
+    //SetDistanceMatrix Fileds Origin and Destination
+    props.onMapDirection(fromlocation,tolocation)
   };
 
   //Time Handler
@@ -126,7 +148,7 @@ function GetQuoteForm() {
                   <Autocomplete
                     required
                     className="form-control input-from__input shadow-none"
-                    apiKey={apiKey}
+                    apiKey={props.apiKey}
                     placeholder="Address, airport, hotel "
                     onPlaceSelected={selectedToPlaceHandler}
                     options={{
@@ -177,14 +199,18 @@ function GetQuoteForm() {
                 </Col>
                 <Col lg={10} xs={11}>
                   <Form.Label className="input-from__label">
-                    Select No. of Hours
+                    Select Hours
                   </Form.Label>
-                  <Form.Control
-                    required
-                    onChange={timeHandler}
-                    type="time"
+                  <DatePicker
                     className="input-from__input input-from__input-date shadow-none"
-                    placeholder="Select Date"
+                    placeholderText="Select Time"
+                    showTimeSelectOnly
+                    showTimeSelect
+                    selected={booktime}
+                    onChange={(date) => setTime(date)}
+                    timeIntervals={15}
+                    timeCaption="Time"
+                    dateFormat="h:mm aa"
                   />
                 </Col>
               </Row>

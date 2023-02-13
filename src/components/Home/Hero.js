@@ -1,7 +1,7 @@
 import { Row, Col, Button } from "react-bootstrap";
 import { FaArrowRight } from "react-icons/fa";
 
-const Hero = () => {
+const Hero = (props) => {
   return (
     <Row className="section-hero gx-0 mb--30 align-items-center">
       <Col lg={6} md={6}>
@@ -22,7 +22,7 @@ const Hero = () => {
         </Row>
       </Col>
       <Col lg={6}  md={6}>
-      <img src="./images/Range-Rover 1.png" className="section-hero__img "/>
+      <img src={`./images/${props.imagename}`} className="section-hero__img "/>
       </Col>
     </Row>
   );

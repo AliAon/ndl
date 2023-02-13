@@ -4,6 +4,7 @@ import Footer from "../common/Footer";
 import Header from "../common/Header";
 import HeaderMobile from "../common/HeaderMobile";
 import BookNow from "../components/Home/BookNow";
+import Hero from '../components/Home/Hero'
 import CtaOne from "../components/Home/CtaOne";
 import { FaArrowRight } from "react-icons/fa";
 import Services from "../components/Fleet/Services";
@@ -14,7 +15,7 @@ const Fleet = () => {
       <Header />
       <main>
         <Container>
-          <Row className="section-hero gx-0 mb--30 align-middle">
+          {/* <Row className="section-hero gx-0 mb--30 align-middle">
             <Col lg={6} md={6}>
               <h2 className="section-hero__title">
                 Professional Service at Affordable Price
@@ -49,7 +50,8 @@ const Fleet = () => {
                 className="section-hero__img "
               />
             </Col>
-          </Row>
+          </Row> */}
+          <Hero  imagename="imgbin-brown.png"/>
           {/* <BookNow /> */}
         </Container>
         <Services/>
