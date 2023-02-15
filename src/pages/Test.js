@@ -1,13 +1,10 @@
+import { Fragment } from "react";
 const Test = (props) => {
-  const getlocationhanlder=(pos)=>{
-  const {latitude,longitude}=pos.coords
-  const center={
-    lat: latitude,
-    lng: longitude
-  }
-  
-  }
-  window.navigator.geolocation.getCurrentPosition(getlocationhanlder)
-  return ;
+
+  const bfare = 10;
+  return (
+    <Fragment>
+    </Fragment>
+  );
 };
 export default Test;

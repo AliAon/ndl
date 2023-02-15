@@ -21,11 +21,12 @@ import {
   FaUserFriends,
 } from "react-icons/fa";
 import Test from "../../pages/Test";
-import FromInput from "./QuoteFormInput/FromInput";
+import MyVerticallyCenteredModal from "./QuoteFormInput/MyVerticallyCenteredModal";
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 function GetQuoteForm(props) {
   const [cars, setCars] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
   const [IsShow,setIsshow]=useState(false);
   const [autocompleteFrom,setAutocompleteFrom]=useState('')
   const [autoCompleteTo,setAutCompleteTo]=useState('')
@@ -441,10 +442,16 @@ function GetQuoteForm(props) {
           variant="primary"
           className="btn-block section-getquote__form-btn"
           type="submit"
+          onClick={() => setModalShow(true)}
         >
           GET A QUOTE
         </Button>
       </Form>
+     <MyVerticallyCenteredModal
+      show={modalShow}
+      onModalShow={setModalShow}
+      onHide={() => setModalShow(false)}
+     />
     </Fragment>
   );
 }
