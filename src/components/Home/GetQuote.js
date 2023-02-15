@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -37,7 +37,7 @@ const GetQuote = () => {
       <Col lg={6}>
         <Card className="section-getquote__card">
           <h4 className="section-getquote__title">GET A QUOTE</h4>
-          <GetQuoteForm onDirectionHandler={mapDirectionHandler} totalprice={totalprice}  distance={distance} duration={duration} />
+          <GetQuoteForm onDirectionHandler={mapDirectionHandler} totalprice={totalprice} distance={distance} duration={duration} />
         </Card>
       </Col>
       <Col lg={6}>

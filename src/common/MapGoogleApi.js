@@ -51,7 +51,6 @@ const MapGoogleApi = (props) => {
     origin: origin,
     travelMode: "DRIVING",
   };
-
   const directionsCallback = (res) => {
     setresponse(res);
   };
@@ -92,4 +91,4 @@ const MapGoogleApi = (props) => {
     </LoadScript>
   );
 };
-export default MapGoogleApi;
+export default React.memo(MapGoogleApi);

@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import {BASE_URL} from './../../common/Config'
+import { BASE_URL } from "./../../common/Config";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 // import Autocomplete from "react-google-autocomplete";
 import DatePicker from "react-datepicker";
 import { GiPathDistance, GiDuration } from "react-icons/gi";
-import {MdPaid} from "react-icons/md"
+import { MdPaid } from "react-icons/md";
 import "react-datepicker/dist/react-datepicker.css";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import {
@@ -26,27 +26,50 @@ const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 function GetQuoteForm(props) {
   const [cars, setCars] = useState([]);
+  const [disabled, setgetQuotbtnenabled] = useState("disabled");
+  const [disabledselectcar, Setdisabledselectcar] = useState("disabled");
+  const [disableddate, Setdisableddate] = useState("disabled");
+  const [showDateTimeInputWithFrom, SetshowDateTimeInputFrom] = useState(false);
+  const [showDateTimeInputWithTo, SetshowDateTimeInputTo] = useState(false);
+  const [showCarWithDate, SetshowCarWithDate] = useState(false);
+  const [showCarWithTime, SetshowCarWithTime] = useState(false);
+  const [showCar, SetshowCar] = useState(false);
+  const [disabletime, Setdisabletime] = useState("disabled");
   const [modalShow, setModalShow] = useState(false);
-  const [IsShow,setIsshow]=useState(false);
-  const [autocompleteFrom,setAutocompleteFrom]=useState('')
-  const [autoCompleteTo,setAutCompleteTo]=useState('')
+  const [IsShow, setIsshow] = useState(false);
+  const [autocompleteFrom, setAutocompleteFrom] = useState("");
+  const [autoCompleteTo, setAutCompleteTo] = useState("");
   const [fromlocation, setFromlocation] = useState({});
   const [tolocation, setTolocation] = useState({});
+  const [fromlocationname, setfromlocationname] = useState("");
+  const [tolocationname, settolocationname] = useState("");
   const [carname, setCarname] = useState("");
-  const [bookdate, setDate] = useState(new Date());
-  const [booktime, setTime] = useState(new Date());
+  const [carid, setCarid] = useState("");
+  const [bookdate, setDate] = useState("");
+  const [booktime, setTime] = useState("");
   const [passenger, setPassenger] = useState("");
   const [luggage, setLuggage] = useState("");
   const [bookme, setBookme] = useState({});
   const onloadFromHandler = (autocompletefrom) => {
-    setAutocompleteFrom(autocompletefrom)
+    setAutocompleteFrom(autocompletefrom);
   };
+
   const onloadToHandler = (autocompleteto) => {
-    setAutCompleteTo(autocompleteto)
+    setAutCompleteTo(autocompleteto);
   };
+  //Controle Car dropdown & date & time field onchange From Input
+  const OnchangeFromPlaceHandler = (e) => {
+    if (e.target.value == "") {
+      SetshowDateTimeInputFrom(false);
+    } else {
+      SetshowDateTimeInputFrom(true);
+    }
+  };
+  //Select From Place
   const SelectedFromPlaceHandler = () => {
-    const fromPlace=autocompleteFrom.getPlace()
+    const fromPlace = autocompleteFrom.getPlace();
     if (fromPlace) {
+      setfromlocationname(fromPlace.formatted_address);
       const { lat, lng } = fromPlace?.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
@@ -59,9 +82,11 @@ function GetQuoteForm(props) {
       setFromlocation({});
     }
   };
+  //Select To place
   const SelectedToPlaceHandler = () => {
-    const placeTo=autoCompleteTo.getPlace()
+    const placeTo = autoCompleteTo.getPlace();
     if (placeTo) {
+      settolocationname(placeTo.formatted_address);
       const { lat, lng } = placeTo?.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
@@ -74,10 +99,54 @@ function GetQuoteForm(props) {
       setTolocation({});
     }
   };
+  //Controle Car dropdown onchange To Input
+  const OnchangeToPlaceHandler = (e) => {
+    if (e.target.value == "") {
+      SetshowDateTimeInputTo(false);
+    } else {
+      SetshowDateTimeInputTo(true);
+    }
+  };
+
+  const SelectedDateHandler = (date) => {
+    setDate(date);
+    SetshowCarWithDate(true)
+  };
+  const SelectedTimeHandler = (date) => {
+    setTime(date);
+    SetshowCarWithTime(true)
+
+  };
+  //show date and time on
+  useEffect(() => {
+    if (
+      showDateTimeInputWithFrom === true &&
+      showDateTimeInputWithTo === true
+    ) {
+      Setdisabletime("");
+      Setdisableddate("");
+    } else {
+      Setdisabletime("disabled");
+      Setdisableddate("disabled");
+    }
+    if (showCarWithTime === true && showCarWithDate === true) {
+      Setdisabledselectcar("");
+    } else {
+      Setdisabledselectcar("disabled");
+    }
+  }, [
+    fromlocation,
+    tolocation,
+    showDateTimeInputWithFrom,
+    showDateTimeInputWithTo,
+    showCarWithTime,
+    showCarWithDate
+
+  ]);
 
   // Get Cars Data
   const GetCars = async () => {
-    const url=BASE_URL+'/car/allrecord'
+    const url = BASE_URL + "/car/allrecord";
     const response = await fetch(url);
     const Resultdata = await response.json();
     const { data } = Resultdata;
@@ -88,7 +157,7 @@ function GetQuoteForm(props) {
     }
   };
   useEffect(() => {
-    console.log(BASE_URL)
+    console.log(BASE_URL);
     GetCars();
   }, []);
 
@@ -100,33 +169,32 @@ function GetQuoteForm(props) {
     setCarname(car?.car_name);
     setPassenger(car?.no_of_passengers);
     setLuggage(car?.allowed_buggage);
+    setCarid(car?._id);
     //SetDistanceMatrix Fileds Origin and Destination
-    props.onDirectionHandler(fromlocation,tolocation,car.per_mile_rate)
-    //CalculateBasicFare
-
+    props.onDirectionHandler(fromlocation, tolocation, car.per_mile_rate);
+    //enable button
+    setgetQuotbtnenabled("");
   };
 
   //Time Handler
   const timeHandler = (e) => {
     setTime(e.target.value);
   };
- 
+
   //Submit Book Now Info
   const submitFormHandler = (e) => {
-   
     e.preventDefault();
     setBookme({
-      from: fromlocation,
-      to: tolocation,
+      from: fromlocationname,
+      to: tolocationname,
       bookdate: bookdate,
       booktime: booktime,
-      car: carname,
+      car: carid,
       passenger: passenger,
       luggage: luggage,
-      distance:props.distance,
-      duration:props.duration
+      distance: props.distance,
+      duration: props.duration,
     });
-
   };
   //Calculate Basic Fare
 
@@ -150,8 +218,8 @@ function GetQuoteForm(props) {
                       libraries={["places"]}
                     >
                       <Autocomplete
-                      onLoad={onloadFromHandler}
-                      onPlaceChanged={SelectedFromPlaceHandler}
+                        onLoad={onloadFromHandler}
+                        onPlaceChanged={SelectedFromPlaceHandler}
                       >
                         <>
                           <div
@@ -165,6 +233,7 @@ function GetQuoteForm(props) {
                               type="text"
                               color="#DAC683"
                               name="from"
+                              onChange={OnchangeFromPlaceHandler}
                               className="form-control input-from__input shadow-none"
                               placeholder="Address, airport, hotel"
                             />
@@ -193,8 +262,8 @@ function GetQuoteForm(props) {
                       libraries={["places"]}
                     >
                       <Autocomplete
-                      onLoad={onloadToHandler}
-                       onPlaceChanged={SelectedToPlaceHandler}
+                        onLoad={onloadToHandler}
+                        onPlaceChanged={SelectedToPlaceHandler}
                       >
                         <>
                           <div
@@ -207,6 +276,7 @@ function GetQuoteForm(props) {
                             <input
                               type="text"
                               color="#DAC683"
+                              onChange={OnchangeToPlaceHandler}
                               className="form-control input-from__input shadow-none"
                               placeholder="Address, airport, hotel"
                             />
@@ -240,7 +310,8 @@ function GetQuoteForm(props) {
                       className="input-from__input input-from__input-date shadow-none"
                       placeholderText="Select Date"
                       selected={bookdate}
-                      onChange={(date) => setDate(date)}
+                      disabled={disableddate}
+                      onChange={SelectedDateHandler}
                     />
                   </Col>
                 </Row>
@@ -266,7 +337,8 @@ function GetQuoteForm(props) {
                       showTimeSelectOnly
                       showTimeSelect
                       selected={booktime}
-                      onChange={(date) => setTime(date)}
+                      disabled={disabletime}
+                      onChange={SelectedTimeHandler}
                       timeIntervals={15}
                       timeCaption="Time"
                       dateFormat="h:mm aa"
@@ -292,11 +364,10 @@ function GetQuoteForm(props) {
                 <Form.Select
                   onChange={onCarSelectHandler}
                   required
+                  disabled={disabledselectcar}
                   className="input-from__input input-from__input-hours shadow-none"
                   aria-label="Default select example"
                 >
-                  <option>Select Vehicle</option>
-
                   {cars.map((el) => {
                     return <option value={el._id}>{el.car_name}</option>;
                   })}
@@ -421,9 +492,7 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col lg={10} xs={11}>
-                    <Form.Label className="input-from__label">
-                      Price
-                    </Form.Label>
+                    <Form.Label className="input-from__label">Price</Form.Label>
                     <Form.Control
                       required
                       value={`$ ${props.totalprice}`}
@@ -438,20 +507,23 @@ function GetQuoteForm(props) {
           </Col>
         </Row>
         {/* SHOW Or HIDE Passengers and Luggage End*/}
-        <Button
+        <button
           variant="primary"
           className="btn-block section-getquote__form-btn"
           type="submit"
+          disabled={disabled}
           onClick={() => setModalShow(true)}
         >
           GET A QUOTE
-        </Button>
+        </button>
       </Form>
-     <MyVerticallyCenteredModal
-      show={modalShow}
-      onModalShow={setModalShow}
-      onHide={() => setModalShow(false)}
-     />
+      <MyVerticallyCenteredModal
+        show={modalShow}
+        onModalShow={setModalShow}
+        fare={props.totalprice}
+        onHide={() => setModalShow(false)}
+        bookeddata={bookme}
+      />
     </Fragment>
   );
 }
