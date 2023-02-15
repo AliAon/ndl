@@ -13,10 +13,10 @@ const containerStyle = {
   width: "100%",
 };
 
-const center = {
-  lat: 0,
-  lng: -180,
-};
+// const center = {
+//   lat: 0,
+//   lng: -180,
+// };
 
 // const origin = {
 //   lat: 31.718730053558804,
@@ -30,11 +30,25 @@ const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 const MapGoogleApi = (props) => {
   const [response, setresponse] = useState("");
+  const [CurrentLatLon, setCurrentLatLon] = useState({
+    lat: 0,
+    lng: -180,
+  });
   const onClickHander = (e) => {};
-  const {origin,destination}=props
+  const { origin, destination } = props;
+  // let center;
+  // //Geting Current Location
+  // const getlocationhanlder = (pos) => {
+  //   const { latitude, longitude } = pos.coords;
+  //   setCurrentLatLon({
+  //     lat: latitude,
+  //     lng: longitude,
+  //   });
+  // };
+  // window.navigator.geolocation.getCurrentPosition(getlocationhanlder);
   const directionsRendererOptions = {
     destination: destination,
-    origin:origin,
+    origin: origin,
     travelMode: "DRIVING",
   };
 
@@ -42,10 +56,10 @@ const MapGoogleApi = (props) => {
     setresponse(res);
   };
   const distancehandler = (res) => {
-    const {rows}=res
-    const distance=rows[0]?.elements[0].distance.text
-    const duration=rows[0]?.elements[0].duration.text
-    props.onGetDistanceDuration(distance,duration)
+    const { rows } = res;
+    const distance = rows[0]?.elements[0].distance.text;
+    const duration = rows[0]?.elements[0].duration.text;
+    props.onGetDistanceDuration(distance, duration);
   };
 
   return (
@@ -53,25 +67,25 @@ const MapGoogleApi = (props) => {
       <GoogleMap
         mapContainerStyle={containerStyle}
         mapContainerClassName="mapstyle"
-        center={center}
+        center={CurrentLatLon}
         zoom={2}
         onClick={onClickHander}
       >
-           <DirectionsService
+        <DirectionsService
           options={directionsRendererOptions}
           callback={directionsCallback}
         />
         <DirectionsRenderer
           options={{
-            directions: response
+            directions: response,
           }}
         />
-     <DistanceMatrixService
+        <DistanceMatrixService
           callback={distancehandler}
           options={{
             destinations: [destination],
-            origins:[origin],
-            travelMode:'DRIVING'
+            origins: [origin],
+            travelMode: "DRIVING",
           }}
         />
       </GoogleMap>

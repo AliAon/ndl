@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
+import {BASE_URL} from './../../common/Config'
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -6,6 +7,7 @@ import Row from "react-bootstrap/Row";
 // import Autocomplete from "react-google-autocomplete";
 import DatePicker from "react-datepicker";
 import { GiPathDistance, GiDuration } from "react-icons/gi";
+import {MdPaid} from "react-icons/md"
 import "react-datepicker/dist/react-datepicker.css";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import {
@@ -35,7 +37,6 @@ function GetQuoteForm(props) {
   const [passenger, setPassenger] = useState("");
   const [luggage, setLuggage] = useState("");
   const [bookme, setBookme] = useState({});
-
   const onloadFromHandler = (autocompletefrom) => {
     setAutocompleteFrom(autocompletefrom)
   };
@@ -45,7 +46,7 @@ function GetQuoteForm(props) {
   const SelectedFromPlaceHandler = () => {
     const fromPlace=autocompleteFrom.getPlace()
     if (fromPlace) {
-      const { lat, lng } = fromPlace.geometry.location;
+      const { lat, lng } = fromPlace?.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
       const origin = {
@@ -60,7 +61,7 @@ function GetQuoteForm(props) {
   const SelectedToPlaceHandler = () => {
     const placeTo=autoCompleteTo.getPlace()
     if (placeTo) {
-      const { lat, lng } = placeTo.geometry.location;
+      const { lat, lng } = placeTo?.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
       const destination = {
@@ -75,7 +76,8 @@ function GetQuoteForm(props) {
 
   // Get Cars Data
   const GetCars = async () => {
-    const response = await fetch("http://localhost:9999/car/allrecord");
+    const url=BASE_URL+'/car/allrecord'
+    const response = await fetch(url);
     const Resultdata = await response.json();
     const { data } = Resultdata;
     if (data) {
@@ -85,21 +87,21 @@ function GetQuoteForm(props) {
     }
   };
   useEffect(() => {
+    console.log(BASE_URL)
     GetCars();
   }, []);
 
   //Car Select handler
   const onCarSelectHandler = (e) => {
-    const car = cars.find((el) => {
+    const car = cars?.find((el) => {
       return el._id == e.target.value;
     });
-    setCarname(car.car_name);
-    setPassenger(car.no_of_passengers);
-    setLuggage(car.allowed_buggage);
+    setCarname(car?.car_name);
+    setPassenger(car?.no_of_passengers);
+    setLuggage(car?.allowed_buggage);
     //SetDistanceMatrix Fileds Origin and Destination
-    props.onDirectionHandler(fromlocation,tolocation)
-    // setDistance(props.distance)
-    // setDuration(props.duration)
+    props.onDirectionHandler(fromlocation,tolocation,car.per_mile_rate)
+    //CalculateBasicFare
 
   };
 
@@ -108,8 +110,9 @@ function GetQuoteForm(props) {
     setTime(e.target.value);
   };
  
-
+  //Submit Book Now Info
   const submitFormHandler = (e) => {
+   
     e.preventDefault();
     setBookme({
       from: fromlocation,
@@ -124,6 +127,7 @@ function GetQuoteForm(props) {
     });
 
   };
+  //Calculate Basic Fare
 
   return (
     <Fragment>
@@ -398,6 +402,33 @@ function GetQuoteForm(props) {
                       value={props.duration}
                       className="input-from__input shadow-none"
                       placeholder="Duration"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3 justify-content-center">
+          <Col lg={8} md={8} xs={12} className="mb-3">
+            <Form.Group controlId="formGridCity">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={2} xs={1}>
+                    <span>
+                      <MdPaid color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col lg={10} xs={11}>
+                    <Form.Label className="input-from__label">
+                      Price
+                    </Form.Label>
+                    <Form.Control
+                      required
+                      value={`$ ${props.totalprice}`}
+                      type="text"
+                      className="input-from__input shadow-none"
+                      placeholder="Price"
                     />
                   </Col>
                 </Row>
