@@ -368,6 +368,7 @@ function GetQuoteForm(props) {
                   className="input-from__input input-from__input-hours shadow-none"
                   aria-label="Default select example"
                 >
+                  <option  value="">Select Vehicle</option>
                   {cars.map((el) => {
                     return <option value={el._id}>{el.car_name}</option>;
                   })}

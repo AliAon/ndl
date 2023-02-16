@@ -9,6 +9,9 @@
         padding: 0px;
         margin: 0px
     }
+    &__input{
+        padding-left: 10px!important;
+    }
     &__input, &__input:focus{
         background-color: #343434!important;
         border-color: #343434!important;

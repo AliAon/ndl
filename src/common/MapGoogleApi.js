@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   DirectionsRenderer,
   DirectionsService,
@@ -31,21 +31,23 @@ const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 const MapGoogleApi = (props) => {
   const [response, setresponse] = useState("");
   const [CurrentLatLon, setCurrentLatLon] = useState({
-    lat: 0,
-    lng: -180,
+    lat: 31.541990736853904,
+    lng: 74.36893749666083,
   });
   const onClickHander = (e) => {};
   const { origin, destination } = props;
-  // let center;
-  // //Geting Current Location
-  // const getlocationhanlder = (pos) => {
-  //   const { latitude, longitude } = pos.coords;
-  //   setCurrentLatLon({
-  //     lat: latitude,
-  //     lng: longitude,
-  //   });
-  // };
-  // window.navigator.geolocation.getCurrentPosition(getlocationhanlder);
+  //Geting Current Location
+  useEffect(() => {
+    const getlocationhanlder = (pos) => {
+      const { latitude, longitude } = pos.coords;
+      setCurrentLatLon({
+        lat: latitude,
+        lng: longitude,
+      });
+    };
+    window.navigator.geolocation.getCurrentPosition(getlocationhanlder);
+  }, []);
+
   const directionsRendererOptions = {
     destination: destination,
     origin: origin,
@@ -67,7 +69,7 @@ const MapGoogleApi = (props) => {
         mapContainerStyle={containerStyle}
         mapContainerClassName="mapstyle"
         center={CurrentLatLon}
-        zoom={2}
+        zoom={15}
         onClick={onClickHander}
       >
         <DirectionsService

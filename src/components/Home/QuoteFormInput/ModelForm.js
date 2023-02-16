@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { BASE_URL } from "../../../common/Config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 function ModelForm(props) {
   const {car,bookdate,booktime,distance,duration,from,to}=props.bookeddata
   const data = {
@@ -21,17 +21,45 @@ function ModelForm(props) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [phoneno, setphoneno] = useState("");
+  const [IsshowPayWithCard, SetshowPayWithCard] = useState(false);
+  const [Isfirstnamempty, SetIsfirstnamempty] = useState(true);
+  const [Islastnamempty, SetIslastnamempty] = useState(true);
+  const [Isphonenoempty, SetIsphonenoempty] = useState(true);
   let userData;
 
   const firstnamehandler = (e) => {
+    if(e.target.value!==''){
+      SetIsfirstnamempty(false)
+    }else{
+      SetIsfirstnamempty(true)
+    }
     setFirstname(e.target.value);
+
   };
   const lastnamehandler = (e) => {
     setLastname(e.target.value);
+    if(e.target.value==''){
+      SetIslastnamempty(true)
+   }else{
+    SetIslastnamempty(false)
+   }
   };
   const phonenohandler = (e) => {
     setphoneno(e.target.value);
+    if(e.target.value==''){
+      SetIsphonenoempty(true)
+   }else{
+    SetIsphonenoempty(false)
+   }
   };
+
+  useEffect(()=>{
+    if(Isfirstnamempty===false && Islastnamempty===false && Isphonenoempty===false){
+      SetshowPayWithCard(true)
+    }else{
+      SetshowPayWithCard(false)
+    }
+  },[firstname,lastname,phoneno])
 
   const HideModelHandler = () => {
     userData={
@@ -83,6 +111,8 @@ function ModelForm(props) {
           onChange={firstnamehandler}
           required
         />
+              <small class="form-text text-muted">firstname is required.</small>
+
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
@@ -92,6 +122,8 @@ function ModelForm(props) {
           value={lastname}
           required
         />
+      <small class="form-text text-muted">lastname is required.</small>
+
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
@@ -101,22 +133,26 @@ function ModelForm(props) {
           value={phoneno}
           required
         />
+        <small class="form-text text-muted">phone is required.</small>
+
       </Form.Group>
       <Row className="justify-content-between">
         <Col className="text-right">
-          <StripeCheckout
+         {IsshowPayWithCard && <StripeCheckout
             token={onToken}
             amount={bfare * 100}
             currency="USD"
+            
             stripeKey="pk_test_51MbP29IRuNLD0p1RwfZ6DKGA3kXPzLe3jZSLbdmRMYyfYcLGIXFtwusNNnf7VVjCANLCUsuyw7GSFo7kiCmSB5Rr00WT8ybijK"
           >
             <Button
               className="btn-block product-one-card__product-btn"
               onClick={HideModelHandler}
-            >
+              >
               Pay With Card
             </Button>
           </StripeCheckout>
+        }
         </Col>
       </Row>
     </Form>
