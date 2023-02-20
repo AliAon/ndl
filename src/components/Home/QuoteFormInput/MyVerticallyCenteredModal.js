@@ -15,7 +15,6 @@ function MyVerticallyCenteredModal(props) {
       </Modal.Header>
       <Modal.Body>
         <h2 className='section__title-first text-center'>NDL</h2>
-        <h6 className='section__description text-center'>Provide the following info</h6>
         <ModelForm fare={props.fare} bookeddata={props.bookeddata} onsetModalShow={props.onModalShow}/>
       </Modal.Body>
     </Modal>

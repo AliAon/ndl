@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   DirectionsRenderer,
   DirectionsService,
@@ -72,6 +72,9 @@ const MapGoogleApi = (props) => {
         zoom={15}
         onClick={onClickHander}
       >
+        <Marker position={
+          CurrentLatLon
+        }/>
         <DirectionsService
           options={directionsRendererOptions}
           callback={directionsCallback}

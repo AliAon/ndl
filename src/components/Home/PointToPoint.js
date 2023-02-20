@@ -3,9 +3,9 @@ import { Card, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import MapGoogleApi from "../../common/MapGoogleApi";
-import GetQuoteForm from "./GetQuoteForm";
+import PointGetQuoteForm from "./PointGetQuoteForm";
 
-const GetQuote = () => {
+const PointToPoint = () => {
   const [origin,setOrigin]=useState({});
   const [destination,setDestination]=useState({});
   const [distance,setDistance]=useState('')
@@ -36,8 +36,8 @@ const GetQuote = () => {
     <Row className="section-getquote  align-items-center">
       <Col lg={6}>
         <Card className="section-getquote__card">
-          <h4 className="section-getquote__title">GET A QUOTE</h4>
-          <GetQuoteForm onDirectionHandler={mapDirectionHandler} totalprice={totalprice} distance={distance} duration={duration} />
+          <h4 className="section-getquote__title">Point To Point</h4>
+          <PointGetQuoteForm onDirectionHandler={mapDirectionHandler} totalprice={totalprice} distance={distance} duration={duration} />
         </Card>
       </Col>
       <Col lg={6}>
@@ -47,4 +47,4 @@ const GetQuote = () => {
     </Row>
   );
 };
-export default GetQuote;
+export default PointToPoint;

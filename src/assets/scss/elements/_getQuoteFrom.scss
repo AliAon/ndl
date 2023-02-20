@@ -20,7 +20,7 @@
         color: #ccc!important;
         padding-right: 4px;
         ::placeholder{
-            color: white!important;
+            color: white;
         }
         
     }
@@ -59,3 +59,12 @@
  .form-select{
     background-image:url('./../../../../public/images/arrow-down.svg')
  }
+
+ //messages color
+ .color-disabled{
+    color: #696969!important;
+ }
+.color-disabled-pleaceholder::placeholder{
+    color: #696969!important;
+
+}

@@ -4,7 +4,7 @@ import { Row, Col } from "react-bootstrap";
 import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { BASE_URL } from "../../../common/Config";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 function ModelForm(props) {
   const {car,bookdate,booktime,distance,duration,from,to}=props.bookeddata
   const data = {
@@ -21,53 +21,26 @@ function ModelForm(props) {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [phoneno, setphoneno] = useState("");
+  const [completeuserdata,setcompleteuserdata]=useState({})
   const [IsshowPayWithCard, SetshowPayWithCard] = useState(false);
-  const [Isfirstnamempty, SetIsfirstnamempty] = useState(true);
-  const [Islastnamempty, SetIslastnamempty] = useState(true);
-  const [Isphonenoempty, SetIsphonenoempty] = useState(true);
+  const [IsHideFrom, SetIsHideFrom] = useState(true);
   let userData;
 
   const firstnamehandler = (e) => {
-    if(e.target.value!==''){
-      SetIsfirstnamempty(false)
-    }else{
-      SetIsfirstnamempty(true)
-    }
+  
     setFirstname(e.target.value);
 
   };
   const lastnamehandler = (e) => {
     setLastname(e.target.value);
-    if(e.target.value==''){
-      SetIslastnamempty(true)
-   }else{
-    SetIslastnamempty(false)
-   }
+ 
   };
   const phonenohandler = (e) => {
     setphoneno(e.target.value);
-    if(e.target.value==''){
-      SetIsphonenoempty(true)
-   }else{
-    SetIsphonenoempty(false)
-   }
+   
   };
 
-  useEffect(()=>{
-    if(Isfirstnamempty===false && Islastnamempty===false && Isphonenoempty===false){
-      SetshowPayWithCard(true)
-    }else{
-      SetshowPayWithCard(false)
-    }
-  },[firstname,lastname,phoneno])
-
   const HideModelHandler = () => {
-    userData={
-     ...data,
-     user_firstName: firstname,
-     user_lastName: lastname,
-     user_phoneNumber: lastname,
-   }
    props.onsetModalShow(false);
  };
 
@@ -81,6 +54,7 @@ function ModelForm(props) {
 
   //sending token and user data to backend after payment
   const TokenUserDataHandler=async(token,userData)=>{
+    console.log('userData',data)
     const result=await axios.post(`${BASE_URL}/payment/Stripe`,
     {
       product, 
@@ -93,16 +67,34 @@ function ModelForm(props) {
     }
   // sendng Quote
     const quoteresult=await axios.post(`${BASE_URL}/quote/create`,quoteData)
-    console.log(quoteresult)
   }
-  //get token and
-  const onToken = (token) => {
-    console.log(token);
+ 
+  const modelformhandler=(e)=>{
+    e.preventDefault()
+    userData={
+      ...data,
+      user_firstName: firstname,
+      user_lastName: lastname,
+      user_phoneNumber: phoneno,
+    }
+    setcompleteuserdata(userData)
+    setFirstname('')
+    setLastname('')
+    setphoneno('')
+    SetIsHideFrom(false)
+    SetshowPayWithCard(true)
+  }
+   //get token and
+   const onToken = (token) => {
+    console.log('Stripe Token',token);
     console.log("btn clicked");
-    TokenUserDataHandler(token, userData);
+   TokenUserDataHandler(token, completeuserdata);
   };
   return (
-    <Form className="mb--10 mt--20" >
+    <Fragment>
+   {IsHideFrom && <Form onSubmit={modelformhandler} className="mb--10 mt--20" >
+   <h6 className='section__description text-center'>Provide the following info</h6>
+
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
           type="text"
@@ -111,7 +103,7 @@ function ModelForm(props) {
           onChange={firstnamehandler}
           required
         />
-              <small class="form-text text-muted">firstname is required.</small>
+        <small class="form-text text-muted">firstname is required.</small>
 
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -128,9 +120,10 @@ function ModelForm(props) {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
           type="tel"
-          placeholder="+1 (000) 000-000"
+          placeholder="+91 936 7788 755"
           onChange={phonenohandler}
           value={phoneno}
+          pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
           required
         />
         <small class="form-text text-muted">phone is required.</small>
@@ -138,24 +131,39 @@ function ModelForm(props) {
       </Form.Group>
       <Row className="justify-content-between">
         <Col className="text-right">
-         {IsshowPayWithCard && <StripeCheckout
+      
+            <Button
+              className="btn-block product-one-card__product-btn"
+              type="submit"
+              
+              >
+              Pay Now
+            </Button>
+        
+        </Col>
+      </Row>
+    </Form>}
+    { IsshowPayWithCard &&<Row>
+      <Col>
+      <h6 className='section__description text-center'>Click And Pay</h6>
+
+         <StripeCheckout
             token={onToken}
             amount={bfare * 100}
             currency="USD"
-            
             stripeKey="pk_test_51MbP29IRuNLD0p1RwfZ6DKGA3kXPzLe3jZSLbdmRMYyfYcLGIXFtwusNNnf7VVjCANLCUsuyw7GSFo7kiCmSB5Rr00WT8ybijK"
           >
             <Button
               className="btn-block product-one-card__product-btn"
-              onClick={HideModelHandler}
+              onClick={HideModelHandler}              
               >
               Pay With Card
             </Button>
           </StripeCheckout>
-        }
-        </Col>
-      </Row>
-    </Form>
+        
+      </Col>
+    </Row>}
+    </Fragment>
   );
 }
 

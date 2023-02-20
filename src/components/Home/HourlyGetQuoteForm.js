@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { BASE_URL } from "./../../common/Config";
+import { BASE_URL } from "../../common/Config";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -22,15 +22,18 @@ import {
 } from "react-icons/fa";
 import Test from "../../pages/Test";
 import MyVerticallyCenteredModal from "./QuoteFormInput/MyVerticallyCenteredModal";
+import MessagesInfo from "../../common/MessagesInfo";
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
-function GetQuoteForm(props) {
+function HourlyGetQuoteForm(props) {
   const [cars, setCars] = useState([]);
   const [disabled, setgetQuotbtnenabled] = useState("disabled");
+  const [IsshowMessageForm, SetIsshowMessageForm] = useState(false);
   const [disabledselectcar, Setdisabledselectcar] = useState("disabled");
   const [disableddate, Setdisableddate] = useState("disabled");
   const [showDateTimeInputWithFrom, SetshowDateTimeInputFrom] = useState(false);
   const [showDateTimeInputWithTo, SetshowDateTimeInputTo] = useState(false);
+  const [ShowColorDisabledForDate, SetShowColorDisabledForDate] = useState(true);
   const [showCarWithDate, SetshowCarWithDate] = useState(false);
   const [showCarWithTime, SetshowCarWithTime] = useState(false);
   const [showCar, SetshowCar] = useState(false);
@@ -59,6 +62,7 @@ function GetQuoteForm(props) {
   };
   //Controle Car dropdown & date & time field onchange From Input
   const OnchangeFromPlaceHandler = (e) => {
+    e.preventDefault()
     if (e.target.value == "") {
       SetshowDateTimeInputFrom(false);
     } else {
@@ -101,6 +105,7 @@ function GetQuoteForm(props) {
   };
   //Controle Car dropdown onchange To Input
   const OnchangeToPlaceHandler = (e) => {
+    e.preventDefault()
     if (e.target.value == "") {
       SetshowDateTimeInputTo(false);
     } else {
@@ -125,14 +130,20 @@ function GetQuoteForm(props) {
     ) {
       Setdisabletime("");
       Setdisableddate("");
+      setgetQuotbtnenabled("");
+      SetShowColorDisabledForDate(false)
+      
     } else {
       Setdisabletime("disabled");
       Setdisableddate("disabled");
+      setgetQuotbtnenabled("disabled");
+      SetShowColorDisabledForDate(true)
     }
-    if (showCarWithTime === true && showCarWithDate === true) {
+    if (showCarWithTime === true && showCarWithDate === true && showDateTimeInputWithFrom===true && showDateTimeInputWithTo) {
       Setdisabledselectcar("");
     } else {
       Setdisabledselectcar("disabled");
+      setgetQuotbtnenabled("disabled");
     }
   }, [
     fromlocation,
@@ -163,6 +174,7 @@ function GetQuoteForm(props) {
 
   //Car Select handler
   const onCarSelectHandler = (e) => {
+    e.preventDefault()
     const car = cars?.find((el) => {
       return el._id == e.target.value;
     });
@@ -184,6 +196,8 @@ function GetQuoteForm(props) {
   //Submit Book Now Info
   const submitFormHandler = (e) => {
     e.preventDefault();
+    //show model
+    setModalShow(true)
     setBookme({
       from: fromlocationname,
       to: tolocationname,
@@ -196,12 +210,17 @@ function GetQuoteForm(props) {
       duration: props.duration,
     });
   };
-  //Calculate Basic Fare
+  //onClick Date handler
+  const onDateClickHandler=()=>{
+    console.log('dateclicked')
+  }
 
   return (
     <Fragment>
       <Form onSubmit={submitFormHandler}>
         <Row className="mb-3">
+        {IsshowMessageForm && <MessagesInfo/>}
+
           <Col lg={12} md={6} className="mb--20">
             <Form.Group as={Col} controlId="formGridEmail">
               <div className="input-from">
@@ -220,6 +239,7 @@ function GetQuoteForm(props) {
                       <Autocomplete
                         onLoad={onloadFromHandler}
                         onPlaceChanged={SelectedFromPlaceHandler}
+                      
                       >
                         <>
                           <div
@@ -233,6 +253,7 @@ function GetQuoteForm(props) {
                               type="text"
                               color="#DAC683"
                               name="from"
+                              required
                               onChange={OnchangeFromPlaceHandler}
                               className="form-control input-from__input shadow-none"
                               placeholder="Address, airport, hotel"
@@ -276,6 +297,7 @@ function GetQuoteForm(props) {
                             <input
                               type="text"
                               color="#DAC683"
+                              required
                               onChange={OnchangeToPlaceHandler}
                               className="form-control input-from__input shadow-none"
                               placeholder="Address, airport, hotel"
@@ -302,17 +324,21 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col lg={10} xs={11}>
-                    <Form.Label className="input-from__label">
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                       Choose Date
                     </Form.Label>
 
                     <DatePicker
-                      className="input-from__input input-from__input-date shadow-none"
+                      className={`input-from__input input-from__input-date shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholderText="Select Date"
                       selected={bookdate}
                       disabled={disableddate}
+                      minDate={new Date()}
+                      required
+                      onclick={onDateClickHandler}
                       onChange={SelectedDateHandler}
                     />
+
                   </Col>
                 </Row>
               </div>
@@ -328,15 +354,16 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col lg={10} xs={11}>
-                    <Form.Label className="input-from__label">
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                       Select Hours
                     </Form.Label>
                     <DatePicker
-                      className="input-from__input input-from__input-date shadow-none"
+                      className={`input-from__input input-from__input-date shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholderText="Select Time"
                       showTimeSelectOnly
                       showTimeSelect
                       selected={booktime}
+                   
                       disabled={disabletime}
                       onChange={SelectedTimeHandler}
                       timeIntervals={15}
@@ -358,14 +385,14 @@ function GetQuoteForm(props) {
                 </span>
               </Col>
               <Col lg={11} xs={11}>
-                <Form.Label className="input-from__label">
+                <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                   Select Vehicle
                 </Form.Label>
                 <Form.Select
                   onChange={onCarSelectHandler}
                   required
                   disabled={disabledselectcar}
-                  className="input-from__input input-from__input-hours shadow-none"
+                  className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                   aria-label="Default select example"
                 >
                   <option  value="">Select Vehicle</option>
@@ -389,14 +416,14 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col lg={10} xs={11}>
-                    <Form.Label className="input-from__label">
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                       Allowed Passengers
                     </Form.Label>
                     <Form.Control
-                      required
+                      
                       value={passenger}
                       type="text"
-                      className="input-from__input shadow-none"
+                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Allowed Passengers"
                     />
                   </Col>
@@ -414,14 +441,14 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col>
-                    <Form.Label className="input-from__label">
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                       Allowed Luggage
                     </Form.Label>
                     <Form.Control
                       value={luggage}
                       type="text"
-                      required
-                      className="input-from__input shadow-none"
+                      
+                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Allowed Luggage"
                     />
                   </Col>
@@ -441,14 +468,14 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col lg={10} xs={11}>
-                    <Form.Label className="input-from__label">
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                       Distance
                     </Form.Label>
                     <Form.Control
-                      required
+                      
                       value={props.distance}
                       type="text"
-                      className="input-from__input shadow-none"
+                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Distance"
                     />
                   </Col>
@@ -466,14 +493,14 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col>
-                    <Form.Label className="input-from__label">
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                       Duration
                     </Form.Label>
                     <Form.Control
                       type="text"
-                      required
+                      
                       value={props.duration}
-                      className="input-from__input shadow-none"
+                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Duration"
                     />
                   </Col>
@@ -493,12 +520,12 @@ function GetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col lg={10} xs={11}>
-                    <Form.Label className="input-from__label">Price</Form.Label>
+                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>Price</Form.Label>
                     <Form.Control
-                      required
+                      
                       value={`$ ${props.totalprice}`}
                       type="text"
-                      className="input-from__input shadow-none"
+                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                       placeholder="Price"
                     />
                   </Col>
@@ -512,8 +539,6 @@ function GetQuoteForm(props) {
           variant="primary"
           className="btn-block section-getquote__form-btn"
           type="submit"
-          disabled={disabled}
-          onClick={() => setModalShow(true)}
         >
           GET A QUOTE
         </button>
@@ -529,4 +554,4 @@ function GetQuoteForm(props) {
   );
 }
 
-export default GetQuoteForm;
+export default HourlyGetQuoteForm;
