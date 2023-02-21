@@ -55,10 +55,6 @@ function HourlyGetQuoteForm(props) {
   };
 
 
-
-
-
-  
   //Controle Car dropdown & date & time field onchange From Input
   const OnchangeFromPlaceHandler = (e) => {
     e.preventDefault()
@@ -188,7 +184,7 @@ function HourlyGetQuoteForm(props) {
     <Fragment>
       <Form onSubmit={submitFormHandler}>
         <Row className="mb-3">
-          <Col lg={12} md={6} className="mb--20">
+          <Col lg={12} md={6} >
             <Form.Group as={Col} controlId="formGridEmail">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -279,7 +275,7 @@ function HourlyGetQuoteForm(props) {
                   </Col>
                   <Col lg={10} xs={11}>
                     <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
-                      Select Hours
+                      Select Time
                     </Form.Label>
                     <DatePicker
                       className={`input-from__input input-from__input-date shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
@@ -300,15 +296,18 @@ function HourlyGetQuoteForm(props) {
             </Form.Group>
           </Col>
         </Row>
-        <Form.Group className="mb-3" controlId="formGridAddress1">
+        <Row>
+ 
+          <Col lg={6} md={6} xs={12}>
+          <Form.Group className="mb-3" controlId="formGridAddress1">
           <div className="input-from">
             <Row className="row align-items-center">
-              <Col lg={1} xs={1}>
+              <Col lg={2} xs={2}>
                 <span>
                   <FaCar color="#9B8974" size={20} />
                 </span>
               </Col>
-              <Col lg={11} xs={11}>
+              <Col lg={10} xs={10}>
                 <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                   Select Vehicle
                 </Form.Label>
@@ -319,7 +318,7 @@ function HourlyGetQuoteForm(props) {
                   className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                   aria-label="Default select example"
                 >
-                  <option  value="">Select Vehicle</option>
+                  <option disabled selected value="">Select Vehicle</option>
                   {cars.map((el) => {
                     return <option value={el._id}>{el.car_name}</option>;
                   })}
@@ -328,6 +327,38 @@ function HourlyGetQuoteForm(props) {
             </Row>
           </div>
         </Form.Group>
+          </Col>
+          <Col lg={6} md={6} xs={12}>
+        <Form.Group className="mb-3" controlId="formGridAddress1">
+          <div className="input-from">
+            <Row className="row align-items-center">
+              <Col lg={2} xs={2}>
+                <span>
+                  <FaCar color="#9B8974" size={20} />
+                </span>
+              </Col>
+              <Col lg={10} xs={10}>
+                <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
+                  Select Hours
+                </Form.Label>
+                <Form.Select
+                  onChange={onCarSelectHandler}
+                  required
+                  disabled={disabledselectcar}
+                  className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
+                  aria-label="Default select example"
+                >
+                  <option  value="" disabled selected>Select Hours</option>
+                  <option  value="5">5 Hour</option>
+                  <option  value="6">6 Hour</option>
+                </Form.Select>
+              </Col>
+            </Row>
+          </div>
+        </Form.Group>
+        </Col>
+        </Row>
+        
         <Row className="mb-3">
           <Col lg={6} md={6} xs={12} className="mb-3">
             <Form.Group controlId="formGridCity">

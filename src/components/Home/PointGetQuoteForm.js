@@ -433,7 +433,7 @@ function PointGetQuoteForm(props) {
                   </Col>
                   <Col lg={10} xs={11}>
                     <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
-                      Select Hours
+                      Select Time
                     </Form.Label>
                     <DatePicker
                       className={`input-from__input input-from__input-date shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}

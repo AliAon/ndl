@@ -107,11 +107,12 @@ function ModelForm(props) {
     console.log('Stripe Token',token);
     console.log("btn clicked");
    TokenUserDataHandler(token, completeuserdata);
+   openSnackbar('Payment Successfull!')
+   props.OnresetForm()
   };
   //on Closed
   const oncloseHandler=()=>{
-    openSnackbar('Payment Successfull!')
-    props.OnresetForm()
+   console.log('popup closed')
   }
  
   return (
