@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 // import Autocomplete from "react-google-autocomplete";
 import DatePicker from "react-datepicker";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { GiPathDistance, GiDuration } from "react-icons/gi";
 import { MdPaid } from "react-icons/md";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,6 +19,7 @@ import {
   FaLuggageCart,
   FaPeopleCarry,
   FaUser,
+  FaRocketchat,
   FaUserFriends,
 } from "react-icons/fa";
 import Test from "../../pages/Test";
@@ -28,11 +30,9 @@ const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 function HourlyGetQuoteForm(props) {
   const [cars, setCars] = useState([]);
   const [disabled, setgetQuotbtnenabled] = useState("disabled");
-  const [IsshowMessageForm, SetIsshowMessageForm] = useState(false);
   const [disabledselectcar, Setdisabledselectcar] = useState("disabled");
   const [disableddate, Setdisableddate] = useState("disabled");
   const [showDateTimeInputWithFrom, SetshowDateTimeInputFrom] = useState(false);
-  const [showDateTimeInputWithTo, SetshowDateTimeInputTo] = useState(false);
   const [ShowColorDisabledForDate, SetShowColorDisabledForDate] = useState(true);
   const [showCarWithDate, SetshowCarWithDate] = useState(false);
   const [showCarWithTime, SetshowCarWithTime] = useState(false);
@@ -41,11 +41,8 @@ function HourlyGetQuoteForm(props) {
   const [modalShow, setModalShow] = useState(false);
   const [IsShow, setIsshow] = useState(false);
   const [autocompleteFrom, setAutocompleteFrom] = useState("");
-  const [autoCompleteTo, setAutCompleteTo] = useState("");
   const [fromlocation, setFromlocation] = useState({});
-  const [tolocation, setTolocation] = useState({});
   const [fromlocationname, setfromlocationname] = useState("");
-  const [tolocationname, settolocationname] = useState("");
   const [carname, setCarname] = useState("");
   const [carid, setCarid] = useState("");
   const [bookdate, setDate] = useState("");
@@ -57,9 +54,11 @@ function HourlyGetQuoteForm(props) {
     setAutocompleteFrom(autocompletefrom);
   };
 
-  const onloadToHandler = (autocompleteto) => {
-    setAutCompleteTo(autocompleteto);
-  };
+
+
+
+
+  
   //Controle Car dropdown & date & time field onchange From Input
   const OnchangeFromPlaceHandler = (e) => {
     e.preventDefault()
@@ -86,33 +85,7 @@ function HourlyGetQuoteForm(props) {
       setFromlocation({});
     }
   };
-  //Select To place
-  const SelectedToPlaceHandler = () => {
-    const placeTo = autoCompleteTo.getPlace();
-    if (placeTo) {
-      settolocationname(placeTo.formatted_address);
-      const { lat, lng } = placeTo?.geometry.location;
-      const latvalue = lat();
-      const lngvalue = lng();
-      const destination = {
-        lat: latvalue,
-        lng: lngvalue,
-      };
-      setTolocation(destination);
-    } else {
-      setTolocation({});
-    }
-  };
-  //Controle Car dropdown onchange To Input
-  const OnchangeToPlaceHandler = (e) => {
-    e.preventDefault()
-    if (e.target.value == "") {
-      SetshowDateTimeInputTo(false);
-    } else {
-      SetshowDateTimeInputTo(true);
-    }
-  };
-
+;
   const SelectedDateHandler = (date) => {
     setDate(date);
     SetshowCarWithDate(true)
@@ -125,8 +98,7 @@ function HourlyGetQuoteForm(props) {
   //show date and time on
   useEffect(() => {
     if (
-      showDateTimeInputWithFrom === true &&
-      showDateTimeInputWithTo === true
+      showDateTimeInputWithFrom === true
     ) {
       Setdisabletime("");
       Setdisableddate("");
@@ -139,7 +111,7 @@ function HourlyGetQuoteForm(props) {
       setgetQuotbtnenabled("disabled");
       SetShowColorDisabledForDate(true)
     }
-    if (showCarWithTime === true && showCarWithDate === true && showDateTimeInputWithFrom===true && showDateTimeInputWithTo) {
+    if (showCarWithTime === true && showCarWithDate === true && showDateTimeInputWithFrom===true ) {
       Setdisabledselectcar("");
     } else {
       Setdisabledselectcar("disabled");
@@ -147,9 +119,7 @@ function HourlyGetQuoteForm(props) {
     }
   }, [
     fromlocation,
-    tolocation,
     showDateTimeInputWithFrom,
-    showDateTimeInputWithTo,
     showCarWithTime,
     showCarWithDate
 
@@ -183,7 +153,7 @@ function HourlyGetQuoteForm(props) {
     setLuggage(car?.allowed_buggage);
     setCarid(car?._id);
     //SetDistanceMatrix Fileds Origin and Destination
-    props.onDirectionHandler(fromlocation, tolocation, car.per_mile_rate);
+    props.onDirectionHandler(fromlocation, car.per_mile_rate);
     //enable button
     setgetQuotbtnenabled("");
   };
@@ -200,7 +170,6 @@ function HourlyGetQuoteForm(props) {
     setModalShow(true)
     setBookme({
       from: fromlocationname,
-      to: tolocationname,
       bookdate: bookdate,
       booktime: booktime,
       car: carid,
@@ -219,8 +188,6 @@ function HourlyGetQuoteForm(props) {
     <Fragment>
       <Form onSubmit={submitFormHandler}>
         <Row className="mb-3">
-        {IsshowMessageForm && <MessagesInfo/>}
-
           <Col lg={12} md={6} className="mb--20">
             <Form.Group as={Col} controlId="formGridEmail">
               <div className="input-from">
@@ -267,50 +234,7 @@ function HourlyGetQuoteForm(props) {
               </div>
             </Form.Group>
           </Col>
-          <Col lg={12} md={6}>
-            <Form.Group className="mb-3" controlId="formGridAddress1">
-              <div className="input-from">
-                <Row className="row align-items-center">
-                  <Col lg={1} xs={1}>
-                    <span>
-                      <FaCircle color="#9B8974" size={20} />
-                    </span>
-                  </Col>
-                  <Col>
-                    <Form.Label className="input-from__label">To</Form.Label>
-                    <LoadScript
-                      googleMapsApiKey={apiKey}
-                      libraries={["places"]}
-                    >
-                      <Autocomplete
-                        onLoad={onloadToHandler}
-                        onPlaceChanged={SelectedToPlaceHandler}
-                      >
-                        <>
-                          <div
-                            style={{
-                              width: "100%",
-                              display: "flex",
-                              alignItems: "center",
-                            }}
-                          >
-                            <input
-                              type="text"
-                              color="#DAC683"
-                              required
-                              onChange={OnchangeToPlaceHandler}
-                              className="form-control input-from__input shadow-none"
-                              placeholder="Address, airport, hotel"
-                            />
-                          </div>
-                        </>
-                      </Autocomplete>
-                    </LoadScript>
-                  </Col>
-                </Row>
-              </div>
-            </Form.Group>
-          </Col>
+      
         </Row>
 
         <Row>
@@ -363,7 +287,7 @@ function HourlyGetQuoteForm(props) {
                       showTimeSelectOnly
                       showTimeSelect
                       selected={booktime}
-                   
+                      required
                       disabled={disabletime}
                       onChange={SelectedTimeHandler}
                       timeIntervals={15}
@@ -404,7 +328,6 @@ function HourlyGetQuoteForm(props) {
             </Row>
           </div>
         </Form.Group>
-        {/* SHOW Or HIDE Passengers and Luggage */}
         <Row className="mb-3">
           <Col lg={6} md={6} xs={12} className="mb-3">
             <Form.Group controlId="formGridCity">
@@ -420,7 +343,7 @@ function HourlyGetQuoteForm(props) {
                       Allowed Passengers
                     </Form.Label>
                     <Form.Control
-                      
+                      required
                       value={passenger}
                       type="text"
                       className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
@@ -447,7 +370,7 @@ function HourlyGetQuoteForm(props) {
                     <Form.Control
                       value={luggage}
                       type="text"
-                      
+                      required
                       className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Allowed Luggage"
                     />
@@ -457,52 +380,21 @@ function HourlyGetQuoteForm(props) {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mb-3">
-          <Col lg={6} md={6} xs={12} className="mb-3">
+        <Row>
+        <Col lg={12} md={8} xs={12} className="mb-3">
             <Form.Group controlId="formGridCity">
               <div className="input-from">
                 <Row className="row align-items-center">
-                  <Col lg={2} xs={1}>
+                  <Col lg={1} xs={1}>
                     <span>
-                      <GiPathDistance color="#9B8974" size={20} />
+                      <FaRocketchat color="#9B8974" size={20} />
                     </span>
                   </Col>
-                  <Col lg={10} xs={11}>
-                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
-                      Distance
+                  <Col lg={11} xs={11}>
+                  <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
+                     Describe Your Journy...
                     </Form.Label>
-                    <Form.Control
-                      
-                      value={props.distance}
-                      type="text"
-                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
-                      placeholder="Distance"
-                    />
-                  </Col>
-                </Row>
-              </div>
-            </Form.Group>
-          </Col>
-          <Col lg={6} md={6} xs={12}>
-            <Form.Group controlId="formGridState">
-              <div className="input-from">
-                <Row className="row align-items-center">
-                  <Col lg={2} xs={1}>
-                    <span>
-                      <GiDuration color="#9B8974" size={20} />
-                    </span>
-                  </Col>
-                  <Col>
-                    <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
-                      Duration
-                    </Form.Label>
-                    <Form.Control
-                      type="text"
-                      
-                      value={props.duration}
-                      className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
-                      placeholder="Duration"
-                    />
+                    <Form.Control  className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`} as="textarea"  />
                   </Col>
                 </Row>
               </div>
@@ -522,18 +414,20 @@ function HourlyGetQuoteForm(props) {
                   <Col lg={10} xs={11}>
                     <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>Price</Form.Label>
                     <Form.Control
-                      
                       value={`$ ${props.totalprice}`}
                       type="text"
                       className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                       placeholder="Price"
+                      required
                     />
                   </Col>
                 </Row>
+
               </div>
             </Form.Group>
           </Col>
         </Row>
+        
         {/* SHOW Or HIDE Passengers and Luggage End*/}
         <button
           variant="primary"

@@ -11,6 +11,7 @@ import ExocticCarRental from "../components/Home/ExocticCarRental";
 import ExtendYouShop from "../components/Home/ExtendYouShop";
 import PointToPoint from "../components/Home/PointToPoint";
 import Hero from "../components/Home/Hero";
+import Hourly from "../components/Home/Hourly";
 import ProductTabs from "../components/Home/ProductTabs";
 import HourlyGetQuoteForm from "../components/Home/HourlyGetQuoteForm";
 const Home = () => {
@@ -26,14 +27,14 @@ const Home = () => {
         <div className="getquotebg pt--40 pb--40">
           <Container>
             <Tabs
-              defaultActiveKey="profile"
+              defaultActiveKey="home"
               id="justify-tab-example"              
             >
-              <Tab eventKey="home" defaultActiveKey="home" title="PONT TO POINT">
+              <Tab eventKey="home" title="PONT TO POINT">
                 <PointToPoint />
               </Tab>
               <Tab eventKey="profile" title="HOURLY">
-              <PointToPoint />
+              <Hourly />
               </Tab>
             </Tabs>
           </Container>
