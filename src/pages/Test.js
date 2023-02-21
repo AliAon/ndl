@@ -1,12 +1,32 @@
-import { Fragment } from "react";
-import OverlayTriggerMessage from "../common/OverlayTriggerMessage";
-const Test = (props) => {
+import React from 'react'
+import { useSnackbar } from 'react-simple-snackbar'
 
-  const bfare = 10;
+function Test() {
+  const options = {
+    position: 'top-center',
+    style: {
+      backgroundColor: '#8f5e25',
+      color: 'white',
+      fontFamily: 'Manrope',
+      fontSize: '18px',
+      textAlign: 'center',
+    },
+    closeStyle: {
+      color: 'white',
+      fontSize: '16px',
+    },
+  }
+  const [openSnackbar, closeSnackbar] = useSnackbar(options)
+
   return (
-    <Fragment>
-      <OverlayTriggerMessage/>
-    </Fragment>
-  );
-};
-export default Test;
+    <div>
+      <button onClick={() => openSnackbar('Payment Successfull!')}>
+        Click me to open the Snackbar!
+      </button>
+      <button onClick={closeSnackbar}>
+        Click me to close the Snackbar programmatically.
+      </button>
+    </div>
+  )
+}
+export default Test

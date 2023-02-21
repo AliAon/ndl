@@ -29,6 +29,7 @@ const containerStyle = {
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 const MapGoogleApi = (props) => {
+  const [showmapmark,setShowmapmark]=useState(true)
   const [response, setresponse] = useState("");
   const [CurrentLatLon, setCurrentLatLon] = useState({
     lat: 31.541990736853904,
@@ -55,6 +56,7 @@ const MapGoogleApi = (props) => {
   };
   const directionsCallback = (res) => {
     setresponse(res);
+    setShowmapmark(false)
   };
   const distancehandler = (res) => {
     const { rows } = res;
@@ -72,9 +74,9 @@ const MapGoogleApi = (props) => {
         zoom={15}
         onClick={onClickHander}
       >
-        <Marker position={
+       {showmapmark && <Marker position={
           CurrentLatLon
-        }/>
+        }/>}
         <DirectionsService
           options={directionsRendererOptions}
           callback={directionsCallback}

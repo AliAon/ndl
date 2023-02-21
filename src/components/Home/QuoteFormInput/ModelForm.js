@@ -5,6 +5,8 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { BASE_URL } from "../../../common/Config";
 import { Fragment, useEffect, useState } from "react";
+import { useSnackbar } from 'react-simple-snackbar'
+
 function ModelForm(props) {
   const {car,bookdate,booktime,distance,duration,from,to}=props.bookeddata
   const data = {
@@ -24,6 +26,22 @@ function ModelForm(props) {
   const [completeuserdata,setcompleteuserdata]=useState({})
   const [IsshowPayWithCard, SetshowPayWithCard] = useState(false);
   const [IsHideFrom, SetIsHideFrom] = useState(true);
+  const options = {
+    position: 'top-center',
+    style: {
+      backgroundColor: '#8f5e25',
+      color: 'white',
+      fontFamily: 'Manrope',
+      fontSize: '18px',
+      textAlign: 'center',
+    },
+    closeStyle: {
+      color: 'white',
+      fontSize: '16px',
+    },
+  }
+  const [openSnackbar, closeSnackbar] = useSnackbar(options)
+
   let userData;
 
   const firstnamehandler = (e) => {
@@ -90,6 +108,12 @@ function ModelForm(props) {
     console.log("btn clicked");
    TokenUserDataHandler(token, completeuserdata);
   };
+  //on Closed
+  const oncloseHandler=()=>{
+    openSnackbar('Payment Successfull!')
+    props.OnresetForm()
+  }
+ 
   return (
     <Fragment>
    {IsHideFrom && <Form onSubmit={modelformhandler} className="mb--10 mt--20" >
@@ -120,7 +144,7 @@ function ModelForm(props) {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control
           type="tel"
-          placeholder="+91 936 7788 755"
+          placeholder="+91 336 7788 755"
           onChange={phonenohandler}
           value={phoneno}
           pattern="^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
@@ -151,6 +175,7 @@ function ModelForm(props) {
             token={onToken}
             amount={bfare * 100}
             currency="USD"
+            closed={oncloseHandler}
             stripeKey="pk_test_51MbP29IRuNLD0p1RwfZ6DKGA3kXPzLe3jZSLbdmRMYyfYcLGIXFtwusNNnf7VVjCANLCUsuyw7GSFo7kiCmSB5Rr00WT8ybijK"
           >
             <Button

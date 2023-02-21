@@ -32,6 +32,7 @@ function PointGetQuoteForm(props) {
   const [IsshowMessageForm, SetIsshowMessageForm] = useState(false);
   const [disabledselectcar, Setdisabledselectcar] = useState("disabled");
   const [disableddate, Setdisableddate] = useState("disabled");
+  const [Fieldtoempty,setFieldtoempty]=useState(false)
   const [showDateTimeInputWithFrom, SetshowDateTimeInputFrom] = useState(false);
   const [showDateTimeInputWithTo, SetshowDateTimeInputTo] = useState(false);
   const [ShowColorDisabledForDate, SetShowColorDisabledForDate] = useState(true);
@@ -47,6 +48,7 @@ function PointGetQuoteForm(props) {
   const [tolocation, setTolocation] = useState({});
   const [fromlocationname, setfromlocationname] = useState("");
   const [tolocationname, settolocationname] = useState("");
+  const [eventcontainer,seteventcontainer]=useState("")
   const [carname, setCarname] = useState("");
   const [carid, setCarid] = useState("");
   const [bookdate, setDate] = useState("");
@@ -128,6 +130,8 @@ function PointGetQuoteForm(props) {
     } else {
       SetshowDateTimeInputTo(true);
     }
+
+    
   };
 
   const SelectedDateHandler = (date) => {
@@ -214,6 +218,7 @@ function PointGetQuoteForm(props) {
     props.onDirectionHandler(fromlocation, tolocation, car.per_mile_rate);
     //enable button
     setgetQuotbtnenabled("");
+    setFieldtoempty(false)
   };
 
   //Time Handler
@@ -226,6 +231,7 @@ function PointGetQuoteForm(props) {
     e.preventDefault();
     //show model
     setModalShow(true)
+    seteventcontainer(e)
     setBookme({
       from: fromlocationname,
       to: tolocationname,
@@ -237,10 +243,28 @@ function PointGetQuoteForm(props) {
       distance: props.distance,
       duration: props.duration,
     });
+
   };
   //onClick Date handler
   const onDateClickHandler=()=>{
     console.log('dateclicked')
+  }
+  //formresthandler
+  const formresthandler=()=>{
+    console.log('reset form')
+    eventcontainer.target.reset()
+   //clean fields
+    setDate('')
+    setTime('')
+    setPassenger('')
+    setLuggage('')
+    setFieldtoempty(true)
+    //disadbled all fields
+    Setdisabletime("disabled");
+    Setdisableddate("disabled");
+    setgetQuotbtnenabled("disabled");
+    SetShowColorDisabledForDate(true)
+    Setdisabledselectcar("disabled");
   }
 
   return (
@@ -268,6 +292,7 @@ function PointGetQuoteForm(props) {
                         onLoad={onloadFromHandler}
                         onPlaceChanged={SelectedFromPlaceHandler}
                       
+                      
                       >
                         <>
                           <div
@@ -281,6 +306,7 @@ function PointGetQuoteForm(props) {
                               type="text"
                               color="#DAC683"
                               name="from"
+                    
                               required
                               onChange={OnchangeFromPlaceHandler}
                               className="form-control input-from__input shadow-none"
@@ -345,7 +371,7 @@ function PointGetQuoteForm(props) {
           <Col lg={6} md={6} xs={12}>
             {/* Add tooltip message */}
             <OverlayTrigger
-              placement="right"
+              placement="top"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
               {...tooltipobj}
@@ -385,7 +411,7 @@ function PointGetQuoteForm(props) {
           </Col>
           <Col lg={6} md={6} xs={12} className="mb--20">
             <OverlayTrigger
-              placement="right"
+              placement="top"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
               {...tooltipobj}
@@ -425,10 +451,11 @@ function PointGetQuoteForm(props) {
           </Col>
         </Row>
         <OverlayTrigger
-              placement="right"
+              placement="top"
               delay={{ show: 250, hide: 400 }}
               overlay={renderTooltip}
               {...tooltipobj}
+
             >
         <Form.Group className="mb-3" controlId="formGridAddress1">
           <div className="input-from">
@@ -462,12 +489,7 @@ function PointGetQuoteForm(props) {
         {/* SHOW Or HIDE Passengers and Luggage */}
         <Row className="mb-3">
           <Col lg={6} md={6} xs={12} className="mb-3">
-          <OverlayTrigger
-              placement="right"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-              {...tooltipobj}
-            >
+        
             <Form.Group controlId="formGridCity">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -492,15 +514,9 @@ function PointGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
-            </OverlayTrigger>
           </Col>
           <Col lg={6} md={6} xs={12}>
-          <OverlayTrigger
-              placement="right"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-              {...tooltipobj}
-            >
+      
             <Form.Group controlId="formGridState">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -525,17 +541,11 @@ function PointGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
-            </OverlayTrigger>
           </Col>
         </Row>
         <Row className="mb-3">
           <Col lg={6} md={6} xs={12} className="mb-3">
-          <OverlayTrigger
-              placement="right"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-              {...tooltipobj}
-            >
+       
             <Form.Group controlId="formGridCity">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -550,7 +560,7 @@ function PointGetQuoteForm(props) {
                     </Form.Label>
                     <Form.Control
                       
-                      value={props.distance}
+                      value={Fieldtoempty ?'':props.distance}
                       type="text"
                       required
                       disabled={disabledselectcar}
@@ -561,15 +571,9 @@ function PointGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
-            </OverlayTrigger>
           </Col>
           <Col lg={6} md={6} xs={12}>
-          <OverlayTrigger
-              placement="right"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-              {...tooltipobj}
-            >
+        
             <Form.Group controlId="formGridState">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -586,7 +590,7 @@ function PointGetQuoteForm(props) {
                       type="text"
                       required
                       disabled={disabledselectcar}
-                      value={props.duration}
+                      value={Fieldtoempty ? '':props.duration}
                       className={`input-from__input shadow-none  input-from__input-date ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Duration"
                     />
@@ -594,17 +598,11 @@ function PointGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
-            </OverlayTrigger>
           </Col>
         </Row>
         <Row className="mb-3 justify-content-center">
           <Col lg={8} md={8} xs={12} className="mb-3">
-          <OverlayTrigger
-              placement="right"
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-              {...tooltipobj}
-            >
+        
             <Form.Group controlId="formGridCity">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -617,7 +615,7 @@ function PointGetQuoteForm(props) {
                     <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>Price</Form.Label>
                     <Form.Control
                       disabled={disabledselectcar}
-                      value={`$ ${props.totalprice}`}
+                      value={`$ ${ Fieldtoempty ?'':props.totalprice}`}
                       type="text"
                       required
                       className={`input-from__input shadow-none  input-from__input-date ${ShowColorDisabledForDate ? 'color-disabled':''}`}
@@ -627,7 +625,6 @@ function PointGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
-            </OverlayTrigger>
           </Col>
         </Row>
         {/* SHOW Or HIDE Passengers and Luggage End*/}
@@ -645,6 +642,7 @@ function PointGetQuoteForm(props) {
         fare={props.totalprice}
         onHide={() => setModalShow(false)}
         bookeddata={bookme}
+        formreset={formresthandler}
       />
     </Fragment>
   );
