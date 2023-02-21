@@ -31,6 +31,7 @@ function PointGetQuoteForm(props) {
   const [disabled, setgetQuotbtnenabled] = useState("disabled");
   const [IsshowMessageForm, SetIsshowMessageForm] = useState(false);
   const [disabledselectcar, Setdisabledselectcar] = useState("disabled");
+  const [defaultselected,setselectedvalue]=useState({})
   const [disableddate, Setdisableddate] = useState("disabled");
   const [Fieldtoempty,setFieldtoempty]=useState(false)
   const [showDateTimeInputWithFrom, SetshowDateTimeInputFrom] = useState(false);
@@ -83,8 +84,10 @@ function PointGetQuoteForm(props) {
   const OnchangeFromPlaceHandler = (e) => {
     e.preventDefault()
     if (e.target.value == "") {
+      setselectedvalue({selected:true})
       SetshowDateTimeInputFrom(false);
     } else {
+      setselectedvalue({})
       SetshowDateTimeInputFrom(true);
     }
   };
@@ -126,9 +129,12 @@ function PointGetQuoteForm(props) {
   const OnchangeToPlaceHandler = (e) => {
     e.preventDefault()
     if (e.target.value == "") {
+      setselectedvalue({selected:true})
       SetshowDateTimeInputTo(false);
     } else {
       SetshowDateTimeInputTo(true);
+      setselectedvalue({})
+
     }
 
     
@@ -476,7 +482,7 @@ function PointGetQuoteForm(props) {
                   className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                   aria-label="Default select example"
                 >
-                  <option  value="">Select Vehicle</option>
+                  <option value="" {...defaultselected}>Select Vehicle</option>
                   {cars.map((el) => {
                     return <option value={el._id}>{el.car_name}</option>;
                   })}
