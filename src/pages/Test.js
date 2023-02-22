@@ -1,32 +1,33 @@
-import React from 'react'
-import { useSnackbar } from 'react-simple-snackbar'
+import React, { useState } from 'react';
+import Select from 'react-select';
+import { suvHours } from '../data/HoursData';
+
+// const options = [
+//   { value: 'chocolate', label: 'Chocolate' },
+//   { value: 'strawberry', label: 'Strawberry' },
+//   { value: 'vanilla', label: 'Vanilla' },
+// ];
+
+const options=suvHours.map((el)=>{
+  return {
+    value:el.val,
+    label:el.hour
+  }
+})
 
 function Test() {
-  const options = {
-    position: 'top-center',
-    style: {
-      backgroundColor: '#8f5e25',
-      color: 'white',
-      fontFamily: 'Manrope',
-      fontSize: '18px',
-      textAlign: 'center',
-    },
-    closeStyle: {
-      color: 'white',
-      fontSize: '16px',
-    },
-  }
-  const [openSnackbar, closeSnackbar] = useSnackbar(options)
+  const [selectedOption, setSelectedOption] = useState(null);
 
   return (
-    <div>
-      <button onClick={() => openSnackbar('Payment Successfull!')}>
-        Click me to open the Snackbar!
-      </button>
-      <button onClick={closeSnackbar}>
-        Click me to close the Snackbar programmatically.
-      </button>
+    <div className="App">
+      <Select
+        defaultValue={selectedOption}
+        onChange={setSelectedOption}
+        maxMenuHeight={170}
+        options={options}
+      
+      />
     </div>
-  )
+  );
 }
 export default Test

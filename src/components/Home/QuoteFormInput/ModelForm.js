@@ -8,17 +8,29 @@ import { Fragment, useEffect, useState } from "react";
 import { useSnackbar } from 'react-simple-snackbar'
 
 function ModelForm(props) {
-  const {car,bookdate,booktime,distance,duration,from,to}=props.bookeddata
-  const data = {
-    location_from: from,
-    location_to: to,
-    date: bookdate,
-    pick_up_time: booktime,
-    car: car,
-    distance: distance,
-    duration: duration,
-    ride_type: "Point to Point",
+  const {car,bookdate,booktime,distance,duration,from,to,form_type}=props.bookeddata
+  let data;
+  if(form_type==='point_to_point'){
+     data = {
+      location_from: from,
+      location_to: to,
+      date: bookdate,
+      pick_up_time: booktime,
+      car: car,
+      distance: distance,
+      duration: duration,
+      ride_type: "Point to Point",
+    }
+  }else if(form_type==='hourly'){
+    data = {
+      location_from: from,
+      date: bookdate,
+      pick_up_time: booktime,
+      car: car,
+      ride_type: "hourly",
+    }
   }
+  
 
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");

@@ -248,6 +248,8 @@ function PointGetQuoteForm(props) {
       luggage: luggage,
       distance: props.distance,
       duration: props.duration,
+      form_type:'point_to_point'
+
     });
 
   };

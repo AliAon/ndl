@@ -10,6 +10,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { GiPathDistance, GiDuration } from "react-icons/gi";
 import { MdPaid } from "react-icons/md";
 import "react-datepicker/dist/react-datepicker.css";
+import { suvHours,sedanHours } from "../../data/HoursData";
 import { Autocomplete, LoadScript } from "@react-google-maps/api";
 import {
   FaCalendar,
@@ -23,6 +24,8 @@ import {
   FaUserFriends,
 } from "react-icons/fa";
 import Test from "../../pages/Test";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
+
 import MyVerticallyCenteredModal from "./QuoteFormInput/MyVerticallyCenteredModal";
 import MessagesInfo from "../../common/MessagesInfo";
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
@@ -44,23 +47,44 @@ function HourlyGetQuoteForm(props) {
   const [fromlocation, setFromlocation] = useState({});
   const [fromlocationname, setfromlocationname] = useState("");
   const [carname, setCarname] = useState("");
+  const [carperhourrate, setCarPerHourRate] = useState("");
   const [carid, setCarid] = useState("");
+  const [defaultselected,setselectedvalue]=useState({})
   const [bookdate, setDate] = useState("");
   const [booktime, setTime] = useState("");
   const [passenger, setPassenger] = useState("");
   const [luggage, setLuggage] = useState("");
+  const [tooltipobj,setTooltipObj]=useState({})
   const [bookme, setBookme] = useState({});
+  const [Hours,setHours]=useState([]);
+  const [totalprice,settotalprice]=useState(0);
+  const [eventcontainer,seteventcontainer]=useState("")
+
   const onloadFromHandler = (autocompletefrom) => {
     setAutocompleteFrom(autocompletefrom);
   };
 
-
+  const renderTooltip = (props) => (
+    <Tooltip
+     arrowProps={{
+       style: {
+         backgroundColor: "#8f5e25",
+       },
+     }}
+     id="button-tooltip"
+     {...props}
+   >
+     Please Fill From & To Field
+   </Tooltip>
+ );
   //Controle Car dropdown & date & time field onchange From Input
   const OnchangeFromPlaceHandler = (e) => {
     e.preventDefault()
     if (e.target.value == "") {
+      setselectedvalue({selected:true})
       SetshowDateTimeInputFrom(false);
     } else {
+      setselectedvalue({})
       SetshowDateTimeInputFrom(true);
     }
   };
@@ -100,8 +124,12 @@ function HourlyGetQuoteForm(props) {
       Setdisableddate("");
       setgetQuotbtnenabled("");
       SetShowColorDisabledForDate(false)
+      setTooltipObj({
+        show:false
+      })
       
     } else {
+      setTooltipObj({})
       Setdisabletime("disabled");
       Setdisableddate("disabled");
       setgetQuotbtnenabled("disabled");
@@ -148,11 +176,25 @@ function HourlyGetQuoteForm(props) {
     setPassenger(car?.no_of_passengers);
     setLuggage(car?.allowed_buggage);
     setCarid(car?._id);
-    //SetDistanceMatrix Fileds Origin and Destination
-    props.onDirectionHandler(fromlocation, car.per_mile_rate);
+    setCarPerHourRate(car?.per_hour_rate);
+    if(car.car_name==='Suv' || car.car_name==='SUV'){
+      setHours(suvHours)
+    }else if(car.car_name==='Sedan'){
+      setHours(sedanHours)
+    }else{
+      setHours([])
+    }
+    props.onDirectionHandler(fromlocation);
     //enable button
     setgetQuotbtnenabled("");
   };
+
+  //Hours Handler
+  const onSelectHoursHandler=(e)=>{
+    const hour=e.target.value;
+    const price=parseFloat(carperhourrate*hour).toFixed(2);
+    settotalprice(price)
+  }
 
   //Time Handler
   const timeHandler = (e) => {
@@ -162,6 +204,8 @@ function HourlyGetQuoteForm(props) {
   //Submit Book Now Info
   const submitFormHandler = (e) => {
     e.preventDefault();
+    seteventcontainer(e)
+
     //show model
     setModalShow(true)
     setBookme({
@@ -171,10 +215,27 @@ function HourlyGetQuoteForm(props) {
       car: carid,
       passenger: passenger,
       luggage: luggage,
-      distance: props.distance,
-      duration: props.duration,
+      form_type:'hourly'
     });
   };
+
+   //formresthandler
+   const formresthandler=()=>{
+    console.log('reset form')
+    eventcontainer.target.reset()
+   //clean fields
+    setDate('')
+    setTime('')
+    setPassenger('')
+    setLuggage('')
+    //disadbled all fields
+    Setdisabletime("disabled");
+    Setdisableddate("disabled");
+    setgetQuotbtnenabled("disabled");
+    SetShowColorDisabledForDate(true)
+    Setdisabledselectcar("disabled");
+  }
+
   //onClick Date handler
   const onDateClickHandler=()=>{
     console.log('dateclicked')
@@ -194,7 +255,7 @@ function HourlyGetQuoteForm(props) {
                     </span>
                   </Col>
                   <Col>
-                    <Form.Label className="input-from__label">From</Form.Label>
+                    <Form.Label className="input-from__label">Pickup Address</Form.Label>
                     <LoadScript
                       googleMapsApiKey={apiKey}
                       libraries={["places"]}
@@ -235,6 +296,13 @@ function HourlyGetQuoteForm(props) {
 
         <Row>
           <Col lg={6} md={6} xs={12}>
+          <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+              {...tooltipobj}
+
+            >
             <Form.Group controlId="formGridCity" className="mb-3">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -263,8 +331,16 @@ function HourlyGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
+            </OverlayTrigger>
           </Col>
           <Col lg={6} md={6} xs={12} className="mb--20">
+          <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+              {...tooltipobj}
+
+            >
             <Form.Group controlId="formGridState">
               <div className="input-from input-from__num-of-hour">
                 <Row className="row align-items-center">
@@ -294,11 +370,19 @@ function HourlyGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
+            </OverlayTrigger>
           </Col>
         </Row>
         <Row>
  
           <Col lg={6} md={6} xs={12}>
+          <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+              {...tooltipobj}
+
+            >
           <Form.Group className="mb-3" controlId="formGridAddress1">
           <div className="input-from">
             <Row className="row align-items-center">
@@ -318,7 +402,7 @@ function HourlyGetQuoteForm(props) {
                   className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                   aria-label="Default select example"
                 >
-                  <option disabled selected value="">Select Vehicle</option>
+                  <option  {...defaultselected} value="">Select Vehicle</option>
                   {cars.map((el) => {
                     return <option value={el._id}>{el.car_name}</option>;
                   })}
@@ -327,8 +411,15 @@ function HourlyGetQuoteForm(props) {
             </Row>
           </div>
         </Form.Group>
+        </OverlayTrigger>
           </Col>
           <Col lg={6} md={6} xs={12}>
+          <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+              {...tooltipobj}
+            >
         <Form.Group className="mb-3" controlId="formGridAddress1">
           <div className="input-from">
             <Row className="row align-items-center">
@@ -342,20 +433,27 @@ function HourlyGetQuoteForm(props) {
                   Select Hours
                 </Form.Label>
                 <Form.Select
-                  onChange={onCarSelectHandler}
+                  onChange={onSelectHoursHandler}
                   required
                   disabled={disabledselectcar}
                   className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                   aria-label="Default select example"
                 >
-                  <option  value="" disabled selected>Select Hours</option>
-                  <option  value="5">5 Hour</option>
-                  <option  value="6">6 Hour</option>
+                  <option  value=""  {...defaultselected}>Select Hours</option>
+                  {
+                    Hours.map((el)=>{
+                      return (
+                      <option  value={`${el.val}`}>{el.hour}</option>
+                      )
+                    })
+                  }
+                  
                 </Form.Select>
               </Col>
             </Row>
           </div>
         </Form.Group>
+        </OverlayTrigger>
         </Col>
         </Row>
         
@@ -377,6 +475,7 @@ function HourlyGetQuoteForm(props) {
                       required
                       value={passenger}
                       type="text"
+                      disabled={disabledselectcar}
                       className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Allowed Passengers"
                     />
@@ -402,6 +501,7 @@ function HourlyGetQuoteForm(props) {
                       value={luggage}
                       type="text"
                       required
+                      disabled={disabledselectcar}
                       className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`}
                       placeholder="Allowed Luggage"
                     />
@@ -413,6 +513,13 @@ function HourlyGetQuoteForm(props) {
         </Row>
         <Row>
         <Col lg={12} md={8} xs={12} className="mb-3">
+        <OverlayTrigger
+              placement="top"
+              delay={{ show: 250, hide: 400 }}
+              overlay={renderTooltip}
+              {...tooltipobj}
+
+            >
             <Form.Group controlId="formGridCity">
               <div className="input-from">
                 <Row className="row align-items-center">
@@ -425,11 +532,13 @@ function HourlyGetQuoteForm(props) {
                   <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>
                      Describe Your Journy...
                     </Form.Label>
-                    <Form.Control  className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`} as="textarea"  />
+                    <Form.Control required  className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled-pleaceholder':''}`} as="textarea"                        disabled={disabledselectcar}
+/>
                   </Col>
                 </Row>
               </div>
             </Form.Group>
+            </OverlayTrigger>
           </Col>
         </Row>
         <Row className="mb-3 justify-content-center">
@@ -445,10 +554,11 @@ function HourlyGetQuoteForm(props) {
                   <Col lg={10} xs={11}>
                     <Form.Label className={`input-from__label ${ShowColorDisabledForDate ? 'color-disabled':''}`}>Price</Form.Label>
                     <Form.Control
-                      value={`$ ${props.totalprice}`}
+                      value={`$ ${totalprice}`}
                       type="text"
                       className={`input-from__input shadow-none ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                       placeholder="Price"
+                      disabled={disabledselectcar}
                       required
                     />
                   </Col>
@@ -458,6 +568,12 @@ function HourlyGetQuoteForm(props) {
             </Form.Group>
           </Col>
         </Row>
+        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+        <Form.Check type="checkbox"  required
+        label="Trip should be end at a similar location from where we started, if not total amount will be adjust at the end." 
+        />
+      </Form.Group>
+
         
         {/* SHOW Or HIDE Passengers and Luggage End*/}
         <button
@@ -471,9 +587,11 @@ function HourlyGetQuoteForm(props) {
       <MyVerticallyCenteredModal
         show={modalShow}
         onModalShow={setModalShow}
-        fare={props.totalprice}
+        fare={totalprice}
         onHide={() => setModalShow(false)}
         bookeddata={bookme}
+        formreset={formresthandler}
+
       />
     </Fragment>
   );
