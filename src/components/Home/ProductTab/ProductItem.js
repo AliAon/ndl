@@ -4,6 +4,7 @@ import { BsArrowRight } from "react-icons/bs";
 function ProductItem(props) {
     const {title,description,imagename}=props
   return (
+    <Col lg={12} md={6}>
     <Container className="mt--40">
       <Row className=" row__productitem align-middle">
         <Col lg={3} >
@@ -39,6 +40,7 @@ function ProductItem(props) {
         </Col>
       </Row>
     </Container>
+    </Col>
   );
 }
 

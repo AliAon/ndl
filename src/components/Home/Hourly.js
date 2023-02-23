@@ -9,7 +9,7 @@ const Hourly = () => {
     setOrigin(origin);
   };
   return (
-    <Row className="section-getquote  align-items-center">
+    <Row className="section-getquote pt--20">
       <Col lg={6}>
         <Card className="section-getquote__card">
           <h4 className="section-getquote__title">Hourly Bases</h4>

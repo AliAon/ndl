@@ -14,6 +14,7 @@ import Hero from "../components/Home/Hero";
 import Hourly from "../components/Home/Hourly";
 import ProductTabs from "../components/Home/ProductTabs";
 import HourlyGetQuoteForm from "../components/Home/HourlyGetQuoteForm";
+import BackToTopBtn from "../common/BackToTopBtn";
 const Home = () => {
   return (
     <Fragment>
@@ -43,6 +44,7 @@ const Home = () => {
         <ExtendYouShop />
         <ProductTabs />
         <CtaOne />
+        <BackToTopBtn/>
       </main>
       <Footer />
     </Fragment>

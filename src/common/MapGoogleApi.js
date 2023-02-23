@@ -30,13 +30,24 @@ const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
 
 const MapGoogleApi = (props) => {
   const [showmapmark,setShowmapmark]=useState(true)
+  const [showdistandirection,setshowdistandirection]=useState(true)
   const [response, setresponse] = useState("");
+  const [maporigin,setmaporigin]=useState({})
+  const [mapdestination,setmapdestination]=useState({})
   const [CurrentLatLon, setCurrentLatLon] = useState({
     lat: 31.541990736853904,
     lng: 74.36893749666083,
   });
   const onClickHander = (e) => {};
   const { origin, destination } = props;
+  //set origin & destination
+
+  const onloadmaphandler=()=>{
+    setmaporigin(origin)
+    setmapdestination(destination)
+  }
+
+
   //Geting Current Location
   useEffect(() => {
     const getlocationhanlder = (pos) => {
@@ -65,6 +76,25 @@ const MapGoogleApi = (props) => {
     props.onGetDistanceDuration(distance, duration);
   };
 
+  useEffect(()=>{
+    if(origin.hasOwnProperty('lat')){
+      console.log('hasOwnProperty','origin',origin)
+      console.log('hasOwnProperty','origin',destination)
+      setshowdistandirection(true)
+      setShowmapmark(false)
+
+
+    }else{
+      console.log('origin',origin)
+      console.log('destination',destination)
+      setCurrentLatLon((prev)=>{
+        return prev
+      })
+      setShowmapmark(true)
+      setshowdistandirection(false)
+    }
+  },[origin,destination])
+
   return (
     <LoadScript googleMapsApiKey={apiKey} libraries={["places"]}>
       <GoogleMap
@@ -72,20 +102,21 @@ const MapGoogleApi = (props) => {
         mapContainerClassName="mapstyle"
         center={CurrentLatLon}
         zoom={15}
+        onLoad={onloadmaphandler}
         onClick={onClickHander}
       >
        {showmapmark && <Marker position={
           CurrentLatLon
         }/>}
-        <DirectionsService
+         <DirectionsService
           options={directionsRendererOptions}
           callback={directionsCallback}
         />
-        <DirectionsRenderer
+        {showdistandirection && <DirectionsRenderer
           options={{
             directions: response,
           }}
-        />
+        />}
         <DistanceMatrixService
           callback={distancehandler}
           options={{

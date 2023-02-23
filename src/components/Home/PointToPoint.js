@@ -13,11 +13,16 @@ const PointToPoint = () => {
   const [IsShow,setIsShow]=useState(false)
   const [mileperrate,setmileperrate]=useState(null)
   const [totalprice,settotalprice]=useState(0)
+  const [fromlocationname,setfromlocationname]=useState('')
+  const [tolocationname,settolocationname]=useState('')
+  const [tollPrice, setTollPrice] = useState(0);
 
-  const mapDirectionHandler = (origin, destination,permilerate) => {
+  const mapDirectionHandler = (origin, destination,permilerate,fromlocationname,tolocationname) => {
     setOrigin(origin);
     setDestination(destination)
     setmileperrate(permilerate)
+    setfromlocationname(fromlocationname)
+    settolocationname(tolocationname)
   };
   //Get Distance/Duration from MapGoogleApiComponnent
   const DistanceDurationHandler=(distance,duration)=>{
@@ -27,13 +32,36 @@ const PointToPoint = () => {
   }
   //Geting miles
   const CalculateBasicFarePerMileRate=(distance,mileperrate)=>{
+
+    //SET TollPrices If Needed
+    if (
+      fromlocationname.includes("New York") || fromlocationname.includes("NY") &&
+      tolocationname.includes("New York") || tolocationname.includes("NY")
+    ) {
+      setTollPrice(14.76);
+    } else if (
+      fromlocationname.includes("New Jersey") || fromlocationname.includes("NJ") &&
+      tolocationname.includes("NJ")
+    ) {
+      setTollPrice(22.99);
+    } else if (
+      fromlocationname.includes("Boston") &&
+      tolocationname.includes("Boston")
+    ) {
+      setTollPrice(4);
+    }
+
+    //SET Basic fare plus TollPrices If Needed
     const km=distance.split(' ')[0]
     const miles=km*0.62137
-    const basicfare=(miles*mileperrate).toFixed(2)
-    settotalprice(basicfare)
+    const basicfare=miles*mileperrate
+    console.log('basicfare',basicfare)
+    console.log('tollPrice',tollPrice)
+    const faretollprice=parseFloat(basicfare+tollPrice).toFixed(2);
+    settotalprice(faretollprice)
   } 
   return (
-    <Row className="section-getquote  align-items-center">
+    <Row className="section-getquote pt--20">
       <Col lg={6}>
         <Card className="section-getquote__card">
           <h4 className="section-getquote__title">Point To Point</h4>

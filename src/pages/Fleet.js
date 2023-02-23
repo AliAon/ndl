@@ -8,6 +8,7 @@ import Hero from '../components/Home/Hero'
 import CtaOne from "../components/Home/CtaOne";
 import { FaArrowRight } from "react-icons/fa";
 import Services from "../components/Fleet/Services";
+import BackToTopBtn from "../common/BackToTopBtn";
 const Fleet = () => {
   return (
     <Fragment>
@@ -58,6 +59,7 @@ const Fleet = () => {
         <CtaOne />
       </main>
       <Footer />
+      <BackToTopBtn/>
     </Fragment>
   );
 };

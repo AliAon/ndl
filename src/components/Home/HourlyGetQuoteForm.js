@@ -3,6 +3,7 @@ import { BASE_URL } from "../../common/Config";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+
 import Row from "react-bootstrap/Row";
 // import Autocomplete from "react-google-autocomplete";
 import DatePicker from "react-datepicker";
@@ -29,6 +30,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import MyVerticallyCenteredModal from "./QuoteFormInput/MyVerticallyCenteredModal";
 import MessagesInfo from "../../common/MessagesInfo";
 const apiKey = "AIzaSyDR6G4AS86R9DJssrIMxtm1KV875LZzbgA";
+
 
 function HourlyGetQuoteForm(props) {
   const [cars, setCars] = useState([]);
@@ -241,6 +243,8 @@ function HourlyGetQuoteForm(props) {
     console.log('dateclicked')
   }
 
+
+
   return (
     <Fragment>
       <Form onSubmit={submitFormHandler}>
@@ -435,6 +439,7 @@ function HourlyGetQuoteForm(props) {
                 <Form.Select
                   onChange={onSelectHoursHandler}
                   required
+                  onClick={'size=5'}
                   disabled={disabledselectcar}
                   className={`input-from__input input-from__input-hours shadow-none  ${ShowColorDisabledForDate ? 'color-disabled':''}`}
                   aria-label="Default select example"
@@ -568,11 +573,14 @@ function HourlyGetQuoteForm(props) {
             </Form.Group>
           </Col>
         </Row>
+       
+       
         <Form.Group className="mb-3" controlId="formBasicCheckbox">
         <Form.Check type="checkbox"  required
         label="Trip should be end at a similar location from where we started, if not total amount will be adjust at the end." 
         />
       </Form.Group>
+      
 
         
         {/* SHOW Or HIDE Passengers and Luggage End*/}

@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Container } from "react-bootstrap";
+import BackToTopBtn from "../common/BackToTopBtn";
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import HeaderMobile from "../common/HeaderMobile";
@@ -16,6 +17,7 @@ const AboutUs = () => {
         
       </main>
       <Footer />
+      <BackToTopBtn/>
     </Fragment>
   );
 };

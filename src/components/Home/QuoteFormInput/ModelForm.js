@@ -8,7 +8,7 @@ import { Fragment, useEffect, useState } from "react";
 import { useSnackbar } from 'react-simple-snackbar'
 
 function ModelForm(props) {
-  const {car,bookdate,booktime,distance,duration,from,to,form_type}=props.bookeddata
+  const {car,bookdate,booktime,distance,duration,from,to,form_type,flight_no}=props.bookeddata
   let data;
   if(form_type==='point_to_point'){
      data = {
@@ -19,6 +19,7 @@ function ModelForm(props) {
       car: car,
       distance: distance,
       duration: duration,
+      flight_no:flight_no,
       ride_type: "Point to Point",
     }
   }else if(form_type==='hourly'){

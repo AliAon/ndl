@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {FaArrowCircleUp} from 'react-icons/fa';
-const Test = () =>{
+const BackToTopBtn = () =>{
 
 const [visible, setVisible] = useState(false)
 
@@ -33,4 +33,4 @@ return (
 );
 }
 
-export default Test;
+export default BackToTopBtn;

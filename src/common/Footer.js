@@ -12,6 +12,11 @@ const Footer = () => {
   return (
     <footer className="footer">
       <Container fluid="sm">
+        <Row className=" footer__logo"> 
+          <Col lg={4}>
+          <img src="./images/ndl-trans.png"/>
+          </Col>
+        </Row>
         <Row className="top-footer mb--40 ">
           <Col lg={4}>
             <h4 className="footer__menu-title mb--20">ABOUT US</h4>
@@ -81,7 +86,7 @@ const Footer = () => {
           <Col>
             <div className="text-center">
               <Row className="d-flex justify-content-center mb--10">
-                <Col lg={5} xs={6} md={3} sm={4}>
+                <Col lg={5} xs={6} md={4} sm={5}>
                   <SocialLinks iconwidth={2} color="#4F3313" />
                 </Col>
               </Row>

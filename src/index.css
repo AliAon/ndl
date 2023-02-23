@@ -30,3 +30,6 @@ input:focus,input:active,input:focus-visible,input:focus-within{
   border: none!important;
   outline: none!important;
 }
+.css-5lsacj-control:hover {
+  border-color: none!important;
+}

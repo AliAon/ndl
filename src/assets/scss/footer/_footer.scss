@@ -42,6 +42,12 @@
       font-weight: 400;
       text-align: center;
    }
+   @media only screen and (max-width: 479px) {
+   &__logo{
+      margin-left: 0px;
+      margin-right: 0px;
+   }
+}
 
 }
 .hr-line-quick-linke{

@@ -17,10 +17,13 @@ import {
   FaCircle,
   FaClock,
   FaLuggageCart,
+  FaMap,
+  FaMapMarked,
   FaPeopleCarry,
   FaUser,
   FaUserFriends,
 } from "react-icons/fa";
+import {MdFlightTakeoff} from "react-icons/md"
 import Test from "../../pages/Test";
 import MyVerticallyCenteredModal from "./QuoteFormInput/MyVerticallyCenteredModal";
 import MessagesInfo from "../../common/MessagesInfo";
@@ -42,6 +45,7 @@ function PointGetQuoteForm(props) {
   const [showCar, SetshowCar] = useState(false);
   const [disabletime, Setdisabletime] = useState("disabled");
   const [modalShow, setModalShow] = useState(false);
+  const [isFlightNoRequried, setisFlightNoRequried] = useState(false);
   const [IsShow, setIsshow] = useState(false);
   const [autocompleteFrom, setAutocompleteFrom] = useState("");
   const [autoCompleteTo, setAutCompleteTo] = useState("");
@@ -55,9 +59,12 @@ function PointGetQuoteForm(props) {
   const [bookdate, setDate] = useState("");
   const [booktime, setTime] = useState("");
   const [passenger, setPassenger] = useState("");
+  const [flightno, setFlightno] = useState("");
   const [luggage, setLuggage] = useState("");
   const [bookme, setBookme] = useState({});
   const [tooltipobj,setTooltipObj]=useState({})
+  const [tollPrice, setTollPrice] = useState(0);
+
   const onloadFromHandler = (autocompletefrom) => {
     setAutocompleteFrom(autocompletefrom);
   };
@@ -86,6 +93,8 @@ function PointGetQuoteForm(props) {
     if (e.target.value == "") {
       setselectedvalue({selected:true})
       SetshowDateTimeInputFrom(false);
+      setisFlightNoRequried(false)
+      setFlightno('')
     } else {
       setselectedvalue({})
       SetshowDateTimeInputFrom(true);
@@ -96,6 +105,21 @@ function PointGetQuoteForm(props) {
     const fromPlace = autocompleteFrom.getPlace();
     if (fromPlace) {
       setfromlocationname(fromPlace.formatted_address);
+      console.log(fromPlace)
+      // set Airport Field To Show
+      if(fromPlace.name.includes('Airport') 
+      || fromPlace.name.includes('Terminal')
+      || fromPlace.name.includes('Lga/Terminal')
+      || fromPlace.name.includes('terminal')
+      || fromPlace.name.includes('airport')
+      ){
+        console.log('Airport Field To Show',fromPlace.formatted_address)
+        setisFlightNoRequried(true)
+      }
+      if (fromPlace.name.includes("Airport Road") || fromPlace.name.includes("Airport Railway Station") ||fromPlace.name.includes("Railway")) {
+        setisFlightNoRequried(false);
+      }
+      
       const { lat, lng } = fromPlace?.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
@@ -111,8 +135,23 @@ function PointGetQuoteForm(props) {
   //Select To place
   const SelectedToPlaceHandler = () => {
     const placeTo = autoCompleteTo.getPlace();
+    
     if (placeTo) {
       settolocationname(placeTo.formatted_address);
+      //set Airport Field To Show
+      console.log(placeTo.formatted_address)
+      if(placeTo.name.includes('Airport') 
+      || placeTo.name.includes('Terminal')
+      || placeTo.name.includes('Lga/Terminal')
+      || placeTo.name.includes('terminal')
+      || placeTo.name.includes('airport')
+      ){
+        console.log('Airport Field To Show',placeTo.formatted_address)
+        setisFlightNoRequried(true)
+      }
+      if (placeTo.name.includes("Airport Road") || placeTo.name.includes("Airport Railway Station")) {
+        setisFlightNoRequried(false);
+      } 
       const { lat, lng } = placeTo?.geometry.location;
       const latvalue = lat();
       const lngvalue = lng();
@@ -125,16 +164,30 @@ function PointGetQuoteForm(props) {
       setTolocation({});
     }
   };
+
+  //flightnohandler
+  const flightnohandler=(e)=>{
+    if (e.target.value == "") {
+      setFlightno('')
+    }else{
+      setFlightno(e.target.value)
+    }
+  }
+
+
   //Controle Car dropdown onchange To Input
   const OnchangeToPlaceHandler = (e) => {
     e.preventDefault()
     if (e.target.value == "") {
       setselectedvalue({selected:true})
       SetshowDateTimeInputTo(false);
+      setisFlightNoRequried(false)
+      setFlightno('')
+
+
     } else {
       SetshowDateTimeInputTo(true);
       setselectedvalue({})
-
     }
 
     
@@ -221,7 +274,7 @@ function PointGetQuoteForm(props) {
     setLuggage(car?.allowed_buggage);
     setCarid(car?._id);
     //SetDistanceMatrix Fileds Origin and Destination
-    props.onDirectionHandler(fromlocation, tolocation, car.per_mile_rate);
+    props.onDirectionHandler(fromlocation, tolocation, car.per_mile_rate,fromlocationname,tolocationname);
     //enable button
     setgetQuotbtnenabled("");
     setFieldtoempty(false)
@@ -248,6 +301,7 @@ function PointGetQuoteForm(props) {
       luggage: luggage,
       distance: props.distance,
       duration: props.duration,
+      flight_no:flightno,
       form_type:'point_to_point'
 
     });
@@ -273,12 +327,16 @@ function PointGetQuoteForm(props) {
     setgetQuotbtnenabled("disabled");
     SetShowColorDisabledForDate(true)
     Setdisabledselectcar("disabled");
+    const emptyfromlocation={}
+    const emptytolocation={}
+    const cartpermile=''
+    props.onDirectionHandler(emptyfromlocation, emptytolocation, cartpermile)
   }
 
   return (
     <Fragment>
       <Form onSubmit={submitFormHandler}>
-        <Row className="mb-3">
+        <Row>
         {IsshowMessageForm && <MessagesInfo/>}
 
           <Col lg={12} md={6} className="mb--20">
@@ -287,7 +345,7 @@ function PointGetQuoteForm(props) {
                 <Row className="row align-items-center">
                   <Col lg={1} xs={1}>
                     <span>
-                      <FaCircle color="#9B8974" size={20} />
+                      <FaMap color="#9B8974" size={20} />
                     </span>
                   </Col>
                   <Col>
@@ -335,7 +393,7 @@ function PointGetQuoteForm(props) {
                 <Row className="row align-items-center">
                   <Col lg={1} xs={1}>
                     <span>
-                      <FaCircle color="#9B8974" size={20} />
+                      <FaMapMarked color="#9B8974" size={20} />
                     </span>
                   </Col>
                   <Col>
@@ -372,6 +430,33 @@ function PointGetQuoteForm(props) {
                 </Row>
               </div>
             </Form.Group>
+          </Col>
+          <Col lg={12} md={6}>
+
+            { isFlightNoRequried &&
+            <Form.Group className="mb-3" controlId="formGridAddress1">
+              <div className="input-from">
+                <Row className="row align-items-center">
+                  <Col lg={1} xs={1}>
+                    <span>
+                      <MdFlightTakeoff color="#9B8974" size={20} />
+                    </span>
+                  </Col>
+                  <Col>
+                    <Form.Label className="input-from__label">Flight No</Form.Label>
+                    <Form.Control
+                      value={flightno}
+                      onChange={flightnohandler}
+                      type="text"
+                      required
+                      className={`input-from__input shadow-none `}
+                      placeholder="Flight No"
+                    />
+                  </Col>
+                </Row>
+              </div>
+            </Form.Group>
+            }
           </Col>
         </Row>
 
@@ -495,7 +580,7 @@ function PointGetQuoteForm(props) {
         </Form.Group>
         </OverlayTrigger>
         {/* SHOW Or HIDE Passengers and Luggage */}
-        <Row className="mb-3">
+        <Row >
           <Col lg={6} md={6} xs={12} className="mb-3">
         
             <Form.Group controlId="formGridCity">
@@ -551,7 +636,7 @@ function PointGetQuoteForm(props) {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mb-3">
+        <Row >
           <Col lg={6} md={6} xs={12} className="mb-3">
        
             <Form.Group controlId="formGridCity">
@@ -608,7 +693,7 @@ function PointGetQuoteForm(props) {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mb-3 justify-content-center">
+        <Row className=" justify-content-center">
           <Col lg={8} md={8} xs={12} className="mb-3">
         
             <Form.Group controlId="formGridCity">
