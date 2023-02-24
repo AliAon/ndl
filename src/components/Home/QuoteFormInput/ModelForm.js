@@ -5,7 +5,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { BASE_URL } from "../../../common/Config";
 import { Fragment, useEffect, useState } from "react";
-import { useSnackbar } from 'react-simple-snackbar'
+// import { useSnackbar } from 'react-simple-snackbar'
 
 function ModelForm(props) {
   const {car,bookdate,booktime,distance,duration,from,to,form_type,flight_no}=props.bookeddata
@@ -53,7 +53,7 @@ function ModelForm(props) {
       fontSize: '16px',
     },
   }
-  const [openSnackbar, closeSnackbar] = useSnackbar(options)
+  // const [openSnackbar, closeSnackbar] = useSnackbar(options)
 
   let userData;
 
@@ -120,7 +120,7 @@ function ModelForm(props) {
     console.log('Stripe Token',token);
     console.log("btn clicked");
    TokenUserDataHandler(token, completeuserdata);
-   openSnackbar('Payment Successfull!')
+  //  openSnackbar('Payment Successfull!')
    props.OnresetForm()
   };
   //on Closed

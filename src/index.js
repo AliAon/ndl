@@ -6,13 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/scss/app.scss";
 import { BrowserRouter } from "react-router-dom";
-import SnackbarProvider from 'react-simple-snackbar'
+// import SnackbarProvider from 'react-simple-snackbar'
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-  <SnackbarProvider>
+  {/* <SnackbarProvider> */}
     <App />
-  </SnackbarProvider>
+  {/* </SnackbarProvider> */}
   </BrowserRouter>
 );
 
